@@ -1,24 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Constants {
   //colors
   static Color blueish = const Color(0xff181D3D);
-  // static Color secondaryBlue = const Color.fromRGBO(64, 75, 96, .9);
-  // static Color coolBlue = const Color(0xff111111);
   static Color coolBlue = const Color(0xff1f1f1f);
   static Color coolGrey = const Color(0xffbfbfbf);
   static Color coolWhite = const Color(0xfff9f9f9);
 
-  // static Color coolBlue = const Color(0xff1c1b1b);
   static Color secondaryBlue = const Color(0xff111111);
-  // static Color coolBlue = const Color(0xff3A4256);
-  // static Color coolBlack = const Color(0xff111111);
-  // static Color coolBlue = Colors.deepPurpleAccent;
   static Color coolOrange = const Color(0xffff9933);
   static Color coolRed = const Color(0xff742525);
-  static const WHATSAPP = '+233235833345';
 
   //Toast
   static void showToast(BuildContext context, String message) {
@@ -53,8 +44,7 @@ class Constants {
       cardTheme: CardTheme(color: coolBlue),
       appBarTheme: AppBarTheme(
           backgroundColor: coolBlue,
-          iconTheme: IconThemeData(color: coolWhite),
-          titleTextStyle: GoogleFonts.exo2(color: coolWhite, fontSize: 20)),
+          iconTheme: IconThemeData(color: coolWhite),),
       primaryColor: coolBlue,
       bottomAppBarColor: coolBlue,
       scaffoldBackgroundColor: coolBlue,
@@ -72,8 +62,7 @@ class Constants {
           elevation: 0),
       appBarTheme: AppBarTheme(
           backgroundColor: coolOrange,
-          iconTheme: IconThemeData(color: coolBlue),
-          titleTextStyle: GoogleFonts.exo2(color: coolBlue, fontSize: 20)),
+          iconTheme: IconThemeData(color: coolBlue),),
       bottomAppBarColor: coolWhite,
       scaffoldBackgroundColor: coolWhite,
       colorScheme: ColorScheme.fromSwatch().copyWith(

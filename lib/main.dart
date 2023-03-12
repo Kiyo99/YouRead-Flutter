@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:k_books/screens/book.dart';
+import 'package:k_books/screens/book_feed.dart';
 import 'package:k_books/firebase_options.dart';
 import 'package:k_books/screens/book_viewer.dart';
+import 'package:k_books/screens/upload_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sharedPreferencesProvider =
@@ -50,6 +51,7 @@ class MyApp extends HookConsumerWidget {
           routes: {
             BookViewer.id: (context) => const BookViewer(),
             BookFeed.id: (context) => const BookFeed(),
+            UploadScreen.id: (context) => UploadScreen(),
           },
           home: const BookFeed()),
     );
@@ -58,3 +60,4 @@ class MyApp extends HookConsumerWidget {
 
 //Todo: SetUp a viewModel to store the books, use ChangeNotifier
 //Todo: Create a portal to upload images and pdfs
+//Todo: book => title, storage, url, category, reads

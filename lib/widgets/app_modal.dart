@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:qra/presentation/widgets/prompts.dart';
+import 'package:k_books/widgets/prompts.dart';
 
 class AppModal {
   AppModal();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:qra/constants.dart';
+import 'package:k_books/constants.dart';
 
 class AppTextField extends HookWidget {
   final TextEditingController controller;

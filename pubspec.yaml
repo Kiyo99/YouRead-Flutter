@@ -28,6 +28,12 @@ dependencies:
   flutter_cache_manager: ^3.3.0
   pdf: ^3.8.4
 
+  #google font
+  google_fonts: ^3.0.1
+
+  #File picker
+  file_picker: ^4.6.1
+
 
   #firebase
   firebase_auth: ^3.3.5

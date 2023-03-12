@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lottie/lottie.dart';
-import 'package:qra/constants.dart';
-import 'package:qra/presentation/widgets/primary_app_button.dart';
-import 'package:qra/presentation/widgets/secondary_app_button.dart';
+import 'package:k_books/constants.dart';
+import 'package:k_books/widgets/primary_app_button.dart';
+import 'package:k_books/widgets/secondary_app_button.dart';
 
 class AppPrompts extends HookConsumerWidget {
   const AppPrompts(
@@ -53,14 +52,14 @@ class AppPrompts extends HookConsumerWidget {
                     ),
                   ),
                 ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Lottie.asset(
-                  asset,
-                  width: 100,
-                  height: 100,
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(bottom: 10),
+              //   child: Lottie.asset(
+              //     asset,
+              //     width: 100,
+              //     height: 100,
+              //   ),
+              // ),
               Text(
                 title,
                 textAlign: TextAlign.center,
