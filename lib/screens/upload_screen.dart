@@ -69,8 +69,8 @@ class UploadScreen extends HookWidget {
     final isImageLoading = useState(false);
     final isPdfLoading = useState(false);
 
-    final pictureUrl = useState("");
-    final bookUrl = useState("");
+    final imageLink = useState("");
+    final pdfLink = useState("");
 
     return Scaffold(
       drawer: AppDrawer(),
@@ -126,7 +126,7 @@ class UploadScreen extends HookWidget {
                       isImageLoading.value = false;
 
                       imageUrl.text = fileNameToDisplay;
-                      pictureUrl.value = imageLink;
+                      imageLink.value = imageLink;
                     } else {
                       // User canceled the picker
                       debugPrint("I got cancelled");
@@ -159,7 +159,7 @@ class UploadScreen extends HookWidget {
                       final pdfUrl = await savePdf(file, fileNameToDisplay);
                       isPdfLoading.value = false;
 
-                      bookUrl.value = pdfUrl;
+                      pdfLink.value = pdfUrl;
                       pdfStorageUrl.text = fileNameToDisplay;
                     } else {
                       // User canceled the picker
@@ -173,12 +173,11 @@ class UploadScreen extends HookWidget {
               PrimaryAppButton(
                 title: "Upload Book",
                 onPressed: () async {
-                  //Make sure both links are there properly
                   if (title.text.isEmpty ||
                       imageUrl.text.isEmpty ||
                       pdfStorageUrl.text.isEmpty ||
-                      pictureUrl.value.isEmpty ||
-                      bookUrl.value.isEmpty ||
+                      imageLink.value.isEmpty ||
+                      pdfLink.value.isEmpty ||
                       category.text.isEmpty) {
                     AppModal.showToast(context, 'Please enter all fields');
                     return;
@@ -195,8 +194,8 @@ class UploadScreen extends HookWidget {
 
                         Map<String, Object> db = {};
                         db['title'] = title.text;
-                        db['url'] = pictureUrl.value;
-                        db['storage'] = bookUrl.value;
+                        db['url'] = imageLink.value;
+                        db['storage'] = pdfLink.value;
                         db['category'] = category.text;
 
                         _fireStore
