@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:k_books/constants.dart';
@@ -20,6 +21,7 @@ class AppTextField extends HookWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       child: TextField(
+        textCapitalization: TextCapitalization.words,
         obscureText: obscureText ?? false,
         cursorColor: Constants.coolOrange,
         controller: controller,
