@@ -22,7 +22,7 @@ class PrimaryAppButton extends HookWidget {
         child: Text(
           title,
           style: GoogleFonts.exo2(
-            color: Constants.blueish,
+            color: Constants.coolWhite,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -31,11 +31,11 @@ class PrimaryAppButton extends HookWidget {
           shape: RoundedRectangleBorder(
             side: BorderSide(
               width: 1,
-              color: Constants.coolOrange,
+              color: Constants.coolBlue,
             ),
             borderRadius: BorderRadius.circular(15),
           ),
-          backgroundColor: Constants.coolOrange,
+          backgroundColor: Constants.coolBlue,
         ),
       ),
     );

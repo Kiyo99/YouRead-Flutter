@@ -22,13 +22,13 @@ class SecondaryAppButton extends HookWidget {
         onPressed: onPressed,
         child: Text(
           title,
-          style: GoogleFonts.exo2(color: Constants.coolOrange),
+          style: GoogleFonts.exo2(color: Constants.coolBlue),
         ),
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(
             side: BorderSide(
               width: 1,
-              color: Constants.coolOrange,
+              color: Constants.coolBlue,
             ),
             borderRadius: BorderRadius.circular(15),
           ),

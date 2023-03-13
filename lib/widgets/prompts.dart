@@ -31,8 +31,8 @@ class AppPrompts extends HookConsumerWidget {
         Container(
           width: double.infinity,
           padding: const EdgeInsets.fromLTRB(20, 15, 20, 30),
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
               topLeft: Radius.circular(25),
               topRight: Radius.circular(25),
             ),
@@ -46,8 +46,8 @@ class AppPrompts extends HookConsumerWidget {
                   child: IconButton(
                     onPressed: () => Get.back(),
                     icon: CircleAvatar(
-                      backgroundColor: Constants.coolOrange.withOpacity(.1),
-                      foregroundColor: Constants.coolOrange,
+                      backgroundColor: Constants.coolRed.withOpacity(.1),
+                      foregroundColor: Constants.coolRed,
                       child: const Icon(Icons.close, size: 20),
                     ),
                   ),

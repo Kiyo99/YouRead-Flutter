@@ -174,27 +174,30 @@ class BookFeed extends HookWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              SizedBox(
-                height: 250,
-                child: StreamBuilder<QuerySnapshot>(
-                  stream: _booksStream,
-                  builder: (BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (snapshot.hasError) {
-                      return const Center(child: Text('Something went wrong'));
-                    }
+              StreamBuilder<QuerySnapshot>(
+                stream: _booksStream,
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return const Center(child: Text('Something went wrong'));
+                  }
 
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                          child:
-                              CircularProgressIndicator(color: Colors.purple));
-                    }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                        child: CircularProgressIndicator(color: Colors.purple));
+                  }
 
-                    List<Map<String, dynamic>?>? data = snapshot.data?.docs
-                        .map((e) => e.data() as Map<String, dynamic>?)
-                        .toList();
+                  List<Map<String, dynamic>?>? data = snapshot.data?.docs
+                      .map((e) => e.data() as Map<String, dynamic>?)
+                      .toList();
 
-                    return ListView.builder(
+                  if (data!.isEmpty) {
+                    return const SizedBox();
+                  }
+
+                  return SizedBox(
+                    height: 250,
+                    child: ListView.builder(
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
@@ -236,9 +239,9 @@ class BookFeed extends HookWidget {
                           ),
                         );
                       },
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: 20),
               Row(
@@ -259,29 +262,32 @@ class BookFeed extends HookWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              SizedBox(
-                height: 250,
-                child: StreamBuilder<QuerySnapshot>(
-                  stream: _booksStream,
-                  builder: (BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (snapshot.hasError) {
-                      return const Center(child: Text('Something went wrong'));
-                    }
+              StreamBuilder<QuerySnapshot>(
+                stream: _booksStream,
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return const Center(child: Text('Something went wrong'));
+                  }
 
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                          child:
-                              CircularProgressIndicator(color: Colors.purple));
-                    }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                        child: CircularProgressIndicator(color: Colors.purple));
+                  }
 
-                    List<Map<String, dynamic>?>? data = snapshot.data?.docs
-                        .map((e) => e.data() as Map<String, dynamic>?)
-                        .toList();
+                  List<Map<String, dynamic>?>? data = snapshot.data?.docs
+                      .map((e) => e.data() as Map<String, dynamic>?)
+                      .toList();
 
-                    fetchedBooks.value = data;
+                  fetchedBooks.value = data;
 
-                    return ListView.builder(
+                  if (data!.isEmpty) {
+                    return const SizedBox();
+                  }
+
+                  return SizedBox(
+                    height: 250,
+                    child: ListView.builder(
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
@@ -323,9 +329,9 @@ class BookFeed extends HookWidget {
                           ),
                         );
                       },
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: 20),
               Row(
@@ -338,31 +344,34 @@ class BookFeed extends HookWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              SizedBox(
-                height: 50,
-                child: StreamBuilder<QuerySnapshot>(
-                  stream: _categoriesStream,
-                  builder: (BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (snapshot.hasError) {
-                      return const Center(
-                          child: Text(
-                        'Something went wrong',
-                        style: bigTextStyle,
-                      ));
-                    }
+              StreamBuilder<QuerySnapshot>(
+                stream: _categoriesStream,
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return const Center(
+                        child: Text(
+                      'Something went wrong',
+                      style: bigTextStyle,
+                    ));
+                  }
 
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                          child:
-                              CircularProgressIndicator(color: Colors.purple));
-                    }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                        child: CircularProgressIndicator(color: Colors.purple));
+                  }
 
-                    List<Map<String, dynamic>?>? data = snapshot.data?.docs
-                        .map((e) => e.data() as Map<String, dynamic>?)
-                        .toList();
+                  List<Map<String, dynamic>?>? data = snapshot.data?.docs
+                      .map((e) => e.data() as Map<String, dynamic>?)
+                      .toList();
 
-                    return ListView.builder(
+                  if (data!.isEmpty) {
+                    return const SizedBox();
+                  }
+
+                  return SizedBox(
+                    height: 50,
+                    child: ListView.builder(
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
@@ -398,9 +407,9 @@ class BookFeed extends HookWidget {
                           ),
                         );
                       },
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
             ],
           ),

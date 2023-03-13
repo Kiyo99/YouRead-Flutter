@@ -3,16 +3,17 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:k_books/constants.dart';
 
-class AppTextField extends HookWidget {
+class MutedAppTextField extends HookWidget {
   final TextEditingController controller;
   final String title;
+  final Function()? onTap;
   final bool? obscureText;
 
-  AppTextField({
-    required this.controller,
-    required this.title,
-    this.obscureText,
-  });
+  MutedAppTextField(
+      {required this.controller,
+      required this.title,
+      this.obscureText,
+      this.onTap});
   @override
   Widget build(BuildContext context) {
     final brightness = Theme.of(context).brightness;
@@ -20,6 +21,8 @@ class AppTextField extends HookWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       child: TextField(
+        onTap: onTap ?? () {},
+        focusNode: AlwaysDisabledFocusNode(),
         obscureText: obscureText ?? false,
         cursorColor: Constants.coolOrange,
         controller: controller,
@@ -48,4 +51,9 @@ class AppTextField extends HookWidget {
       ),
     );
   }
+}
+
+class AlwaysDisabledFocusNode extends FocusNode {
+  @override
+  bool get hasFocus => false;
 }

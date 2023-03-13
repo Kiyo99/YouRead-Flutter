@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/screens/book_feed.dart';
 import 'package:k_books/firebase_options.dart';
 import 'package:k_books/screens/book_viewer.dart';
+import 'package:k_books/screens/login_page.dart';
 import 'package:k_books/screens/upload_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -52,6 +53,7 @@ class MyApp extends HookConsumerWidget {
             BookViewer.id: (context) => const BookViewer(),
             BookFeed.id: (context) => const BookFeed(),
             UploadScreen.id: (context) => UploadScreen(),
+            LoginPage.id: (context) => LoginPage(),
           },
           home: const BookFeed()),
     );
