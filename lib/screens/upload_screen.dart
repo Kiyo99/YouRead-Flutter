@@ -26,14 +26,14 @@ class UploadScreen extends HookWidget {
   UploadScreen({Key? key}) : super(key: key);
 
   Future savePdf(File file, String name) async {
-    final storageRef = FirebaseStorage.instance.ref().child("Books/$name}");
+    final storageRef = FirebaseStorage.instance.ref().child("Books/$name");
 
     try {
       await storageRef.putFile(file);
       final url = await storageRef.getDownloadURL();
       return url;
     } catch (e) {
-      debugPrint("Error caught: $e}");
+      debugPrint("Error caught: $e");
       return "";
     }
 
@@ -45,14 +45,14 @@ class UploadScreen extends HookWidget {
   }
 
   Future saveImage(File file, String name) async {
-    final storageRef = FirebaseStorage.instance.ref().child("Images/$name}");
+    final storageRef = FirebaseStorage.instance.ref().child("Images/$name");
 
     try {
       await storageRef.putFile(file);
       final url = await storageRef.getDownloadURL();
       return url;
     } catch (e) {
-      debugPrint("Error caught: $e}");
+      debugPrint("Error caught: $e");
       return "";
     }
 
@@ -108,7 +108,7 @@ class UploadScreen extends HookWidget {
 
                   if (result != null) {
                     File file = File(result.files.single.path!);
-                    print("File chosen: ${file}");
+                    print("File chosen: $file");
 
                     // String fileName = '${randomName}.pdf';
                     // print("fileNameeeee: $fileName");
@@ -179,7 +179,7 @@ class UploadScreen extends HookWidget {
                 //
                 //   if (result != null) {
                 //     File file = File(result.files.single.path!);
-                //     print("File chosen: ${file}");
+                //     print("File chosen: $file");
                 //
                 //     String fileName = '${randomName}.pdf';
                 //     print("fileNameeeee: $fileName");
