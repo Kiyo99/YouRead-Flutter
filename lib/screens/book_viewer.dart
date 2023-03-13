@@ -3,6 +3,7 @@ import 'package:flutter_cache_manager/file.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
+import 'package:k_books/constants.dart';
 import 'package:pdf_render/pdf_render_widgets.dart';
 
 class BookViewer extends HookWidget {
@@ -19,8 +20,9 @@ class BookViewer extends HookWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title:Text( data.value['title']),
+        title: Text(data.value['title']),
         elevation: 0,
+        backgroundColor: Constants.coolBlue,
         shadowColor: Colors.transparent,
       ),
       body: FutureBuilder<File>(
@@ -45,7 +47,7 @@ class BookViewer extends HookWidget {
                 },
                 child: PdfViewer.openFile(
                   snapshot.data!.path,
-                  params: const PdfViewerParams(pageNumber: 2),
+                  params: const PdfViewerParams(),
                   viewerController: controller,
                 ),
               )
@@ -57,15 +59,27 @@ class BookViewer extends HookWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
-              child: const Icon(Icons.first_page_outlined),
+            backgroundColor: Constants.coolBlue,
+              child: Icon(
+                Icons.first_page_outlined,
+                color: Constants.coolWhite,
+              ),
               onPressed: () => controller.ready?.goToPage(pageNumber: 1)),
           FloatingActionButton(
-            child: const Icon(Icons.last_page_outlined),
+            backgroundColor: Constants.coolBlue,
+            child: Icon(
+              Icons.last_page_outlined,
+              color: Constants.coolWhite,
+            ),
             onPressed: () =>
                 controller.ready?.goToPage(pageNumber: controller.pageCount),
           ),
           FloatingActionButton(
-            child: const Icon(Icons.find_in_page_outlined),
+            backgroundColor: Constants.coolBlue,
+            child: Icon(
+              Icons.find_in_page_outlined,
+              color: Constants.coolWhite,
+            ),
             onPressed: () {
               showToast(context, "Enter a page number", controller);
               // controller.ready?.goToPage(pageNumber: controller.pageCount);
@@ -85,6 +99,7 @@ class BookViewer extends HookWidget {
       SnackBar(
         content: TextField(
           controller: con,
+          style: TextStyle(color: Constants.coolWhite),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.blue),
@@ -96,12 +111,15 @@ class BookViewer extends HookWidget {
                 borderRadius: BorderRadius.circular(
                   15.0,
                 ),
-                borderSide: const BorderSide(color: Colors.blue)),
+                borderSide: const BorderSide(
+                  color: Colors.blue,
+                )),
             border: const OutlineInputBorder(),
             labelText: message,
             labelStyle: const TextStyle(color: Colors.white),
           ),
         ),
+        backgroundColor: Constants.coolBlue,
         duration: const Duration(minutes: 5),
         action: SnackBarAction(
             label: 'Enter',
