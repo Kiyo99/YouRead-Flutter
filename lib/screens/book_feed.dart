@@ -201,11 +201,11 @@ class BookFeed extends HookWidget {
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
-                      itemCount: data?.length,
+                      itemCount: data.length,
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
                           onTap: () {
-                            Get.toNamed(BookViewer.id, arguments: data![index]);
+                            Get.toNamed(BookViewer.id, arguments: data[index]);
                           },
                           child: Card(
                             color: Colors.grey.shade100,
@@ -220,7 +220,7 @@ class BookFeed extends HookWidget {
                                 children: [
                                   Center(
                                     child: Image.network(
-                                      data![index]!['url'],
+                                      data[index]!['url'],
                                       height: 150,
                                       width: 150,
                                     ),
@@ -255,7 +255,7 @@ class BookFeed extends HookWidget {
                     width: 100,
                     child: LinearProgressIndicator(
                       value: 0.5,
-                      color: Colors.black,
+                      color: Colors.blueGrey,
                       backgroundColor: Colors.grey,
                     ),
                   )
@@ -291,11 +291,11 @@ class BookFeed extends HookWidget {
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
-                      itemCount: data?.length,
+                      itemCount: data.length,
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
                           onTap: () {
-                            Get.toNamed(BookViewer.id, arguments: data![index]);
+                            Get.toNamed(BookViewer.id, arguments: data[index]);
                           },
                           child: Card(
                             color: Colors.grey.shade100,
@@ -310,7 +310,7 @@ class BookFeed extends HookWidget {
                                 children: [
                                   Center(
                                     child: Image.network(
-                                      data![index]!['url'],
+                                      data[index]!['url'],
                                       height: 150,
                                       width: 150,
                                     ),
@@ -375,7 +375,7 @@ class BookFeed extends HookWidget {
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
-                      itemCount: data?.length,
+                      itemCount: data.length,
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
                           child: Container(
@@ -388,7 +388,7 @@ class BookFeed extends HookWidget {
                             child: Row(
                               children: [
                                 Icon(
-                                  data![index]!['text'] == "Drama"
+                                  data[index]!['text'] == "Drama"
                                       ? Icons.movie_creation_outlined
                                       : data[index]!['text'] == "Horror"
                                           ? FlutterRemix.movie_2_fill

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get/get.dart';
+import 'package:k_books/constants.dart';
 import 'package:k_books/widgets/app_modal.dart';
 import 'package:k_books/widgets/app_text_field.dart';
 import 'package:k_books/widgets/drawer.dart';
@@ -65,6 +66,12 @@ class UploadScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isImageLoading = useState(false);
+    final isPdfLoading = useState(false);
+
+    final pictureUrl = useState("");
+    final bookUrl = useState("");
+
     return Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
@@ -92,118 +99,86 @@ class UploadScreen extends HookWidget {
             shrinkWrap: true,
             children: [
               AppTextField(controller: title, title: "Title"),
-              MutedAppTextField(
-                controller: imageUrl,
-                title: "Image",
-                onTap: () async {
-                  // var rng = new Random();
-                  // String randomName = "";
-                  // for (var i = 0; i < 20; i++) {
-                  //   print(rng.nextInt(100));
-                  //   randomName += rng.nextInt(100).toString();
-                  // }
+              Visibility(
+                visible: !isImageLoading.value,
+                replacement: Center(
+                  child: CircularProgressIndicator(
+                    color: Constants.coolBlue,
+                  ),
+                ),
+                child: MutedAppTextField(
+                  controller: imageUrl,
+                  title: "Image",
+                  onTap: () async {
+                    FilePickerResult? result = await FilePicker.platform
+                        .pickFiles(type: FileType.image);
 
-                  FilePickerResult? result =
-                      await FilePicker.platform.pickFiles(type: FileType.image);
+                    if (result != null) {
+                      File file = File(result.files.single.path!);
+                      print("File chosen: $file");
 
-                  if (result != null) {
-                    File file = File(result.files.single.path!);
-                    print("File chosen: $file");
+                      String fileNameToDisplay = file.path.split('/').last;
+                      imageUrl.text = fileNameToDisplay;
 
-                    // String fileName = '${randomName}.pdf';
-                    // print("fileNameeeee: $fileName");
+                      isImageLoading.value = true;
+                      final imageLink =
+                          await saveImage(file, fileNameToDisplay);
+                      isImageLoading.value = false;
 
-                    String fileNameToDisplay = file.path.split('/').last;
-                    imageUrl.text = fileNameToDisplay;
-
-                    final imageLink = await saveImage(file, fileNameToDisplay);
-
-                    imageUrl.text = imageLink;
-
-                    //Going into firebase
-
-                  } else {
-                    // User canceled the picker
-                    debugPrint("I got cancelled");
-                  }
-                },
+                      imageUrl.text = fileNameToDisplay;
+                      pictureUrl.value = imageLink;
+                    } else {
+                      // User canceled the picker
+                      debugPrint("I got cancelled");
+                    }
+                  },
+                ),
               ),
-              MutedAppTextField(
-                controller: pdfStorageUrl,
-                title: "Pdf url",
-                onTap: () async {
-                  // var rng = new Random();
-                  // String randomName = "";
-                  // for (var i = 0; i < 20; i++) {
-                  //   print(rng.nextInt(100));
-                  //   randomName += rng.nextInt(100).toString();
-                  // }
+              Visibility(
+                visible: !isPdfLoading.value,
+                replacement: Center(
+                  child: CircularProgressIndicator(
+                    color: Constants.coolBlue,
+                  ),
+                ),
+                child: MutedAppTextField(
+                  controller: pdfStorageUrl,
+                  title: "Pdf url",
+                  onTap: () async {
+                    FilePickerResult? result = await FilePicker.platform
+                        .pickFiles(
+                            type: FileType.custom, allowedExtensions: ['pdf']);
 
-                  FilePickerResult? result = await FilePicker.platform
-                      .pickFiles(
-                          type: FileType.custom, allowedExtensions: ['pdf']);
+                    if (result != null) {
+                      File file = File(result.files.single.path!);
+                      debugPrint("File chosen: $file");
+                      String fileNameToDisplay = file.path.split('/').last;
+                      pdfStorageUrl.text = fileNameToDisplay;
+                      isPdfLoading.value = true;
 
-                  if (result != null) {
-                    File file = File(result.files.single.path!);
-                    debugPrint("File chosen: $file");
+                      final pdfUrl = await savePdf(file, fileNameToDisplay);
+                      isPdfLoading.value = false;
 
-                    // String fileName = '${randomName}.pdf';
-                    // print("fileNameeeee: $fileName");
-
-                    String fileNameToDisplay = file.path.split('/').last;
-                    pdfStorageUrl.text = fileNameToDisplay;
-
-                    final pdfUrl = await savePdf(file, fileNameToDisplay);
-
-                    pdfStorageUrl.text = pdfUrl;
-                  } else {
-                    // User canceled the picker
-                    debugPrint("I got cancelled");
-                  }
-                },
+                      bookUrl.value = pdfUrl;
+                      pdfStorageUrl.text = fileNameToDisplay;
+                    } else {
+                      // User canceled the picker
+                      debugPrint("I got cancelled");
+                    }
+                  },
+                ),
               ),
               AppTextField(controller: category, title: "Category"),
               const SizedBox(height: 30),
               PrimaryAppButton(
-                // onPressed: () async {
-                //   var rng = new Random();
-                //   String randomName = "";
-                //   for (var i = 0; i < 20; i++) {
-                //     print(rng.nextInt(100));
-                //     randomName += rng.nextInt(100).toString();
-                //   }
-                //
-                //   FilePickerResult? result = await FilePicker.platform
-                //       .pickFiles(
-                //           type: FileType.custom, allowedExtensions: ['pdf']);
-                //
-                //   if (result != null) {
-                //     File file = File(result.files.single.path!);
-                //     print("File chosen: $file");
-                //
-                //     String fileName = '${randomName}.pdf';
-                //     print("fileNameeeee: $fileName");
-                //
-                //     String fileNameToDisplay = file.path.split('/').last;
-                //     imageUrl.text = fileNameToDisplay;
-                //
-                //     final pdfUrl = await savePdf(file, fileNameToDisplay);
-                //
-                //     pdfUrlText.text = pdfUrl;
-                //
-                //     //Going into firebase
-                //
-                //   } else {
-                //     // User canceled the picker
-                //     print("I got cancelled");
-                //   }
-                // },
                 title: "Upload Book",
                 onPressed: () async {
                   //Make sure both links are there properly
                   if (title.text.isEmpty ||
                       imageUrl.text.isEmpty ||
                       pdfStorageUrl.text.isEmpty ||
+                      pictureUrl.value.isEmpty ||
+                      bookUrl.value.isEmpty ||
                       category.text.isEmpty) {
                     AppModal.showToast(context, 'Please enter all fields');
                     return;
@@ -220,8 +195,8 @@ class UploadScreen extends HookWidget {
 
                         Map<String, Object> db = {};
                         db['title'] = title.text;
-                        db['url'] = imageUrl.text;
-                        db['storage'] = pdfStorageUrl.text;
+                        db['url'] = pictureUrl.value;
+                        db['storage'] = bookUrl.value;
                         db['category'] = category.text;
 
                         _fireStore
