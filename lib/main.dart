@@ -50,7 +50,7 @@ class MyApp extends HookConsumerWidget {
           title: 'KBooks',
           debugShowCheckedModeBanner: false,
           routes: {
-            BookViewer.id: (context) => const BookViewer(),
+            BookViewer.id: (context) => BookViewer(),
             BookFeed.id: (context) => const BookFeed(),
             UploadScreen.id: (context) => UploadScreen(),
             LoginPage.id: (context) => LoginPage(),
@@ -63,3 +63,5 @@ class MyApp extends HookConsumerWidget {
 //Todo: SetUp a viewModel to store the books, use ChangeNotifier
 //Todo: Create a portal to upload images and pdfs
 //Todo: book => title, storage, url, category, reads
+//Todo: look at app drawer header
+//Todo: look at page number and resumption

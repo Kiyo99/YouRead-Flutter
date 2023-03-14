@@ -76,7 +76,7 @@ class UploadScreen extends HookWidget {
       drawer: AppDrawer(),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        foregroundColor: Colors.black,
+        foregroundColor: Constants.coolBlue,
         shadowColor: Colors.transparent,
         leading: Builder(
           builder: (context) {

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class Constants {
   //colors
   static Color blueish = const Color(0xff181D3D);
-  static Color coolBlue = const Color(0xff1f1f1f);
+  // static Color coolBlue = const Color(0xff1f1f1f);
+  static Color coolBlue = Colors.blueGrey.shade900;
   static Color coolGrey = const Color(0xffbfbfbf);
   static Color coolWhite = const Color(0xfff9f9f9);
 
@@ -43,8 +44,9 @@ class Constants {
           elevation: 0),
       cardTheme: CardTheme(color: coolBlue),
       appBarTheme: AppBarTheme(
-          backgroundColor: coolBlue,
-          iconTheme: IconThemeData(color: coolWhite),),
+        backgroundColor: coolBlue,
+        iconTheme: IconThemeData(color: coolWhite),
+      ),
       primaryColor: coolBlue,
       bottomAppBarColor: coolBlue,
       scaffoldBackgroundColor: coolBlue,
@@ -61,8 +63,9 @@ class Constants {
           unselectedItemColor: Colors.grey,
           elevation: 0),
       appBarTheme: AppBarTheme(
-          backgroundColor: coolOrange,
-          iconTheme: IconThemeData(color: coolBlue),),
+        backgroundColor: coolOrange,
+        iconTheme: IconThemeData(color: coolBlue),
+      ),
       bottomAppBarColor: coolWhite,
       scaffoldBackgroundColor: coolWhite,
       colorScheme: ColorScheme.fromSwatch().copyWith(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get/get.dart';
+import 'package:k_books/constants.dart';
 import 'package:k_books/widgets/drawer.dart';
 import 'package:k_books/screens/book_viewer.dart';
 
@@ -74,13 +75,13 @@ class BookFeed extends HookWidget {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     "Explore",
                     style: bigTextStyle,
                   ),
                   CircleAvatar(
-                    backgroundColor: Colors.black,
+                    backgroundColor: Constants.coolBlue,
                   )
                 ],
               ),

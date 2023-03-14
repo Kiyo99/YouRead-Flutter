@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get/get.dart';
+import 'package:k_books/constants.dart';
 import 'package:k_books/screens/book_feed.dart';
 import 'package:k_books/screens/upload_screen.dart';
 import 'package:k_books/widgets/app_drawer.dart';
@@ -22,6 +23,12 @@ class AppDrawer extends HookWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container(
+              margin: const EdgeInsets.only(bottom: 20),
+              child: Image.asset(
+                "assets/images/icon_1.png",
+              ),
+            ),
             Expanded(
               child: ListView(
                 shrinkWrap: true,
