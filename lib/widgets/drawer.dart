@@ -4,7 +4,7 @@ import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get/get.dart';
 import 'package:k_books/constants.dart';
 import 'package:k_books/screens/about_screen.dart';
-import 'package:k_books/screens/book_feed.dart';
+import 'package:k_books/screens/books/book_feed.dart';
 import 'package:k_books/screens/favourites_screen.dart';
 import 'package:k_books/screens/upload_screen.dart';
 import 'package:k_books/widgets/app_drawer.dart';

@@ -4,8 +4,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get/get.dart';
 import 'package:k_books/constants.dart';
+import 'package:k_books/screens/books/all_books_screen.dart';
 import 'package:k_books/widgets/drawer.dart';
-import 'package:k_books/screens/book_viewer.dart';
+import 'package:k_books/screens/books/book_viewer.dart';
 
 class BookFeed extends HookWidget {
   static String id = "book_viewer";
@@ -166,7 +167,9 @@ class BookFeed extends HookWidget {
                     style: smallTextStyle,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed(AllBooksScreen.id);
+                    },
                     child: const Text(
                       "See all",
                       style: mutedSmallTextStyle,

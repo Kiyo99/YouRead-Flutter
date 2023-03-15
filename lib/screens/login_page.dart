@@ -8,7 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/constants.dart';
 import 'package:k_books/data/app_user/app_user.dart';
 import 'package:k_books/data/datasource/auth_local_datasource.dart';
-import 'package:k_books/screens/book_feed.dart';
+import 'package:k_books/screens/books/book_feed.dart';
 import 'package:k_books/widgets/app_modal.dart';
 import 'package:k_books/widgets/app_text_field.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
