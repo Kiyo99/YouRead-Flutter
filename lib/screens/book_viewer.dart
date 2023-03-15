@@ -23,16 +23,9 @@ class BookViewer extends HookWidget {
 
     return WillPopScope(
       onWillPop: () {
-        print("Leaving: ${controller.currentPageNumber}");
         Map<String, Object> db = {};
         db['lastPage'] = controller.currentPageNumber;
-        _fireStore
-            .collection("books")
-            .doc(data.value['title'])
-            .update(db)
-            .whenComplete(() => print("Done updated"))
-            .onError(
-                (error, stackTrace) => print("Error updating doc: $error"));
+        _fireStore.collection("books").doc(data.value['title']).update(db);
 
         return Future.value(true);
       },

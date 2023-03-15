@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:k_books/screens/about_screen.dart';
 import 'package:k_books/screens/book_feed.dart';
 import 'package:k_books/firebase_options.dart';
 import 'package:k_books/screens/book_viewer.dart';
+import 'package:k_books/screens/favourites_screen.dart';
 import 'package:k_books/screens/login_page.dart';
+import 'package:k_books/screens/settings_screen.dart';
 import 'package:k_books/screens/upload_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -53,6 +56,9 @@ class MyApp extends HookConsumerWidget {
             BookViewer.id: (context) => BookViewer(),
             BookFeed.id: (context) => const BookFeed(),
             UploadScreen.id: (context) => UploadScreen(),
+            SettingsScreen.id: (context) => const SettingsScreen(),
+            AboutScreen.id: (context) => const AboutScreen(),
+            FavouritesScreen.id: (context) => const FavouritesScreen(),
             LoginPage.id: (context) => LoginPage(),
           },
           home: const BookFeed()),

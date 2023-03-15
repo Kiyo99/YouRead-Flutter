@@ -3,7 +3,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get/get.dart';
 import 'package:k_books/constants.dart';
+import 'package:k_books/screens/about_screen.dart';
 import 'package:k_books/screens/book_feed.dart';
+import 'package:k_books/screens/favourites_screen.dart';
 import 'package:k_books/screens/upload_screen.dart';
 import 'package:k_books/widgets/app_drawer.dart';
 
@@ -34,15 +36,15 @@ class AppDrawer extends HookWidget {
                 shrinkWrap: true,
                 padding: EdgeInsets.zero,
                 children: [
-                  NavTile(
-                    icon: FlutterRemix.home_2_line,
-                    title: "Home",
-                    onPressed: () => Get.toNamed(BookFeed.id),
-                  ),
+                  // NavTile(
+                  //   icon: FlutterRemix.home_2_line,
+                  //   title: "Home",
+                  //   onPressed: () => Get.toNamed(BookFeed.id),
+                  // ),
                   NavTile(
                     icon: FlutterRemix.bookmark_3_line,
                     title: "Favourites",
-                    onPressed: () {},
+                    onPressed: () => Get.toNamed(SettingsScreen.id),
                   ),
                   // NavTile(
                   NavTile(
@@ -52,11 +54,11 @@ class AppDrawer extends HookWidget {
                   NavTile(
                       icon: FlutterRemix.settings_2_line,
                       title: "Settings",
-                      onPressed: () {}),
+                      onPressed: () => Get.toNamed(SettingsScreen.id)),
                   NavTile(
                       icon: FlutterRemix.information_line,
                       title: "About",
-                      onPressed: () {}),
+                      onPressed: () => Get.toNamed(AboutScreen.id)),
                 ],
               ),
             ),

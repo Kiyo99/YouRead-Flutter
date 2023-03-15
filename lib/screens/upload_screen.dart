@@ -73,24 +73,12 @@ class UploadScreen extends HookWidget {
     final pdfLink = useState("");
 
     return Scaffold(
-      drawer: AppDrawer(),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        foregroundColor: Constants.coolBlue,
+        title: const Text("Upload a book"),
+        backgroundColor: Constants.coolBlue,
+        foregroundColor: Colors.white,
         shadowColor: Colors.transparent,
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              onPressed: () => Scaffold.of(context).openDrawer(),
-              icon: const Icon(FlutterRemix.menu_2_line),
-            );
-          },
-        ),
         elevation: 0,
-        actions: [
-          IconButton(
-              onPressed: () {}, icon: const Icon(FlutterRemix.more_2_fill))
-        ],
       ),
       body: Container(
         padding: const EdgeInsets.all(20),
