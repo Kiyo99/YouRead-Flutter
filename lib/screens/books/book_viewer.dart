@@ -23,56 +23,82 @@ class BookViewer extends HookWidget {
 
     return WillPopScope(
       onWillPop: () {
-        print("Leaving: ${controller.currentPageNumber}");
         Map<String, Object> db = {};
         db['lastPage'] = controller.currentPageNumber;
-        _fireStore
-            .collection("books")
-            .doc(data.value['title'])
-            .update(db)
-            .whenComplete(() => print("Done updated"))
-            .onError(
-                (error, stackTrace) => print("Error updating doc: $error"));
+        _fireStore.collection("books").doc(data.value['title']).update(db);
 
         return Future.value(true);
       },
       child: Scaffold(
+        backgroundColor: Constants.coolBlue,
         appBar: AppBar(
           title: Text(data.value['title']),
+          centerTitle: true,
           elevation: 0,
-          backgroundColor: Constants.coolBlue,
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
+          actions: [
+            IconButton(
+                onPressed: () {}, icon: const Icon(FlutterRemix.more_2_fill))
+          ],
         ),
-        body: FutureBuilder<File>(
-          future: DefaultCacheManager().getSingleFile(data.value['storage']),
-          builder: (context, snapshot) => snapshot.hasData
-              ? GestureDetector(
-                  onDoubleTapDown: (details) => doubleTapDetails = details,
-                  onDoubleTap: () {
-                    if (zoomed.value == false) {
-                      controller.ready?.setZoomRatio(
-                        zoomRatio: controller.zoomRatio * 1.5,
-                        center: doubleTapDetails!.localPosition,
-                      );
-                      zoomed.value = true;
-                    } else {
-                      controller.ready?.setZoomRatio(
-                        zoomRatio: controller.zoomRatio / 1.5,
-                        center: doubleTapDetails!.localPosition,
-                      );
-                      zoomed.value = false;
-                    }
-                  },
-                  child: PdfViewer.openFile(
-                    snapshot.data!.path,
-                    params: PdfViewerParams(
-                        pageNumber: data.value['lastPage'] ?? 1),
-                    viewerController: controller,
+        body: Container(
+          padding: const EdgeInsets.all(5),
+          child: FutureBuilder<File>(
+            future: DefaultCacheManager().getSingleFile(data.value['storage']),
+            builder: (context, snapshot) => snapshot.hasData
+                ? GestureDetector(
+                    onDoubleTapDown: (details) => doubleTapDetails = details,
+                    onDoubleTap: () {
+                      if (zoomed.value == false) {
+                        controller.ready?.setZoomRatio(
+                          zoomRatio: controller.zoomRatio * 1.5,
+                          center: doubleTapDetails!.localPosition,
+                        );
+                        zoomed.value = true;
+                      } else {
+                        controller.ready?.setZoomRatio(
+                          zoomRatio: controller.zoomRatio / 1.5,
+                          center: doubleTapDetails!.localPosition,
+                        );
+                        zoomed.value = false;
+                      }
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30),
+                          bottomLeft: Radius.circular(30),
+                          bottomRight: Radius.circular(30),
+                        ),
+                      ),
+                      child: PdfViewer.openFile(
+                        snapshot.data!.path,
+                        params: PdfViewerParams(
+                          padding: 0,
+                          pageNumber: data.value['lastPage'] ?? 1,
+                          pageDecoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(30),
+                              bottomLeft: Radius.circular(30),
+                              bottomRight: Radius.circular(30),
+                            ),
+                          ),
+                        ),
+                        viewerController: controller,
+                      ),
+                    ),
+                  )
+                : const Center(
+                    child: CircularProgressIndicator(),
                   ),
-                )
-              : const Center(
-                  child: CircularProgressIndicator(),
-                ),
+          ),
         ),
         floatingActionButton: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -92,15 +118,6 @@ class BookViewer extends HookWidget {
               ),
               onPressed: () =>
                   controller.ready?.goToPage(pageNumber: controller.pageCount),
-            ),
-            FloatingActionButton(
-              backgroundColor: Constants.coolBlue,
-              child: Icon(
-                FlutterRemix.separator,
-                color: Constants.coolWhite,
-              ),
-              onPressed: () =>
-                  print("Current page:  ${controller.currentPageNumber}"),
             ),
             FloatingActionButton(
               backgroundColor: Constants.coolBlue,
@@ -153,7 +170,7 @@ class BookViewer extends HookWidget {
         action: SnackBarAction(
             label: 'Enter',
             onPressed: () {
-              print("Current page:  ${controller.currentPageNumber}");
+              debugPrint("Current page:  ${controller.currentPageNumber}");
               controller.ready?.goToPage(pageNumber: int.parse(con.text));
               scaffold.hideCurrentSnackBar;
             }),
