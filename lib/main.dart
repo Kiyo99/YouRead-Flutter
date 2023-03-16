@@ -71,5 +71,4 @@ class MyApp extends HookConsumerWidget {
 //Todo: SetUp a viewModel to store the books, use ChangeNotifier
 //Todo: Create a portal to upload images and pdfs
 //Todo: book => title, storage, url, category, reads
-//Todo: look at app drawer header
-//Todo: look at page number and resumption
+//Todo: zooming
