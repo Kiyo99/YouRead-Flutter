@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 class Constants {
   //colors
   static Color blueish = const Color(0xff181D3D);
-  // static Color coolBlue = const Color(0xff1f1f1f);
-  static Color coolBlue = Colors.blueGrey.shade900;
+  static Color coolBlue = const Color(0xff233973);
+  // static Color coolBlue = Colors.blueGrey.shade900;
   static Color coolGrey = const Color(0xffbfbfbf);
   static Color coolWhite = const Color(0xfff9f9f9);
+  static Color coolPurple = const Color(0xffD096FD);
 
   static Color secondaryBlue = const Color(0xff111111);
   static Color coolOrange = const Color(0xffff9933);

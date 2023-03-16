@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -6,7 +7,7 @@ import 'package:k_books/constants.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
 import 'package:k_books/widgets/secondary_app_button.dart';
 
-class AppPrompts extends HookConsumerWidget {
+class AppPrompts extends HookWidget {
   const AppPrompts(
       {Key? key,
       required this.title,
@@ -25,7 +26,7 @@ class AppPrompts extends HookConsumerWidget {
   final Function() primaryAction;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Wrap(
       children: [
         Container(

@@ -42,8 +42,8 @@ dependencies:
   firebase_storage: ^10.2.8
 
   # State Management
-  hooks_riverpod: ^1.0.0
-  flutter_hooks: ^0.18.0
+  hooks_riverpod: 0.14.0+5
+  flutter_hooks: 0.18.0
 
 
 dev_dependencies:

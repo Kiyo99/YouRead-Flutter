@@ -3,13 +3,14 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get/get.dart';
 import 'package:k_books/constants.dart';
-import 'package:k_books/screens/about_screen.dart';
-import 'package:k_books/screens/books/book_feed.dart';
-import 'package:k_books/screens/favourites_screen.dart';
-import 'package:k_books/screens/upload_screen.dart';
+import 'package:k_books/presentation/screens/misc/about_screen.dart';
+import 'package:k_books/presentation/screens/author/upload_screen.dart';
+import 'package:k_books/presentation/screens/misc/settings_screen.dart';
 import 'package:k_books/widgets/app_drawer.dart';
 
 class AppDrawer extends HookWidget {
+  const AppDrawer({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +18,7 @@ class AppDrawer extends HookWidget {
       alignment: Alignment.center,
       margin: const EdgeInsets.only(),
       decoration: BoxDecoration(
-        color: Colors.blueGrey.shade900,
+        color: Constants.coolBlue,
       ),
       width: MediaQuery.of(context).size.width * 0.7,
       child: Padding(

@@ -1,17 +1,21 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:k_books/screens/about_screen.dart';
-import 'package:k_books/screens/books/all_books_screen.dart';
-import 'package:k_books/screens/books/book_feed.dart';
 import 'package:k_books/firebase_options.dart';
-import 'package:k_books/screens/books/book_viewer.dart';
-import 'package:k_books/screens/favourites_screen.dart';
-import 'package:k_books/screens/login_page.dart';
-import 'package:k_books/screens/settings_screen.dart';
-import 'package:k_books/screens/upload_screen.dart';
+import 'package:k_books/presentation/screens/auth/login_page.dart';
+import 'package:k_books/presentation/screens/author/upload_screen.dart';
+import 'package:k_books/presentation/screens/bookmark/bookmarks_screen.dart';
+import 'package:k_books/presentation/screens/books/all_books_screen.dart';
+import 'package:k_books/presentation/screens/books/book_feed.dart';
+import 'package:k_books/presentation/screens/books/book_viewer.dart';
+import 'package:k_books/presentation/screens/main_app.dart';
+import 'package:k_books/presentation/screens/misc/about_screen.dart';
+import 'package:k_books/presentation/screens/misc/settings_screen.dart';
+import 'package:k_books/presentation/screens/profile/profile_screen.dart';
+import 'package:k_books/presentation/screens/search/search_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sharedPreferencesProvider =
@@ -36,11 +40,11 @@ Future<void> main() async {
   );
 }
 
-class MyApp extends HookConsumerWidget {
+class MyApp extends HookWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
     return GestureDetector(
@@ -55,20 +59,27 @@ class MyApp extends HookConsumerWidget {
           debugShowCheckedModeBanner: false,
           routes: {
             BookViewer.id: (context) => BookViewer(),
+            MainApp.id: (context) => const MainApp(),
             BookFeed.id: (context) => const BookFeed(),
             UploadScreen.id: (context) => UploadScreen(),
             SettingsScreen.id: (context) => const SettingsScreen(),
             AboutScreen.id: (context) => const AboutScreen(),
-            FavouritesScreen.id: (context) => const FavouritesScreen(),
+            SearchScreen.id: (context) => const SearchScreen(),
+            ProfileScreen.id: (context) => const ProfileScreen(),
+            BookmarksScreen.id: (context) => const BookmarksScreen(),
             AllBooksScreen.id: (context) => const AllBooksScreen(),
             LoginPage.id: (context) => LoginPage(),
           },
-          home: const BookFeed()),
+          home: const MainApp()),
     );
   }
 }
 
 //Todo: SetUp a viewModel to store the books, use ChangeNotifier
 //Todo: Create a portal to upload images and pdfs
-//Todo: book => title, storage, url, category, reads
+//Todo: book => title, storage, url, category, reads, author, rating, intro, date uploaded, likes
+//Todo: newest books, most popular,
 //Todo: zooming
+//Todo: 2 modes again, reader and author
+//Todo: user: books read, bookmarks
+//Todo: user: Give drop down for categories

@@ -4,16 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/constants.dart';
-import 'package:k_books/data/app_user/app_user.dart';
-import 'package:k_books/data/datasource/auth_local_datasource.dart';
-import 'package:k_books/screens/books/book_feed.dart';
+import 'package:k_books/presentation/screens/books/book_feed.dart';
 import 'package:k_books/widgets/app_modal.dart';
 import 'package:k_books/widgets/app_text_field.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
 
-class LoginPage extends HookConsumerWidget {
+class LoginPage extends HookWidget {
   LoginPage({Key? key}) : super(key: key);
 
   static const id = 'login';
@@ -24,7 +21,7 @@ class LoginPage extends HookConsumerWidget {
   final store = FirebaseFirestore.instance;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final isLoading = useState(false);
     return Scaffold(
         body: isLoading.value == false
