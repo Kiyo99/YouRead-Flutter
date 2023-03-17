@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:k_books/core/constants.dart';
 import 'package:k_books/widgets/app_modal.dart';
 import 'package:k_books/widgets/app_text_field.dart';
@@ -21,6 +22,8 @@ class UploadScreen extends HookWidget {
   final TextEditingController imageUrl = TextEditingController();
   final TextEditingController pdfStorageUrl = TextEditingController();
   final TextEditingController category = TextEditingController();
+  final TextEditingController synopsis = TextEditingController();
+  final TextEditingController author = TextEditingController();
 
   UploadScreen({Key? key}) : super(key: key);
 
@@ -35,12 +38,6 @@ class UploadScreen extends HookWidget {
       debugPrint("Error caught: $e");
       return "";
     }
-
-    // final reference = FirebaseStorage.instance.ref().child(name);
-    // UploadTask uploadTask = reference.putData(asset);
-    // String url = await (await uploadTask.whenComplete(() => null)).ref.getDownloadURL();
-    // print(url);
-    // documentFileUpload(url);
   }
 
   Future saveImage(File file, String name) async {
@@ -54,12 +51,6 @@ class UploadScreen extends HookWidget {
       debugPrint("Error caught: $e");
       return "";
     }
-
-    // final reference = FirebaseStorage.instance.ref().child(name);
-    // UploadTask uploadTask = reference.putData(asset);
-    // String url = await (await uploadTask.whenComplete(() => null)).ref.getDownloadURL();
-    // print(url);
-    // documentFileUpload(url);
   }
 
   @override
@@ -70,9 +61,22 @@ class UploadScreen extends HookWidget {
     final imageLink = useState("");
     final pdfLink = useState("");
 
+    final brightness = Theme.of(context).brightness;
+    final categoryItems = useState([
+      "Category ...",
+      "Drama",
+      "Educational",
+      "Fantasy",
+      "Horror",
+      "Mystery",
+      "Poetry",
+      "Romance",
+    ]);
+    final selectedCategoryValue = useState(categoryItems.value[0]);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Upload a book"),
+        title: const Text("Upload a Book"),
         backgroundColor: Constants.coolBlue,
         foregroundColor: Colors.white,
         shadowColor: Colors.transparent,
@@ -85,6 +89,8 @@ class UploadScreen extends HookWidget {
             shrinkWrap: true,
             children: [
               AppTextField(controller: title, title: "Title"),
+              AppTextField(controller: author, title: "Author"),
+              AppTextField(controller: synopsis, title: "Synopsis"),
               Visibility(
                 visible: !isImageLoading.value,
                 replacement: Center(
@@ -154,7 +160,43 @@ class UploadScreen extends HookWidget {
                   },
                 ),
               ),
-              AppTextField(controller: category, title: "Category"),
+              Container(
+                height: 55,
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: brightness == Brightness.light
+                          ? Constants.coolBlue
+                          : Constants.coolWhite),
+                  borderRadius: BorderRadius.circular(
+                    15.0,
+                  ),
+                ),
+                child: DropdownButtonFormField(
+                  items: categoryItems.value
+                      .map<DropdownMenuItem<String>>(
+                          (String value) => DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value,
+                                    style: GoogleFonts.exo(
+                                        color: brightness == Brightness.light
+                                            ? Constants.coolBlue
+                                            : Constants.coolWhite)),
+                              ))
+                      .toList(),
+                  value: selectedCategoryValue.value,
+                  focusColor: Colors.white,
+                  iconEnabledColor: Constants.coolBlue,
+                  style: GoogleFonts.exo2(fontSize: 16),
+                  dropdownColor: brightness == Brightness.light
+                      ? Constants.coolWhite
+                      : Constants.coolBlue,
+                  onChanged: (val) {
+                    selectedCategoryValue.value = val.toString();
+                  },
+                ),
+              ),
               const SizedBox(height: 30),
               PrimaryAppButton(
                 title: "Upload Book",
@@ -233,3 +275,5 @@ class UploadScreen extends HookWidget {
     );
   }
 }
+
+//Date uploaded, reads, rating, intro

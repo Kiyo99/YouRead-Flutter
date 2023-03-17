@@ -21,6 +21,8 @@ class BookViewer extends HookWidget {
     PdfViewerController controller = PdfViewerController();
     TapDownDetails? doubleTapDetails;
 
+    final bookmarked = useState(false);
+
     return WillPopScope(
       onWillPop: () {
         Map<String, Object> db = {};
@@ -40,7 +42,13 @@ class BookViewer extends HookWidget {
           shadowColor: Colors.transparent,
           actions: [
             IconButton(
-                onPressed: () {}, icon: const Icon(FlutterRemix.more_2_fill))
+                onPressed: () {
+                  bookmarked.value = !bookmarked.value;
+                  //todo: More logic on this
+                },
+                icon: Icon(bookmarked.value
+                    ? FlutterRemix.bookmark_fill
+                    : FlutterRemix.bookmark_line))
           ],
         ),
         body: Container(

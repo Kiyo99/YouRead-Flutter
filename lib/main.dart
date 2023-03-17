@@ -78,8 +78,8 @@ class MyApp extends HookWidget {
 //Todo: SetUp a viewModel to store the books, use ChangeNotifier
 //Todo: Create a portal to upload images and pdfs
 //Todo: book => title, storage, url, category, reads, author, rating, intro, date uploaded, likes
-//Todo: newest books, most popular,
+//Todo: newest books, most popular, based by rating and date created
 //Todo: zooming
 //Todo: 2 modes again, reader and author
 //Todo: user: books read, bookmarks
-//Todo: user: Give drop down for categories
+//Todo: user:

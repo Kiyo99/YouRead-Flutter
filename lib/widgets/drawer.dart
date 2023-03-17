@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get/get.dart';
 import 'package:k_books/core/constants.dart';
+import 'package:k_books/presentation/screens/bookmark/bookmarks_screen.dart';
 import 'package:k_books/presentation/screens/misc/about_screen.dart';
 import 'package:k_books/presentation/screens/author/upload_screen.dart';
 import 'package:k_books/presentation/screens/misc/settings_screen.dart';
@@ -37,17 +38,6 @@ class AppDrawer extends HookWidget {
                 shrinkWrap: true,
                 padding: EdgeInsets.zero,
                 children: [
-                  // NavTile(
-                  //   icon: FlutterRemix.home_2_line,
-                  //   title: "Home",
-                  //   onPressed: () => Get.toNamed(BookFeed.id),
-                  // ),
-                  NavTile(
-                    icon: FlutterRemix.bookmark_3_line,
-                    title: "Favourites",
-                    onPressed: () => Get.toNamed(SettingsScreen.id),
-                  ),
-                  // NavTile(
                   NavTile(
                       icon: FlutterRemix.upload_2_line,
                       title: "Upload",

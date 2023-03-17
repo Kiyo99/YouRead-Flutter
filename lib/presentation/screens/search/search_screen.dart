@@ -39,7 +39,10 @@ class SearchScreen extends HookWidget {
                     style: TextStyle(color: Colors.red),
                   ),
                 ),
-                child: FilteredBooks(bookViewModel.searchedBooks)),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: FilteredBooks(bookViewModel.searchedBooks),
+                )),
           const SizedBox(height: 20),
         ],
       ),

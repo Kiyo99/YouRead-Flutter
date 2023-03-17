@@ -35,7 +35,7 @@ class FetchedBooks extends HookWidget {
     }
 
     return SizedBox(
-      height: 250,
+      height: 300,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
@@ -46,35 +46,37 @@ class FetchedBooks extends HookWidget {
             onTap: () {
               Get.toNamed(BookViewer.id, arguments: data[index]);
             },
-            child: Card(
-              color: Colors.grey.shade100,
-              elevation: 8.0,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              child: Container(
-                width: 200,
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Image.network(
-                        data[index]!['url'],
-                        height: 150,
-                        width: 150,
+            child: Column(
+              children: [
+                Container(
+                  width: 200,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Image.network(
+                          data[index]!['url'],
+                          height: 180,
+                          width: 180,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      data[index]!['title'],
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+                const SizedBox(height: 10),
+                Text(
+                  data[index]!['title'],
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  data[index]!['author'] ?? "Steven Erikson",
+                  style: const TextStyle(color: Colors.black, fontSize: 16),
+                ),
+              ],
             ),
           );
         },
