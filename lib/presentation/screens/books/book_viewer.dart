@@ -5,7 +5,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get/get.dart';
-import 'package:k_books/constants.dart';
+import 'package:k_books/core/constants.dart';
 import 'package:pdf_render/pdf_render_widgets.dart';
 
 class BookViewer extends HookWidget {
@@ -44,7 +44,7 @@ class BookViewer extends HookWidget {
           ],
         ),
         body: Container(
-          padding: const EdgeInsets.all(5),
+          padding: const EdgeInsets.only(left: 5, right: 5, top: 5),
           child: FutureBuilder<File>(
             future: DefaultCacheManager().getSingleFile(data.value['storage']),
             builder: (context, snapshot) => snapshot.hasData
@@ -66,7 +66,8 @@ class BookViewer extends HookWidget {
                       }
                     },
                     child: Container(
-                      padding: const EdgeInsets.all(8),
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 8, right: 8),
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(

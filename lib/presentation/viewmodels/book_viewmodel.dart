@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:k_books/firebase_service.dart';
+import 'package:k_books/core/firebase/firebase_service.dart';
 
 class BookViewModel extends ChangeNotifier {
   final AutoDisposeProviderReference _ref;
@@ -65,6 +65,7 @@ class BookViewModel extends ChangeNotifier {
   Future<void> fetchBooks(String query) async {
     if (query.isEmpty) {
       _showBooks = false;
+      notifyListeners();
       return;
     }
     _showBooks = false;

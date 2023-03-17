@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:k_books/constants.dart';
+import 'package:k_books/core/constants.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
+import 'package:k_books/widgets/app_search_field.dart';
 import 'package:k_books/widgets/filtered_books.dart';
 
 class SearchScreen extends HookWidget {
@@ -12,25 +13,19 @@ class SearchScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final bookViewModel = useProvider(BookViewModel.provider);
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Search"),
-        elevation: 0,
-        backgroundColor: Constants.coolBlue,
-        foregroundColor: Colors.white,
-        shadowColor: Colors.transparent,
-      ),
-      body: Column(
+    return SafeArea(
+      child: Column(
         children: [
           Row(
             children: [
               Expanded(
-                child: TextField(
-                  onChanged: (query) => bookViewModel.fetchBooks(query),
-                  onSubmitted: (query) => bookViewModel.fetchBooks(query),
-                  decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.search_outlined),
-                      hintText: "Find a book"),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                  child: AppSearchField(
+                    title: "Search titles",
+                    searchDB: (query) => bookViewModel.fetchBooks(query),
+                  ),
                 ),
               )
             ],
@@ -51,5 +46,3 @@ class SearchScreen extends HookWidget {
     );
   }
 }
-
-//todo: Look at

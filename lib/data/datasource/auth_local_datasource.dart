@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:k_books/constants.dart';
+import 'package:k_books/core/constants.dart';
 import 'package:k_books/core/preference_manager.dart';
 import 'package:k_books/data/app_user/app_user.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:k_books/constants.dart';
+import 'package:k_books/core/constants.dart';
 
 class ProfileScreen extends HookWidget {
   static String id = "profile_screen";

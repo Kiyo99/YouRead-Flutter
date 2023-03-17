@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_remix/flutter_remix.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:k_books/core/constants.dart';
 
-class MutedAppTextField extends HookWidget {
-  final TextEditingController controller;
+class AppSearchField extends HookWidget {
   final String title;
-  final Function()? onTap;
-  final bool? obscureText;
+  final Function(String query) searchDB;
 
-  MutedAppTextField(
-      {required this.controller,
-      required this.title,
-      this.obscureText,
-      this.onTap});
+  AppSearchField({
+    required this.searchDB,
+    required this.title,
+  });
   @override
   Widget build(BuildContext context) {
     final brightness = Theme.of(context).brightness;
@@ -21,11 +19,10 @@ class MutedAppTextField extends HookWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       child: TextField(
-        onTap: onTap ?? () {},
-        focusNode: AlwaysDisabledFocusNode(),
-        obscureText: obscureText ?? false,
-        cursorColor: Constants.coolOrange,
-        controller: controller,
+        textCapitalization: TextCapitalization.words,
+        cursorColor: Constants.coolBlue,
+        onChanged: searchDB,
+        onSubmitted: searchDB,
         decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
@@ -41,8 +38,9 @@ class MutedAppTextField extends HookWidget {
                 borderRadius: BorderRadius.circular(
                   15.0,
                 ),
-                borderSide: BorderSide(color: Constants.coolOrange)),
+                borderSide: BorderSide(color: Constants.coolBlue)),
             border: const OutlineInputBorder(),
+            prefixIcon: const Icon(FlutterRemix.search_line),
             labelText: title,
             labelStyle: GoogleFonts.exo2(
                 color: brightness == Brightness.light
@@ -51,9 +49,4 @@ class MutedAppTextField extends HookWidget {
       ),
     );
   }
-}
-
-class AlwaysDisabledFocusNode extends FocusNode {
-  @override
-  bool get hasFocus => false;
 }

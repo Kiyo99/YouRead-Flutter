@@ -3,7 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:k_books/constants.dart';
+import 'package:k_books/core/constants.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
 import 'package:k_books/widgets/secondary_app_button.dart';
 
