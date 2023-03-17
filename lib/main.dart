@@ -82,4 +82,4 @@ class MyApp extends HookWidget {
 //Todo: zooming
 //Todo: 2 modes again, reader and author
 //Todo: user: books read, bookmarks
-//Todo: user:
+//Todo: handle useProviders properly | Functions should be handled in screen, not in the widgets
