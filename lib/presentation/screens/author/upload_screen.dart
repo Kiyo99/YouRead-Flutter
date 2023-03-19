@@ -21,7 +21,6 @@ class UploadScreen extends HookWidget {
   final TextEditingController title = TextEditingController();
   final TextEditingController imageUrl = TextEditingController();
   final TextEditingController pdfStorageUrl = TextEditingController();
-  final TextEditingController category = TextEditingController();
   final TextEditingController synopsis = TextEditingController();
   final TextEditingController author = TextEditingController();
 
@@ -64,6 +63,7 @@ class UploadScreen extends HookWidget {
     final brightness = Theme.of(context).brightness;
     final categoryItems = useState([
       "Category ...",
+      "Christian ...",
       "Drama",
       "Educational",
       "Fantasy",
@@ -88,8 +88,16 @@ class UploadScreen extends HookWidget {
           child: ListView(
             shrinkWrap: true,
             children: [
-              AppTextField(controller: title, title: "Title"),
-              AppTextField(controller: author, title: "Author"),
+              AppTextField(
+                controller: title,
+                title: "Title",
+                capitilize: TextCapitalization.words,
+              ),
+              AppTextField(
+                controller: author,
+                title: "Author",
+                capitilize: TextCapitalization.words,
+              ),
               AppTextField(controller: synopsis, title: "Synopsis"),
               Visibility(
                 visible: !isImageLoading.value,
@@ -113,12 +121,12 @@ class UploadScreen extends HookWidget {
                       imageUrl.text = fileNameToDisplay;
 
                       isImageLoading.value = true;
-                      final imageLink =
+                      final imageDownloadLink =
                           await saveImage(file, fileNameToDisplay);
                       isImageLoading.value = false;
 
                       imageUrl.text = fileNameToDisplay;
-                      imageLink.value = imageLink;
+                      imageLink.value = imageDownloadLink;
                     } else {
                       // User canceled the picker
                       debugPrint("I got cancelled");
@@ -202,11 +210,13 @@ class UploadScreen extends HookWidget {
                 title: "Upload Book",
                 onPressed: () async {
                   if (title.text.isEmpty ||
+                      author.text.isEmpty ||
+                      synopsis.text.isEmpty ||
                       imageUrl.text.isEmpty ||
                       pdfStorageUrl.text.isEmpty ||
                       imageLink.value.isEmpty ||
                       pdfLink.value.isEmpty ||
-                      category.text.isEmpty) {
+                      selectedCategoryValue.value == categoryItems.value[0]) {
                     AppModal.showToast(context, 'Please enter all fields');
                     return;
                   }
@@ -224,7 +234,13 @@ class UploadScreen extends HookWidget {
                         db['title'] = title.text;
                         db['url'] = imageLink.value;
                         db['storage'] = pdfLink.value;
-                        db['category'] = category.text;
+                        db['category'] = selectedCategoryValue.value;
+                        db['author'] = author.text;
+                        db['synopsis'] = synopsis.text;
+                        db['rating'] = 0.0;
+                        db['reads'] = 0;
+                        // db['pages'] = 0;
+                        // db['date'] = ;
 
                         _fireStore
                             .collection("books")
@@ -246,7 +262,7 @@ class UploadScreen extends HookWidget {
                           );
 
                           title.clear();
-                          category.clear();
+                          selectedCategoryValue.value = categoryItems.value[0];
                           pdfStorageUrl.clear();
                           imageUrl.clear();
                         }).onError((error, stackTrace) => () {

@@ -7,11 +7,13 @@ class AppTextField extends HookWidget {
   final TextEditingController controller;
   final String title;
   final bool? obscureText;
+  final TextCapitalization? capitilize;
 
   AppTextField({
     required this.controller,
     required this.title,
     this.obscureText,
+    this.capitilize,
   });
   @override
   Widget build(BuildContext context) {
@@ -20,9 +22,9 @@ class AppTextField extends HookWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       child: TextField(
-        textCapitalization: TextCapitalization.words,
+        textCapitalization: capitilize ?? TextCapitalization.none,
         obscureText: obscureText ?? false,
-        cursorColor: Constants.coolOrange,
+        cursorColor: Constants.coolBlue,
         controller: controller,
         decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -39,7 +41,7 @@ class AppTextField extends HookWidget {
                 borderRadius: BorderRadius.circular(
                   15.0,
                 ),
-                borderSide: BorderSide(color: Constants.coolOrange)),
+                borderSide: BorderSide(color: Constants.coolBlue)),
             border: const OutlineInputBorder(),
             labelText: title,
             labelStyle: GoogleFonts.exo2(

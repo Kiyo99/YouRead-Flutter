@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/presentation/screens/books/book_viewer.dart';
+import 'package:k_books/presentation/screens/books/summary_screen.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 
 class FetchedBooks extends HookWidget {
@@ -35,7 +36,7 @@ class FetchedBooks extends HookWidget {
     }
 
     return SizedBox(
-      height: 300,
+      height: 250,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
@@ -44,20 +45,24 @@ class FetchedBooks extends HookWidget {
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-              Get.toNamed(BookViewer.id, arguments: data[index]);
+              Get.toNamed(SummaryScreen.id, arguments: data[index]);
             },
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   width: 200,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Center(
-                        child: Image.network(
-                          data[index]!['url'],
-                          height: 180,
-                          width: 180,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            data[index]!['url'],
+                            height: 180,
+                            // width: 180,
+                            // color: Colors.yellow,
+                          ),
                         ),
                       ),
                     ],
@@ -73,7 +78,7 @@ class FetchedBooks extends HookWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  data[index]!['author'] ?? "Steven Erikson",
+                  data[index]!['author'],
                   style: const TextStyle(color: Colors.black, fontSize: 16),
                 ),
               ],

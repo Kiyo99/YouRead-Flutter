@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDuN8ATUvXVRANAGdqa3fAgdnbaNQQ35x4',
-    appId: '1:264824026715:android:45b1927e098867bf95b17e',
-    messagingSenderId: '264824026715',
-    projectId: 'vvusa-cb6ac',
-    storageBucket: 'vvusa-cb6ac.appspot.com',
+    apiKey: 'AIzaSyB38UMbzP3gmtjS3OjrGVbbvWzb3gbvsDE',
+    appId: '1:47065579460:android:9becd2e9baa42fbd016e91',
+    messagingSenderId: '47065579460',
+    projectId: 'kbooks-d91c6',
+    storageBucket: 'kbooks-d91c6.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCxuE93YqimhmVlX5CvoR-ZaxWTw7wPjhE',
-    appId: '1:264824026715:ios:0bda016f3f1ae48b95b17e',
-    messagingSenderId: '264824026715',
-    projectId: 'vvusa-cb6ac',
-    storageBucket: 'vvusa-cb6ac.appspot.com',
-    iosClientId: '264824026715-h9l10b39iemch7f64ovdn8q81qqm8r84.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBlUwyFY43w1duqhLQJEkn1SG8jF1I8-WQ',
+    appId: '1:47065579460:ios:30654d087aba1827016e91',
+    messagingSenderId: '47065579460',
+    projectId: 'kbooks-d91c6',
+    storageBucket: 'kbooks-d91c6.appspot.com',
+    iosClientId: '47065579460-oc4m44cb6lk9kthhj7e2vqhbj9r9kt7r.apps.googleusercontent.com',
     iosBundleId: 'com.example.kBooks',
   );
 }

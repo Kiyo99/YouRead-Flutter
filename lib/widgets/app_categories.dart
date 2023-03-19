@@ -33,7 +33,9 @@ class AppCategories extends HookWidget {
         .map((e) => e.data() as Map<String, dynamic>?)
         .toList();
 
-    if (data!.isEmpty) {
+    final categories = data?[0]?['values'];
+
+    if (categories!.isEmpty) {
       return const SizedBox();
     }
 
@@ -43,9 +45,9 @@ class AppCategories extends HookWidget {
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
-        itemCount: data.length,
+        itemCount: categories.length,
         itemBuilder: (BuildContext context, int index) {
-          String category = data[index]!['text'];
+          String category = categories[index];
 
           return InkWell(
             onTap: () {

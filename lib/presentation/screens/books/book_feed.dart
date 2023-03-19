@@ -60,7 +60,12 @@ class BookFeed extends HookWidget {
                         style: TextStyle(color: Colors.red),
                       ),
                     ),
-                    child: FilteredBooks(bookViewModel.filteredBooks)),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 10),
+                        FilteredBooks(bookViewModel.filteredBooks),
+                      ],
+                    )),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

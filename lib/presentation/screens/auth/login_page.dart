@@ -5,7 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:k_books/core/constants.dart';
-import 'package:k_books/presentation/screens/books/book_feed.dart';
+import 'package:k_books/presentation/screens/main_app.dart';
 import 'package:k_books/widgets/app_modal.dart';
 import 'package:k_books/widgets/app_text_field.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
@@ -22,6 +22,15 @@ class LoginPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    useEffect(() {
+      WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+        if (auth.currentUser != null) {
+          Get.offNamed(MainApp.id);
+        }
+      });
+      return;
+    });
+
     final isLoading = useState(false);
     return Scaffold(
         body: isLoading.value == false
@@ -53,7 +62,7 @@ class LoginPage extends HookWidget {
                         },
                         child: Text(
                           'Forgot Password?',
-                          style: GoogleFonts.exo2(color: Constants.coolOrange),
+                          style: GoogleFonts.exo2(color: Constants.coolBlue),
                         ),
                       ),
                       PrimaryAppButton(
@@ -94,7 +103,7 @@ class LoginPage extends HookWidget {
                             //     .cacheUser(user);
 
                             isLoading.value = false;
-                            Get.toNamed(BookFeed.id);
+                            Get.toNamed(MainApp.id);
                           } on FirebaseAuthException catch (e) {
                             isLoading.value = false;
 
@@ -119,7 +128,7 @@ class LoginPage extends HookWidget {
                             child: Text(
                               'Sign up',
                               style: GoogleFonts.exo2(
-                                  color: Constants.coolOrange, fontSize: 20),
+                                  color: Constants.coolBlue, fontSize: 20),
                             ),
                             onPressed: () {
                               // Get.to(RegisterPage());

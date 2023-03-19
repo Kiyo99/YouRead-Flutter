@@ -11,6 +11,7 @@ import 'package:k_books/presentation/screens/bookmark/bookmarks_screen.dart';
 import 'package:k_books/presentation/screens/books/all_books_screen.dart';
 import 'package:k_books/presentation/screens/books/book_feed.dart';
 import 'package:k_books/presentation/screens/books/book_viewer.dart';
+import 'package:k_books/presentation/screens/books/summary_screen.dart';
 import 'package:k_books/presentation/screens/main_app.dart';
 import 'package:k_books/presentation/screens/misc/about_screen.dart';
 import 'package:k_books/presentation/screens/misc/settings_screen.dart';
@@ -68,9 +69,10 @@ class MyApp extends HookWidget {
             ProfileScreen.id: (context) => const ProfileScreen(),
             BookmarksScreen.id: (context) => const BookmarksScreen(),
             AllBooksScreen.id: (context) => const AllBooksScreen(),
+            SummaryScreen.id: (context) => const SummaryScreen(),
             LoginPage.id: (context) => LoginPage(),
           },
-          home: const MainApp()),
+          home: LoginPage()),
     );
   }
 }
@@ -84,3 +86,6 @@ class MyApp extends HookWidget {
 //Todo: user: books read, bookmarks
 //Todo: Author: All books, follow author
 //Todo: handle useProviders properly | Functions should be handled in screen, not in the widgets
+//Todo: refactor uploading method to viewmodel
+//Todo: Move all UseProviders away
+//Todo: Set activeBook in viewModel
