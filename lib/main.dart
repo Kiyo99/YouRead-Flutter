@@ -38,7 +38,7 @@ Future<void> main() async {
         sharedPreferencesProvider.overrideWithValue(sharedPreferences),
       ],
       child: DevicePreview(
-        enabled: true,
+        enabled: false,
         builder: (context) => const MyApp(),
       ),
     ),
