@@ -24,8 +24,8 @@ class FilteredBooks extends HookWidget {
             },
             child: Column(
               children: [
-                Container(
-                  width: 200,
+                SizedBox(
+                  width: 150,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -47,13 +47,13 @@ class FilteredBooks extends HookWidget {
                   data![index]!['title'],
                   style: const TextStyle(
                       color: Colors.black,
-                      fontSize: 20,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 10),
                 Text(
                   data![index]!['author'],
-                  style: const TextStyle(color: Colors.black, fontSize: 16),
+                  style: const TextStyle(color: Colors.black, fontSize: 14),
                 ),
               ],
             ),

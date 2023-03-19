@@ -50,7 +50,7 @@ class FetchedBooks extends HookWidget {
             child: Column(
               children: [
                 SizedBox(
-                  width: 200,
+                  width: 150,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -73,13 +73,13 @@ class FetchedBooks extends HookWidget {
                   data[index]!['title'],
                   style: const TextStyle(
                       color: Colors.black,
-                      fontSize: 20,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 10),
                 Text(
                   data[index]!['author'],
-                  style: const TextStyle(color: Colors.black, fontSize: 16),
+                  style: const TextStyle(color: Colors.black, fontSize: 14),
                 ),
               ],
             ),

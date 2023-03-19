@@ -14,19 +14,14 @@ class BookViewModel extends ChangeNotifier {
   List<Map<String, dynamic>?>? get filteredBooks => _filteredBooks;
 
   void filterBooks(String category) {
-    print("HERE: $category");
-    print("fe: ${_fetchedBooks?.length}");
     _showFilteredBooks = false;
     final books = _fetchedBooks?.where((book) => book!['category']
         .toString()
         .toLowerCase()
         .contains(category.toLowerCase()));
 
-    print("feeeee: ${books?.length}");
-
     _filteredBooks?.clear();
     _filteredBooks?.addAll(books!);
-    print("fddddeeeee: ${_filteredBooks?.length}");
 
     _showFilteredBooks = true;
     notifyListeners();

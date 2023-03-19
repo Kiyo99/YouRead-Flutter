@@ -55,7 +55,7 @@ class AppCategories extends HookWidget {
             },
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-              margin: const EdgeInsets.only(right: 10),
+              margin: const EdgeInsets.only(right: 15),
               decoration: BoxDecoration(
                 color: bookViewModel.activeCategory == category
                     ? Constants.coolBlue

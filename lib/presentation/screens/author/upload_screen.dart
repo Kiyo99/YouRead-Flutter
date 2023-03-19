@@ -63,7 +63,7 @@ class UploadScreen extends HookWidget {
     final brightness = Theme.of(context).brightness;
     final categoryItems = useState([
       "Category ...",
-      "Christian ...",
+      "Christian",
       "Drama",
       "Educational",
       "Fantasy",

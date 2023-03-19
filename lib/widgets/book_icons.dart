@@ -23,7 +23,11 @@ class AppIcons extends HookWidget {
                   ? Icons.edit_outlined
                   : category == "Fantasy"
                       ? FlutterRemix.book_2_line
-                      : FlutterRemix.movie_line,
+                      : category == "Christian"
+                          ? FlutterRemix.shield_cross_line
+                          : category == "Romance"
+                              ? FlutterRemix.heart_2_line
+                              : FlutterRemix.movie_line,
       color: bookViewModel.activeCategory == category
           ? Constants.coolPurple
           : Colors.grey,

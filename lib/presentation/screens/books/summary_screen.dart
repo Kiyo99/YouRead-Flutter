@@ -46,7 +46,7 @@ class SummaryScreen extends HookWidget {
                           height: 280,
                         ),
                         Container(
-                            color: Colors.white.withOpacity(0.3),
+                          color: Colors.white.withOpacity(0.3),
                         ),
                         BackdropFilter(
                           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
