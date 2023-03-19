@@ -121,6 +121,7 @@ class BookViewer extends HookWidget {
                   color: Constants.coolWhite,
                 ),
                 onPressed: () => controller.ready?.goToPage(pageNumber: 1)),
+            const SizedBox(height: 5),
             FloatingActionButton(
               backgroundColor: Constants.coolBlue,
               child: Icon(
@@ -130,6 +131,7 @@ class BookViewer extends HookWidget {
               onPressed: () =>
                   controller.ready?.goToPage(pageNumber: controller.pageCount),
             ),
+            const SizedBox(height: 5),
             FloatingActionButton(
               backgroundColor: Constants.coolBlue,
               child: Icon(

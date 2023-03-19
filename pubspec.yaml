@@ -35,6 +35,8 @@ dependencies:
   #File picker
   file_picker: ^4.6.1
 
+  #device preview
+  device_preview: ^0.7.4
 
   #firebase
   firebase_auth: ^3.3.5
