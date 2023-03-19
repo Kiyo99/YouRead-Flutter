@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_remix/flutter_remix.dart';
@@ -33,38 +35,67 @@ class SummaryScreen extends HookWidget {
             Expanded(
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            data.value['url'],
-                            height: 250,
-                          )),
-                    ],
+                  SizedBox(
+                    height: 360,
+                    child: Stack(
+                      children: [
+                        Image.network(
+                          data.value['url'],
+                          fit: BoxFit.cover,
+                          width: 400,
+                          height: 280,
+                        ),
+                        Container(
+                            color: Colors.white.withOpacity(0.3),
+                        ),
+                        BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.1),
+                            ),
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.network(
+                                      data.value['url'],
+                                      height: 250,
+                                    )),
+                              ],
+                            ),
+                            const SizedBox(height: 30),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Author: ${data.value['author']}",
+                                  style: AppTextStyles.mutedSmallTextStyle,
+                                )
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Text(
+                                  "November 14, 2016",
+                                  style: AppTextStyles.mutedVerySmallTextStyle,
+                                )
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Author: ${data.value['author']}",
-                        style: AppTextStyles.mutedSmallTextStyle,
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text(
-                        "November 14, 2016",
-                        style: AppTextStyles.mutedVerySmallTextStyle,
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 10),
                   Row(
                     children: [
                       Text(
@@ -92,7 +123,7 @@ class SummaryScreen extends HookWidget {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               children: [
                 const Icon(FlutterRemix.bookmark_line, size: 30),
