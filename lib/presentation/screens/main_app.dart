@@ -34,7 +34,7 @@ class MainApp extends HookWidget {
       currentIndex: _selectedIndex.value,
       showUnselectedLabels: true,
       selectedItemColor: Constants.coolBlue,
-      selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+      selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
       unselectedItemColor: Colors.grey,
       onTap: (index) {
         _selectedIndex.value = index;

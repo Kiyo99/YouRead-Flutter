@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:k_books/core/constants.dart';
+import 'package:k_books/core/firebase/firebase_service.dart';
+import 'package:k_books/widgets/all_books.dart';
 
 class AllBooksScreen extends HookWidget {
   static String id = "all_books_screen";
@@ -16,7 +19,7 @@ class AllBooksScreen extends HookWidget {
         foregroundColor: Colors.white,
         shadowColor: Colors.transparent,
       ),
-      body: Container(),
+      body: const AllBooks(),
     );
   }
 }

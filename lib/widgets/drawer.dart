@@ -43,6 +43,10 @@ class AppDrawer extends HookWidget {
                       title: "Upload",
                       onPressed: () => Get.toNamed(UploadScreen.id)),
                   NavTile(
+                      icon: FlutterRemix.parent_line,
+                      title: "Parental Guide",
+                      onPressed: () {}),
+                  NavTile(
                       icon: FlutterRemix.settings_2_line,
                       title: "Settings",
                       onPressed: () => Get.toNamed(SettingsScreen.id)),

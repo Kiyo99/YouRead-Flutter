@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:k_books/presentation/screens/books/book_viewer.dart';
+import 'package:k_books/presentation/screens/books/summary_screen.dart';
 
 class FilteredBooks extends HookWidget {
   const FilteredBooks(this.data, {Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class FilteredBooks extends HookWidget {
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-              Get.toNamed(BookViewer.id, arguments: data![index]);
+              Get.toNamed(SummaryScreen.id, arguments: data![index]);
             },
             child: Column(
               children: [
