@@ -3,11 +3,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FirebaseService {
   static final Stream<QuerySnapshot> booksStream =
       FirebaseFirestore.instance.collection("books").snapshots();
+
   static final Stream<QuerySnapshot> orderedBookStream = FirebaseFirestore
       .instance
       .collection("books")
       .orderBy("dateCreated", descending: true)
       .snapshots();
+
   static final Stream<QuerySnapshot> categoriesStream =
       FirebaseFirestore.instance.collection("categories").snapshots();
 
