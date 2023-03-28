@@ -10,6 +10,9 @@ class BookViewModel extends ChangeNotifier {
   List<Map<String, dynamic>?>? _fetchedBooks = [];
   List<Map<String, dynamic>?>? get fetchedBooks => _fetchedBooks;
 
+  List<Map<String, dynamic>?>? _orderedBooks = [];
+  List<Map<String, dynamic>?>? get orderedBooks => _orderedBooks;
+
   List<Map<String, dynamic>?>? _filteredBooks = [];
   List<Map<String, dynamic>?>? get filteredBooks => _filteredBooks;
 
@@ -45,6 +48,11 @@ class BookViewModel extends ChangeNotifier {
 
   void setFetchedBooks(List<Map<String, dynamic>?>? data) {
     _fetchedBooks = data;
+    notifyListeners();
+  }
+
+  void setOrderedBooks(List<Map<String, dynamic>?>? data) {
+    _orderedBooks = data;
     notifyListeners();
   }
 

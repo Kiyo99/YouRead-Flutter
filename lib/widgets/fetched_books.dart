@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:k_books/core/constants.dart';
 import 'package:k_books/presentation/screens/books/summary_screen.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
+import 'package:k_books/widgets/app_dialogs.dart';
 
 class FetchedBooks extends HookWidget {
-  const FetchedBooks(this.snapshot, {Key? key}) : super(key: key);
+  const FetchedBooks({Key? key, required this.snapshot, required this.origin})
+      : super(key: key);
 
   final AsyncSnapshot<QuerySnapshot> snapshot;
+  final String origin;
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +24,17 @@ class FetchedBooks extends HookWidget {
     }
 
     if (snapshot.connectionState == ConnectionState.waiting) {
-      return const Center(
-          child: CircularProgressIndicator(color: Colors.purple));
+      return Center(
+          child: CircularProgressIndicator(color: Constants.coolBlue));
     }
 
     List<Map<String, dynamic>?>? data = snapshot.data?.docs
         .map((e) => e.data() as Map<String, dynamic>?)
         .toList();
 
-    bookViewModel.setFetchedBooks(data);
+    origin == "bookStream"
+        ? bookViewModel.setFetchedBooks(data)
+        : bookViewModel.setOrderedBooks(data);
 
     if (data!.isEmpty) {
       return const SizedBox();

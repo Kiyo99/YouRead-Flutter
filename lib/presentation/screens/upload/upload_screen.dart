@@ -250,6 +250,7 @@ class UploadScreen extends HookWidget {
                                 db['synopsis'] = synopsis.text;
                                 db['rating'] = 0.0;
                                 db['reads'] = 0;
+                                db['dateCreated'] = DateTime.now();
                                 // db['pages'] = 0;
                                 // db['date'] = ;
 

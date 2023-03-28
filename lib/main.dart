@@ -8,7 +8,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/firebase/firebase_options.dart';
 import 'package:k_books/presentation/screens/auth/intro_screen.dart';
 import 'package:k_books/presentation/screens/auth/login_page.dart';
-import 'package:k_books/presentation/screens/author/upload_screen.dart';
 import 'package:k_books/presentation/screens/bookmark/bookmarks_screen.dart';
 import 'package:k_books/presentation/screens/books/all_books_screen.dart';
 import 'package:k_books/presentation/screens/books/book_feed.dart';
@@ -19,6 +18,7 @@ import 'package:k_books/presentation/screens/misc/about_screen.dart';
 import 'package:k_books/presentation/screens/misc/settings_screen.dart';
 import 'package:k_books/presentation/screens/profile/profile_screen.dart';
 import 'package:k_books/presentation/screens/search/search_screen.dart';
+import 'package:k_books/presentation/screens/upload/upload_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sharedPreferencesProvider =

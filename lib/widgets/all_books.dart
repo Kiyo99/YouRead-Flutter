@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/presentation/screens/books/summary_screen.dart';
-import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 
 class AllBooks extends HookWidget {
-  const AllBooks({Key? key}) : super(key: key);
+  const AllBooks({Key? key, required this.books}) : super(key: key);
+
+  final List<Map<String, dynamic>?>? books;
 
   @override
   Widget build(BuildContext context) {
-    final bookViewModel = useProvider(BookViewModel.provider);
-    print("Here: ${bookViewModel.fetchedBooks!.length}");
-
-    if (bookViewModel.fetchedBooks!.isEmpty) {
+    if (books!.isEmpty) {
       return const Center(child: Text("No books at the moment"));
     }
 
@@ -24,14 +21,13 @@ class AllBooks extends HookWidget {
       mainAxisSpacing: 5,
       physics: const ClampingScrollPhysics(),
       shrinkWrap: true,
-      children: bookViewModel.fetchedBooks!
+      children: books!
           .asMap()
           .map((index, e) => MapEntry(
                 index,
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(SummaryScreen.id,
-                        arguments: bookViewModel.fetchedBooks![index]);
+                    Get.toNamed(SummaryScreen.id, arguments: books![index]);
                   },
                   child: Container(
                     margin: EdgeInsets.all(0),
@@ -46,7 +42,7 @@ class AllBooks extends HookWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
                                 child: Image.network(
-                                  bookViewModel.fetchedBooks![index]!['url'],
+                                  books![index]!['url'],
                                   height: 200,
                                 ),
                               ),
@@ -55,7 +51,7 @@ class AllBooks extends HookWidget {
                         ),
                         const SizedBox(height: 5),
                         Text(
-                          bookViewModel.fetchedBooks![index]!['title'],
+                          books![index]!['title'],
                           style: const TextStyle(
                               color: Colors.black,
                               fontSize: 16,
@@ -63,7 +59,7 @@ class AllBooks extends HookWidget {
                         ),
                         const SizedBox(height: 5),
                         Text(
-                          bookViewModel.fetchedBooks![index]!['author'],
+                          books![index]!['author'],
                           style: const TextStyle(
                               color: Colors.black, fontSize: 14),
                         ),

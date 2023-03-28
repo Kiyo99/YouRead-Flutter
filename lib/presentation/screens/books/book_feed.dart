@@ -75,7 +75,7 @@ class BookFeed extends HookWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      Get.toNamed(AllBooksScreen.id);
+                      Get.toNamed(AllBooksScreen.id, arguments: "bookStream");
                     },
                     child: const Text(
                       "See all",
@@ -89,7 +89,33 @@ class BookFeed extends HookWidget {
                 stream: FirebaseService.booksStream,
                 builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) =>
-                    FetchedBooks(snapshot),
+                    FetchedBooks(snapshot: snapshot, origin: "bookStream"),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Recent books",
+                    style: AppTextStyles.smallTextStyle,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Get.toNamed(AllBooksScreen.id, arguments: "orderedBookStream");
+                    },
+                    child: const Text(
+                      "See all",
+                      style: AppTextStyles.mutedSmallTextStyle,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              StreamBuilder<QuerySnapshot>(
+                stream: FirebaseService.orderedBookStream,
+                builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) =>
+                    FetchedBooks(snapshot: snapshot, origin: "orderedBookStream"),
               ),
               const SizedBox(height: 20),
             ],
