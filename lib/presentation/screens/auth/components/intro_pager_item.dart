@@ -48,28 +48,28 @@ class IntroPagerModel {
 
   static List<IntroPagerModel> get slides => [
         const IntroPagerModel(
-          lottiePath: "assets/lottie/hello_robo.json",
+          lottiePath: "assets/lottie/hello.json",
           title: "Okay, let's do this.",
           description:
-              "Welcome to the QRA, your number 1 go-to app for examinations. Let's have a quick walkthrough, shall we?",
+              "Welcome to the YouRead, your number 1 go-to app for reading. Let's have a quick walkthrough, shall we?",
         ),
         const IntroPagerModel(
-          lottiePath: "assets/lottie/intro_exam.json",
-          title: "Writing Exams.",
+          lottiePath: "assets/lottie/book_world.json",
+          title: "Books.",
           description:
-              "As a student, writing exams is inevitable. So wouldn't it be amazing if you had an organized attendance checking system?",
+              "We have a collection of the world's best books - specifically for you",
         ),
         const IntroPagerModel(
-          lottiePath: "assets/lottie/intro_attendance.json",
-          title: "Enter the QRA",
+          lottiePath: "assets/lottie/book_turner.json",
+          title: "Enter YouRead",
           description:
-              "Checking for financial status before exams has never been this easy. Taking attendance of students who come to write exam has been made magical.",
+              "Knowledge is power! Expand your knowledge and take on the world",
         ),
         const IntroPagerModel(
-          lottiePath: "assets/lottie/intro_qr.json",
-          title: "Get scanned",
+          lottiePath: "assets/lottie/slow_book_stack.json",
+          title: "It's all yours",
           description:
-              "All you have to do is subscribe to a course, generate your QR code and get it scanned by the invigilator. QRA will do the rest!",
+              "All books, in here, for you. Please, let's have a blast.",
         ),
       ];
 }

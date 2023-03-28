@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/presentation/screens/auth/components/intro_pager_item.dart';
+import 'package:k_books/presentation/screens/auth/login_page.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
 import 'package:k_books/widgets/secondary_app_button.dart';
 import 'package:k_books/widgets/slider_indicator.dart';
@@ -55,6 +56,7 @@ class IntroScreen extends HookWidget {
                         curve: Curves.linear,
                       );
                     } else {
+                      Get.offAllNamed(LoginPage.id);
                       // ref.read(AuthLocalDataSource.provider).setViewedIntro();
                       // user == null
                       //     ? Get.offAllNamed(LoginPage.id)
@@ -75,6 +77,7 @@ class IntroScreen extends HookWidget {
                     child: SecondaryAppButton(
                       title: "Skip",
                       onPressed: () {
+                        Get.offAllNamed(LoginPage.id);
                         // ref.read(AuthLocalDataSource.provider).setViewedIntro();
                         // user == null
                         //     ? Get.offAllNamed(LoginPage.id)

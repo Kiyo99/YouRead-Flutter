@@ -6,6 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/firebase/firebase_options.dart';
+import 'package:k_books/presentation/screens/auth/intro_screen.dart';
 import 'package:k_books/presentation/screens/auth/login_page.dart';
 import 'package:k_books/presentation/screens/author/upload_screen.dart';
 import 'package:k_books/presentation/screens/bookmark/bookmarks_screen.dart';
@@ -76,7 +77,7 @@ class MyApp extends HookWidget {
             SummaryScreen.id: (context) => const SummaryScreen(),
             LoginPage.id: (context) => LoginPage(),
           },
-          home: LoginPage()),
+          home: IntroScreen()),
     );
   }
 }

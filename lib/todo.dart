@@ -12,5 +12,5 @@
 //Todo: Set activeBook in viewModel
 //Todo: comment section
 //Todo: Pg mode
-//Todo: Add filtering to all books
-//Todo: Cover Auth and Lotties today
+//Todo: Add filtering to all books - Filter by cat, date added
+//Todo: Cover Auth and Lotties today - optimise auth states
