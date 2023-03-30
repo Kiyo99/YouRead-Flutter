@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/app_text_style.dart';
 import 'package:k_books/core/firebase/firebase_service.dart';
+import 'package:k_books/data/datasource/auth_local_datasource.dart';
 import 'package:k_books/presentation/screens/books/all_books_screen.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 import 'package:k_books/widgets/app_categories.dart';
@@ -20,6 +21,9 @@ class BookFeed extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final bookViewModel = useProvider(BookViewModel.provider);
+
+    final user = context.read(AuthLocalDataSource.provider).getCachedUser();
+    print("App user: ${user}");
 
     return Scaffold(
       drawer: const AppDrawer(),
@@ -101,7 +105,8 @@ class BookFeed extends HookWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      Get.toNamed(AllBooksScreen.id, arguments: "orderedBookStream");
+                      Get.toNamed(AllBooksScreen.id,
+                          arguments: "orderedBookStream");
                     },
                     child: const Text(
                       "See all",
@@ -115,7 +120,8 @@ class BookFeed extends HookWidget {
                 stream: FirebaseService.orderedBookStream,
                 builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) =>
-                    FetchedBooks(snapshot: snapshot, origin: "orderedBookStream"),
+                    FetchedBooks(
+                        snapshot: snapshot, origin: "orderedBookStream"),
               ),
               const SizedBox(height: 20),
             ],

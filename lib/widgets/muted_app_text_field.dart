@@ -24,7 +24,7 @@ class MutedAppTextField extends HookWidget {
         onTap: onTap ?? () {},
         focusNode: AlwaysDisabledFocusNode(),
         obscureText: obscureText ?? false,
-        cursorColor: Constants.coolOrange,
+        cursorColor: Constants.coolBlue,
         controller: controller,
         decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -41,7 +41,7 @@ class MutedAppTextField extends HookWidget {
                 borderRadius: BorderRadius.circular(
                   15.0,
                 ),
-                borderSide: BorderSide(color: Constants.coolOrange)),
+                borderSide: BorderSide(color: Constants.coolBlue)),
             border: const OutlineInputBorder(),
             labelText: title,
             labelStyle: GoogleFonts.exo2(

@@ -77,234 +77,238 @@ class UploadScreen extends HookWidget {
     final selectedCategoryValue = useState(categoryItems.value[0]);
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Upload a Book"),
-          backgroundColor: Constants.coolBlue,
-          foregroundColor: Colors.white,
-          shadowColor: Colors.transparent,
-          elevation: 0,
-        ),
-        body: isLoading.value == false
-            ? Container(
-                padding: const EdgeInsets.all(20),
-                child: Center(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      AppTextField(
-                        controller: title,
-                        title: "Title",
-                        capitilize: TextCapitalization.words,
-                      ),
-                      AppTextField(
-                        controller: author,
-                        title: "Author",
-                        capitilize: TextCapitalization.words,
-                      ),
-                      AppTextField(controller: synopsis, title: "Synopsis"),
-                      Visibility(
-                        visible: !isImageLoading.value,
-                        replacement: Center(
-                          child: CircularProgressIndicator(
-                            color: Constants.coolBlue,
-                          ),
-                        ),
-                        child: MutedAppTextField(
-                          controller: imageUrl,
-                          title: "Image",
-                          onTap: () async {
-                            FilePickerResult? result = await FilePicker.platform
-                                .pickFiles(type: FileType.image);
-
-                            if (result != null) {
-                              File file = File(result.files.single.path!);
-                              print("File chosen: $file");
-
-                              String fileNameToDisplay =
-                                  file.path.split('/').last;
-                              imageUrl.text = fileNameToDisplay;
-
-                              isImageLoading.value = true;
-                              final imageDownloadLink =
-                                  await saveImage(file, fileNameToDisplay);
-                              isImageLoading.value = false;
-
-                              imageUrl.text = fileNameToDisplay;
-                              imageLink.value = imageDownloadLink;
-                            } else {
-                              // User canceled the picker
-                              debugPrint("I got cancelled");
-                            }
-                          },
+      appBar: AppBar(
+        title: const Text("Upload a Book"),
+        backgroundColor: Constants.coolBlue,
+        foregroundColor: Colors.white,
+        shadowColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: isLoading.value == false
+          ? Container(
+              padding: const EdgeInsets.all(20),
+              child: Center(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    AppTextField(
+                      controller: title,
+                      title: "Title",
+                      capitilize: TextCapitalization.words,
+                    ),
+                    AppTextField(
+                      controller: author,
+                      title: "Author",
+                      capitilize: TextCapitalization.words,
+                    ),
+                    AppTextField(controller: synopsis, title: "Synopsis"),
+                    Visibility(
+                      visible: !isImageLoading.value,
+                      replacement: Center(
+                        child: CircularProgressIndicator(
+                          color: Constants.coolBlue,
                         ),
                       ),
-                      Visibility(
-                        visible: !isPdfLoading.value,
-                        replacement: Center(
-                          child: CircularProgressIndicator(
-                            color: Constants.coolBlue,
-                          ),
-                        ),
-                        child: MutedAppTextField(
-                          controller: pdfStorageUrl,
-                          title: "Pdf url",
-                          onTap: () async {
-                            FilePickerResult? result = await FilePicker.platform
-                                .pickFiles(
-                                    type: FileType.custom,
-                                    allowedExtensions: ['pdf']);
+                      child: MutedAppTextField(
+                        controller: imageUrl,
+                        title: "Image",
+                        onTap: () async {
+                          FilePickerResult? result = await FilePicker.platform
+                              .pickFiles(type: FileType.image);
 
-                            if (result != null) {
-                              File file = File(result.files.single.path!);
-                              debugPrint("File chosen: $file");
-                              String fileNameToDisplay =
-                                  file.path.split('/').last;
-                              pdfStorageUrl.text = fileNameToDisplay;
-                              isPdfLoading.value = true;
+                          if (result != null) {
+                            File file = File(result.files.single.path!);
+                            print("File chosen: $file");
 
-                              final pdfUrl =
-                                  await savePdf(file, fileNameToDisplay);
-                              isPdfLoading.value = false;
+                            String fileNameToDisplay =
+                                file.path.split('/').last;
+                            imageUrl.text = fileNameToDisplay;
 
-                              pdfLink.value = pdfUrl;
-                              pdfStorageUrl.text = fileNameToDisplay;
-                            } else {
-                              // User canceled the picker
-                              debugPrint("I got cancelled");
-                            }
-                          },
-                        ),
-                      ),
-                      Container(
-                        height: 55,
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        margin: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: brightness == Brightness.light
-                                  ? Constants.coolBlue
-                                  : Constants.coolWhite),
-                          borderRadius: BorderRadius.circular(
-                            15.0,
-                          ),
-                        ),
-                        child: DropdownButtonFormField(
-                          items: categoryItems.value
-                              .map<DropdownMenuItem<String>>(
-                                  (String value) => DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Text(value,
-                                            style: GoogleFonts.exo(
-                                                color: brightness ==
-                                                        Brightness.light
-                                                    ? Constants.coolBlue
-                                                    : Constants.coolWhite)),
-                                      ))
-                              .toList(),
-                          value: selectedCategoryValue.value,
-                          focusColor: Colors.white,
-                          iconEnabledColor: Constants.coolBlue,
-                          style: GoogleFonts.exo2(fontSize: 16),
-                          dropdownColor: brightness == Brightness.light
-                              ? Constants.coolWhite
-                              : Constants.coolBlue,
-                          onChanged: (val) {
-                            selectedCategoryValue.value = val.toString();
-                          },
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      PrimaryAppButton(
-                        title: "Upload Book",
-                        onPressed: () async {
-                          if (title.text.isEmpty ||
-                              author.text.isEmpty ||
-                              synopsis.text.isEmpty ||
-                              imageUrl.text.isEmpty ||
-                              pdfStorageUrl.text.isEmpty ||
-                              imageLink.value.isEmpty ||
-                              pdfLink.value.isEmpty ||
-                              selectedCategoryValue.value ==
-                                  categoryItems.value[0]) {
-                            AppModal.showToast(
-                                context, 'Please enter all fields');
-                            return;
+                            isImageLoading.value = true;
+                            final imageDownloadLink =
+                                await saveImage(file, fileNameToDisplay);
+                            isImageLoading.value = false;
+
+                            imageUrl.text = fileNameToDisplay;
+                            imageLink.value = imageDownloadLink;
+                          } else {
+                            // User canceled the picker
+                            debugPrint("I got cancelled");
                           }
-
-                          AppModal.showModal(
-                              context: context,
-                              title: "Upload?",
-                              message:
-                                  "Are you sure you want to upload ${title.text}?",
-                              asset: "assets/lottie/warning.json",
-                              primaryAction: () async {
-                                Get.back();
-                                // AppDialogs.lottieLoader();
-
-                                Map<String, Object> db = {};
-                                db['title'] = title.text;
-                                db['url'] = imageLink.value;
-                                db['storage'] = pdfLink.value;
-                                db['category'] = selectedCategoryValue.value;
-                                db['author'] = author.text;
-                                db['synopsis'] = synopsis.text;
-                                db['rating'] = 0.0;
-                                db['reads'] = 0;
-                                db['dateCreated'] = DateTime.now();
-                                // db['pages'] = 0;
-                                // db['date'] = ;
-
-                                _fireStore
-                                    .collection("books")
-                                    .doc(db['title'].toString())
-                                    .set(db)
-                                    .whenComplete(() {
-                                  Get.back();
-
-                                  AppModal.showModal(
-                                    context: context,
-                                    title: 'Success',
-                                    message:
-                                        'You have successfully uploaded ${title.text}.',
-                                    asset: 'assets/lottie/success.json',
-                                    primaryAction: () {
-                                      Get.back();
-                                    },
-                                    buttonText: 'Okay',
-                                  );
-
-                                  title.clear();
-                                  selectedCategoryValue.value =
-                                      categoryItems.value[0];
-                                  pdfStorageUrl.clear();
-                                  imageUrl.clear();
-                                }).onError((error, stackTrace) => () {
-                                          Get.back();
-                                          AppModal.showModal(
-                                            context: context,
-                                            title: 'Error',
-                                            message:
-                                                'Failed to upload ${title.text}.',
-                                            asset: 'assets/lottie/error.json',
-                                            primaryAction: () {
-                                              Get.back();
-                                            },
-                                            buttonText: 'Okay',
-                                          );
-                                        });
-                              },
-                              buttonText: "Yes, upload",
-                              showSecondary: true);
                         },
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                      )
-                    ],
-                  ),
+                      ),
+                    ),
+                    Visibility(
+                      visible: !isPdfLoading.value,
+                      replacement: Center(
+                        child: CircularProgressIndicator(
+                          color: Constants.coolBlue,
+                        ),
+                      ),
+                      child: MutedAppTextField(
+                        controller: pdfStorageUrl,
+                        title: "Pdf url",
+                        onTap: () async {
+                          FilePickerResult? result = await FilePicker.platform
+                              .pickFiles(
+                                  type: FileType.custom,
+                                  allowedExtensions: ['pdf']);
+
+                          if (result != null) {
+                            File file = File(result.files.single.path!);
+                            debugPrint("File chosen: $file");
+                            String fileNameToDisplay =
+                                file.path.split('/').last;
+                            pdfStorageUrl.text = fileNameToDisplay;
+                            isPdfLoading.value = true;
+
+                            final pdfUrl =
+                                await savePdf(file, fileNameToDisplay);
+                            isPdfLoading.value = false;
+
+                            pdfLink.value = pdfUrl;
+                            pdfStorageUrl.text = fileNameToDisplay;
+                          } else {
+                            // User canceled the picker
+                            debugPrint("I got cancelled");
+                          }
+                        },
+                      ),
+                    ),
+                    Container(
+                      height: 55,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      margin: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            color: brightness == Brightness.light
+                                ? Constants.coolBlue
+                                : Constants.coolWhite),
+                        borderRadius: BorderRadius.circular(
+                          15.0,
+                        ),
+                      ),
+                      child: DropdownButtonFormField(
+                        items: categoryItems.value
+                            .map<DropdownMenuItem<String>>(
+                                (String value) => DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value,
+                                          style: GoogleFonts.exo(
+                                              color:
+                                                  brightness == Brightness.light
+                                                      ? Constants.coolBlue
+                                                      : Constants.coolWhite)),
+                                    ))
+                            .toList(),
+                        value: selectedCategoryValue.value,
+                        focusColor: Colors.white,
+                        iconEnabledColor: Constants.coolBlue,
+                        style: GoogleFonts.exo2(fontSize: 16),
+                        dropdownColor: brightness == Brightness.light
+                            ? Constants.coolWhite
+                            : Constants.coolBlue,
+                        onChanged: (val) {
+                          selectedCategoryValue.value = val.toString();
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    PrimaryAppButton(
+                      title: "Upload Book",
+                      onPressed: () async {
+                        if (title.text.isEmpty ||
+                            author.text.isEmpty ||
+                            synopsis.text.isEmpty ||
+                            imageUrl.text.isEmpty ||
+                            pdfStorageUrl.text.isEmpty ||
+                            imageLink.value.isEmpty ||
+                            pdfLink.value.isEmpty ||
+                            selectedCategoryValue.value ==
+                                categoryItems.value[0]) {
+                          AppModal.showToast(
+                              context, 'Please enter all fields');
+                          return;
+                        }
+
+                        AppModal.showModal(
+                            context: context,
+                            title: "Upload?",
+                            message:
+                                "Are you sure you want to upload ${title.text}?",
+                            asset: "assets/lottie/warning.json",
+                            primaryAction: () async {
+                              Get.back();
+                              // AppDialogs.lottieLoader();
+
+                              Map<String, Object> db = {};
+                              db['title'] = title.text;
+                              db['url'] = imageLink.value;
+                              db['storage'] = pdfLink.value;
+                              db['category'] = selectedCategoryValue.value;
+                              db['author'] = author.text;
+                              db['synopsis'] = synopsis.text;
+                              db['rating'] = 0.0;
+                              db['reads'] = 0;
+                              db['dateCreated'] = DateTime.now();
+                              // db['pages'] = 0;
+                              // db['date'] = ;
+
+                              _fireStore
+                                  .collection("books")
+                                  .doc(db['title'].toString())
+                                  .set(db)
+                                  .whenComplete(() {
+                                Get.back();
+
+                                AppModal.showModal(
+                                  context: context,
+                                  title: 'Success',
+                                  message:
+                                      'You have successfully uploaded ${title.text}.',
+                                  asset: 'assets/lottie/success.json',
+                                  primaryAction: () {
+                                    Get.back();
+                                  },
+                                  buttonText: 'Okay',
+                                );
+
+                                title.clear();
+                                selectedCategoryValue.value =
+                                    categoryItems.value[0];
+                                pdfStorageUrl.clear();
+                                imageUrl.clear();
+                              }).onError((error, stackTrace) => () {
+                                        Get.back();
+                                        AppModal.showModal(
+                                          context: context,
+                                          title: 'Error',
+                                          message:
+                                              'Failed to upload ${title.text}.',
+                                          asset: 'assets/lottie/error.json',
+                                          primaryAction: () {
+                                            Get.back();
+                                          },
+                                          buttonText: 'Okay',
+                                        );
+                                      });
+                            },
+                            buttonText: "Yes, upload",
+                            showSecondary: true);
+                      },
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                    )
+                  ],
                 ),
-              )
-            : Center(
+              ),
+            )
+          : Center(
+              child: Transform.scale(
                 child: AppDialogs.loader(),
-              ));
+                scale: 0.75,
+              ),
+            ),
+    );
   }
 }
 

@@ -5,10 +5,17 @@ import 'package:k_books/core/constants.dart';
 
 class PrimaryAppButton extends HookWidget {
   const PrimaryAppButton(
-      {Key? key, required this.title, required this.onPressed, this.padding})
+      {Key? key,
+      required this.title,
+      this.bgColor,
+      this.textColor,
+      required this.onPressed,
+      this.padding})
       : super(key: key);
   final VoidCallback onPressed;
   final String title;
+  final Color? textColor;
+  final Color? bgColor;
   final EdgeInsetsGeometry? padding;
 
   @override
@@ -22,7 +29,7 @@ class PrimaryAppButton extends HookWidget {
         child: Text(
           title,
           style: GoogleFonts.exo2(
-            color: Constants.coolWhite,
+            color: textColor ?? Constants.coolWhite,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -35,7 +42,7 @@ class PrimaryAppButton extends HookWidget {
             ),
             borderRadius: BorderRadius.circular(15),
           ),
-          backgroundColor: Constants.coolBlue,
+          backgroundColor: bgColor ?? Constants.coolBlue,
         ),
       ),
     );

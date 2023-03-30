@@ -8,6 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/firebase/firebase_options.dart';
 import 'package:k_books/presentation/screens/auth/intro_screen.dart';
 import 'package:k_books/presentation/screens/auth/login_page.dart';
+import 'package:k_books/presentation/screens/auth/splash_screen.dart';
 import 'package:k_books/presentation/screens/bookmark/bookmarks_screen.dart';
 import 'package:k_books/presentation/screens/books/all_books_screen.dart';
 import 'package:k_books/presentation/screens/books/book_feed.dart';
@@ -76,8 +77,9 @@ class MyApp extends HookWidget {
             AllBooksScreen.id: (context) => const AllBooksScreen(),
             SummaryScreen.id: (context) => const SummaryScreen(),
             LoginPage.id: (context) => LoginPage(),
+            IntroScreen.id: (context) => IntroScreen(),
           },
-          home: IntroScreen()),
+          home: const SplashScreen()),
     );
   }
 }
