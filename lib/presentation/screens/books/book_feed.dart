@@ -50,7 +50,7 @@ class BookFeed extends HookWidget {
                   stream: FirebaseService.categoriesStream,
                   builder: (BuildContext context,
                           AsyncSnapshot<QuerySnapshot> snapshot) =>
-                      AppCategories(snapshot)),
+                      AppCategories(snapshot, bookViewModel)),
               if (bookViewModel.showFilteredBooks == true)
                 Visibility(
                     visible: bookViewModel.filteredBooks!.isNotEmpty,

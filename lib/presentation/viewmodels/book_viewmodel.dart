@@ -30,6 +30,14 @@ class BookViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<dynamic> _categories = [];
+  List<dynamic> get categories => _categories;
+
+  void setCategories(List<dynamic> data) {
+    _categories = data;
+    notifyListeners();
+  }
+
   String _activeCategory = "";
   String get activeCategory => _activeCategory;
 

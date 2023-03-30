@@ -8,79 +8,91 @@ import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 import 'package:k_books/widgets/book_icons.dart';
 
 class AppCategories extends HookWidget {
-  const AppCategories(this.snapshot, {Key? key}) : super(key: key);
+  const AppCategories(this.snapshot, this.bookViewModel, {Key? key})
+      : super(key: key);
 
   final AsyncSnapshot<QuerySnapshot> snapshot;
+  final BookViewModel bookViewModel;
 
   @override
   Widget build(BuildContext context) {
-    final bookViewModel = useProvider(BookViewModel.provider);
+    try {
+      // final bookViewModel = useProvider(BookViewModel.provider);
 
-    if (snapshot.hasError) {
-      return const Center(
-          child: Text(
-        'Something went wrong',
-        style: AppTextStyles.bigTextStyle,
-      ));
-    }
+      if (snapshot.hasError) {
+        return const Center(
+            child: Text(
+          'Something went wrong',
+          style: AppTextStyles.bigTextStyle,
+        ));
+      }
 
-    if (snapshot.connectionState == ConnectionState.waiting) {
-      return const Center(
-          child: CircularProgressIndicator(color: Colors.purple));
-    }
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return Center(
+            child: CircularProgressIndicator(color: Constants.coolBlue));
+      }
 
-    List<Map<String, dynamic>?>? data = snapshot.data?.docs
-        .map((e) => e.data() as Map<String, dynamic>?)
-        .toList();
+      List<Map<String, dynamic>?>? data = snapshot.data?.docs
+          .map((e) => e.data() as Map<String, dynamic>?)
+          .toList();
 
-    final categories = data?[0]?['values'];
+      print("DAAAA: ${snapshot.connectionState}");
+      print("DAAAA: ${data}");
 
-    if (categories!.isEmpty) {
-      return const SizedBox();
-    }
+      final categories = data?[0]?['values'];
 
-    return SizedBox(
-      height: 50,
-      child: ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        itemCount: categories.length,
-        itemBuilder: (BuildContext context, int index) {
-          String category = categories[index];
+      if (categories!.isEmpty) {
+        return const SizedBox();
+      }
 
-          return InkWell(
-            onTap: () {
-              bookViewModel.setActiveCategory(category);
-            },
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-              margin: const EdgeInsets.only(right: 15),
-              decoration: BoxDecoration(
-                color: bookViewModel.activeCategory == category
-                    ? Constants.coolBlue
-                    : Colors.white,
-                borderRadius: BorderRadius.circular(15),
+      bookViewModel.setCategories(categories);
+
+      return SizedBox(
+        height: 50,
+        child: ListView.builder(
+          physics: const BouncingScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          itemCount: categories.length,
+          itemBuilder: (BuildContext context, int index) {
+            String category = categories[index];
+
+            return InkWell(
+              onTap: () {
+                bookViewModel.setActiveCategory(category);
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                margin: const EdgeInsets.only(right: 15),
+                decoration: BoxDecoration(
+                  color: bookViewModel.activeCategory == category
+                      ? Constants.coolBlue
+                      : Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Row(
+                  children: [
+                    AppIcons(category),
+                    const SizedBox(width: 10),
+                    Text(
+                      category,
+                      style: TextStyle(
+                          color: bookViewModel.activeCategory == category
+                              ? Colors.white
+                              : Colors.grey,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(width: 10),
+                  ],
+                ),
               ),
-              child: Row(
-                children: [
-                  AppIcons(category),
-                  const SizedBox(width: 10),
-                  Text(
-                    category,
-                    style: TextStyle(
-                        color: bookViewModel.activeCategory == category
-                            ? Colors.white
-                            : Colors.grey,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(width: 10),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
-    );
+            );
+          },
+        ),
+      );
+    } catch (e) {
+      print("HHHH: $e");
+      return SizedBox();
+    }
   }
 }
