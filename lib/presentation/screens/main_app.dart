@@ -34,7 +34,8 @@ class MainApp extends HookWidget {
       currentIndex: _selectedIndex.value,
       showUnselectedLabels: true,
       selectedItemColor: Constants.coolBlue,
-      selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+      selectedLabelStyle:
+          const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
       unselectedItemColor: Colors.grey,
       onTap: (index) {
         _selectedIndex.value = index;
@@ -86,10 +87,10 @@ class MainApp extends HookWidget {
       onPageChanged: (value) {
         _selectedIndex.value = value;
       },
-      children: const [
-        BookFeed(),
-        BookmarksScreen(),
-        SearchScreen(),
+      children: [
+        const BookFeed(),
+        const BookmarksScreen(),
+        const SearchScreen(),
         ProfileScreen(),
       ],
     );

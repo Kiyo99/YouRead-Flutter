@@ -1,10 +1,16 @@
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/app_text_style.dart';
 import 'package:k_books/core/constants.dart';
+import 'package:k_books/data/app_user/app_user.dart';
 import 'package:k_books/data/datasource/auth_local_datasource.dart';
 import 'package:k_books/presentation/screens/auth/login_page.dart';
 import 'package:k_books/widgets/app_drawer.dart';
@@ -14,11 +20,32 @@ import 'package:k_books/widgets/primary_app_button.dart';
 class ProfileScreen extends HookWidget {
   static String id = "profile_screen";
 
-  const ProfileScreen({Key? key}) : super(key: key);
+  ProfileScreen({Key? key}) : super(key: key);
+
+  final _fireStore = FirebaseFirestore.instance;
+  final auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     final user = context.read(AuthLocalDataSource.provider).getCachedUser();
+    final appUser = useState<AppUser?>(user);
+
     print("App user: ${user}");
+    final isImageLoading = useState(false);
+
+    Future saveImage(File file, String name) async {
+      final storageRef =
+          FirebaseStorage.instance.ref().child("profilePics/$name");
+
+      try {
+        await storageRef.putFile(file);
+        final url = await storageRef.getDownloadURL();
+        return url;
+      } catch (e) {
+        debugPrint("Error caught: $e");
+        return "";
+      }
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -40,16 +67,77 @@ class ProfileScreen extends HookWidget {
               Center(
                 child: Column(
                   children: [
-                    CircleAvatar(
-                      radius: 60,
-                      backgroundColor: Colors.black,
-                      child: user?.profilePicture == null
-                          ? Image.asset(
-                              user?.gender == "male"
-                                  ? "assets/images/placeholder-male.jpg"
-                                  : "assests/images/placeholder-female.jpg",
-                            )
-                          : Image.network(user?.profilePicture),
+                    GestureDetector(
+                      onTap: () async {
+                        print("I'm getting tapped oh");
+                        FilePickerResult? result = await FilePicker.platform
+                            .pickFiles(type: FileType.image);
+
+                        if (result != null) {
+                          File file = File(result.files.single.path!);
+                          print("File chosen: $file");
+
+                          String fileNameToDisplay = file.path.split('/').last;
+
+                          isImageLoading.value = true;
+
+                          final imageDownloadLink =
+                              await saveImage(file, fileNameToDisplay);
+                          //isImageLoading.value = false;
+
+                          Map<String, Object> db = {};
+                          db['profilePicture'] = imageDownloadLink;
+
+                          _fireStore
+                              .collection("Users")
+                              .doc(auth.currentUser!.email.toString())
+                              .update(db)
+                              .whenComplete(() async {
+                            Constants.showToast(
+                                context, 'Changed profile image');
+
+                            final studentsDoc = await _fireStore
+                                .collection("Users")
+                                .doc(auth.currentUser?.email)
+                                .get();
+
+                            final user = AppUser.fromJson(studentsDoc.data()!);
+
+                            context
+                                .read(AuthLocalDataSource.provider)
+                                .cacheUser(user);
+
+                            appUser.value = user;
+
+                            isImageLoading.value = false;
+                          }).catchError((error, stackTrace) => () {
+                                    Constants.showToast(
+                                        context, 'Failed to save 😪');
+                                    print('Failed: $error');
+                                  });
+                        } else {
+                          // User canceled the picker
+                          debugPrint("I got cancelled");
+                        }
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: isImageLoading.value == true
+                            ? CircularProgressIndicator(
+                                color: Constants.coolBlue,
+                              )
+                            : appUser.value?.profilePicture == null
+                                ? Image.asset(
+                                    appUser.value?.gender == "Male"
+                                        ? "assets/images/placeholder-male.jpg"
+                                        : "assets/images/placeholder-female.jpg",
+                                    height: 130,
+                                  )
+                                : Image.network(
+                                    appUser.value?.profilePicture,
+                                    height: 130,
+                                  ),
+                      ),
                     ),
                     const SizedBox(height: 20),
                     PrimaryAppButton(
@@ -79,7 +167,7 @@ class ProfileScreen extends HookWidget {
                     style: AppTextStyles.normalSmallTextStyle,
                   ),
                   Text(
-                    user?.fullName,
+                    appUser.value?.fullName,
                     style: AppTextStyles.normalSmallTextStyle,
                   )
                 ],
@@ -93,7 +181,7 @@ class ProfileScreen extends HookWidget {
                     style: AppTextStyles.normalSmallTextStyle,
                   ),
                   Text(
-                    user?.email,
+                    appUser.value?.email,
                     style: AppTextStyles.normalSmallTextStyle,
                   )
                 ],
@@ -107,7 +195,7 @@ class ProfileScreen extends HookWidget {
                     style: AppTextStyles.normalSmallTextStyle,
                   ),
                   Text(
-                    user?.phoneNumber,
+                    appUser.value?.phoneNumber,
                     style: AppTextStyles.normalSmallTextStyle,
                   )
                 ],

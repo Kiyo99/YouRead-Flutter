@@ -72,7 +72,7 @@ class MyApp extends HookWidget {
             SettingsScreen.id: (context) => const SettingsScreen(),
             AboutScreen.id: (context) => const AboutScreen(),
             SearchScreen.id: (context) => const SearchScreen(),
-            ProfileScreen.id: (context) => const ProfileScreen(),
+            ProfileScreen.id: (context) => ProfileScreen(),
             BookmarksScreen.id: (context) => const BookmarksScreen(),
             AllBooksScreen.id: (context) => const AllBooksScreen(),
             SummaryScreen.id: (context) => const SummaryScreen(),
