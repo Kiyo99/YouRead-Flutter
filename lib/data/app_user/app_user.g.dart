@@ -16,6 +16,7 @@ _$_AppUser _$$_AppUserFromJson(Map<String, dynamic> json) => _$_AppUser(
       status: json['status'],
       booksRead: json['booksRead'],
       boomarks: json['boomarks'],
+      profilePicture: json['profilePicture'],
     );
 
 Map<String, dynamic> _$$_AppUserToJson(_$_AppUser instance) =>
@@ -29,4 +30,5 @@ Map<String, dynamic> _$$_AppUserToJson(_$_AppUser instance) =>
       'status': instance.status,
       'booksRead': instance.booksRead,
       'boomarks': instance.boomarks,
+      'profilePicture': instance.profilePicture,
     };

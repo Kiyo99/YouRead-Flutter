@@ -17,6 +17,7 @@ class AppUser with _$AppUser {
     dynamic status,
     dynamic booksRead,
     dynamic boomarks,
+    dynamic profilePicture,
   }) = _AppUser;
 
   factory AppUser.fromJson(Map<String, dynamic> map) => _$AppUserFromJson(map);

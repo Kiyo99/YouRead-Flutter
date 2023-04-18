@@ -12,8 +12,8 @@ class SettingsScreen extends HookWidget {
       appBar: AppBar(
         title: const Text("Settings"),
         elevation: 0,
-        backgroundColor: Constants.coolBlue,
-        foregroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Constants.coolBlue,
         shadowColor: Colors.transparent,
       ),
       body: Container(),

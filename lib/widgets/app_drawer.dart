@@ -1,26 +1,38 @@
 import 'package:flutter/material.dart';
 
 class NavTile extends StatelessWidget {
-
-  const NavTile({Key? key, required this.icon, required this.title, required this.onPressed}) : super(key: key);
+  const NavTile(
+      {Key? key,
+      required this.icon,
+      required this.title,
+      required this.onPressed,
+      this.trailing,
+      this.color,
+      this.padding})
+      : super(key: key);
 
   final IconData icon;
   final String title;
+  final Widget? trailing;
+  final Color? color;
+  final EdgeInsets? padding;
   final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       visualDensity: const VisualDensity(horizontal: -4, vertical: -2.5),
+      contentPadding: padding ?? EdgeInsets.symmetric(horizontal: 16),
       leading: Icon(
         icon,
-        color: Colors.white.withOpacity(0.7),
+        color: color ?? Colors.white.withOpacity(0.7),
       ),
       title: Text(
         title,
-        style: TextStyle(color: Colors.white.withOpacity(0.7)),
+        style: TextStyle(color: color ?? Colors.white.withOpacity(0.7)),
       ),
       onTap: onPressed,
+      trailing: trailing ?? const SizedBox(),
     );
   }
 }

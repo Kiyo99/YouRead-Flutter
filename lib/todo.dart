@@ -5,3 +5,4 @@
 //Todo: comment section
 //Todo: Pg mode
 //Todo: Cover Auth and Lotties today - optimise auth states
+//Todo: Regularly update the user details from DB

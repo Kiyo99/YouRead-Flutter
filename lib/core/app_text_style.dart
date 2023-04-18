@@ -4,6 +4,7 @@ import 'package:k_books/core/constants.dart';
 class AppTextStyles {
   static const smallTextStyle =
       TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18);
+  static const boldedStyle = TextStyle(fontWeight: FontWeight.bold);
   static const normalSmallTextStyle =
       TextStyle(color: Colors.black, fontSize: 16);
   static final titleTextStyle = TextStyle(

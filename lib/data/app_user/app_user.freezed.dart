@@ -30,7 +30,8 @@ class _$AppUserTearOff {
       dynamic gender,
       dynamic status,
       dynamic booksRead,
-      dynamic boomarks}) {
+      dynamic boomarks,
+      dynamic profilePicture}) {
     return _AppUser(
       firstName: firstName,
       lastName: lastName,
@@ -41,6 +42,7 @@ class _$AppUserTearOff {
       status: status,
       booksRead: booksRead,
       boomarks: boomarks,
+      profilePicture: profilePicture,
     );
   }
 
@@ -63,6 +65,7 @@ mixin _$AppUser {
   dynamic get status => throw _privateConstructorUsedError;
   dynamic get booksRead => throw _privateConstructorUsedError;
   dynamic get boomarks => throw _privateConstructorUsedError;
+  dynamic get profilePicture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -82,7 +85,8 @@ abstract class $AppUserCopyWith<$Res> {
       dynamic gender,
       dynamic status,
       dynamic booksRead,
-      dynamic boomarks});
+      dynamic boomarks,
+      dynamic profilePicture});
 }
 
 /// @nodoc
@@ -104,6 +108,7 @@ class _$AppUserCopyWithImpl<$Res> implements $AppUserCopyWith<$Res> {
     Object? status = freezed,
     Object? booksRead = freezed,
     Object? boomarks = freezed,
+    Object? profilePicture = freezed,
   }) {
     return _then(_value.copyWith(
       firstName: firstName == freezed
@@ -142,6 +147,10 @@ class _$AppUserCopyWithImpl<$Res> implements $AppUserCopyWith<$Res> {
           ? _value.boomarks
           : boomarks // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      profilePicture: profilePicture == freezed
+          ? _value.profilePicture
+          : profilePicture // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -160,7 +169,8 @@ abstract class _$AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       dynamic gender,
       dynamic status,
       dynamic booksRead,
-      dynamic boomarks});
+      dynamic boomarks,
+      dynamic profilePicture});
 }
 
 /// @nodoc
@@ -183,6 +193,7 @@ class __$AppUserCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res>
     Object? status = freezed,
     Object? booksRead = freezed,
     Object? boomarks = freezed,
+    Object? profilePicture = freezed,
   }) {
     return _then(_AppUser(
       firstName: firstName == freezed
@@ -221,6 +232,10 @@ class __$AppUserCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res>
           ? _value.boomarks
           : boomarks // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      profilePicture: profilePicture == freezed
+          ? _value.profilePicture
+          : profilePicture // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -237,7 +252,8 @@ class _$_AppUser extends _AppUser {
       this.gender,
       this.status,
       this.booksRead,
-      this.boomarks})
+      this.boomarks,
+      this.profilePicture})
       : super._();
 
   factory _$_AppUser.fromJson(Map<String, dynamic> json) =>
@@ -261,10 +277,12 @@ class _$_AppUser extends _AppUser {
   final dynamic booksRead;
   @override
   final dynamic boomarks;
+  @override
+  final dynamic profilePicture;
 
   @override
   String toString() {
-    return 'AppUser(firstName: $firstName, lastName: $lastName, fullName: $fullName, email: $email, phoneNumber: $phoneNumber, gender: $gender, status: $status, booksRead: $booksRead, boomarks: $boomarks)';
+    return 'AppUser(firstName: $firstName, lastName: $lastName, fullName: $fullName, email: $email, phoneNumber: $phoneNumber, gender: $gender, status: $status, booksRead: $booksRead, boomarks: $boomarks, profilePicture: $profilePicture)';
   }
 
   @override
@@ -294,7 +312,10 @@ class _$_AppUser extends _AppUser {
                     .equals(other.booksRead, booksRead)) &&
             (identical(other.boomarks, boomarks) ||
                 const DeepCollectionEquality()
-                    .equals(other.boomarks, boomarks)));
+                    .equals(other.boomarks, boomarks)) &&
+            (identical(other.profilePicture, profilePicture) ||
+                const DeepCollectionEquality()
+                    .equals(other.profilePicture, profilePicture)));
   }
 
   @override
@@ -308,7 +329,8 @@ class _$_AppUser extends _AppUser {
       const DeepCollectionEquality().hash(gender) ^
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(booksRead) ^
-      const DeepCollectionEquality().hash(boomarks);
+      const DeepCollectionEquality().hash(boomarks) ^
+      const DeepCollectionEquality().hash(profilePicture);
 
   @JsonKey(ignore: true)
   @override
@@ -331,7 +353,8 @@ abstract class _AppUser extends AppUser {
       dynamic gender,
       dynamic status,
       dynamic booksRead,
-      dynamic boomarks}) = _$_AppUser;
+      dynamic boomarks,
+      dynamic profilePicture}) = _$_AppUser;
   _AppUser._() : super._();
 
   factory _AppUser.fromJson(Map<String, dynamic> json) = _$_AppUser.fromJson;
@@ -354,6 +377,8 @@ abstract class _AppUser extends AppUser {
   dynamic get booksRead => throw _privateConstructorUsedError;
   @override
   dynamic get boomarks => throw _privateConstructorUsedError;
+  @override
+  dynamic get profilePicture => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AppUserCopyWith<_AppUser> get copyWith =>
