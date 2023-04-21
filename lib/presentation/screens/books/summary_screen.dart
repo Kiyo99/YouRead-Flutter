@@ -48,6 +48,31 @@ class SummaryScreen extends HookWidget {
       Constants.showToast(context, 'Success');
     }
 
+    Future<bool> bookmarkeddd() async {
+      final userDoc = await _fireStore
+          .collection("Users")
+          .doc(auth.currentUser?.email)
+          .get();
+
+      final userDetails = userDoc.data();
+
+      final currentBookmarks = userDetails?['bookmarks'] as List;
+
+      final isBookmarked = currentBookmarks
+          .where((book) => book['title'] == data.value['title']);
+
+      return isBookmarked.isNotEmpty ? true : false;
+    }
+
+    final fillBookmark = useState(false);
+
+    useEffect(() {
+      WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
+        fillBookmark.value = await bookmarkeddd();
+      });
+      return;
+    }, const []);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -157,8 +182,8 @@ class SummaryScreen extends HookWidget {
             const SizedBox(height: 10),
             Row(
               children: [
-                InkWell(
-                  onTap: () async {
+                IconButton(
+                  onPressed: () async {
                     try {
                       final userDoc = await _fireStore
                           .collection("Users")
@@ -170,24 +195,20 @@ class SummaryScreen extends HookWidget {
                       final currentBookmarks =
                           userDetails?['bookmarks'] as List;
 
-                      print("Cuurent bookmarkss: ${currentBookmarks}");
-
                       if (currentBookmarks.isEmpty) {
-                        print(
-                            "Current condition is empty: ${currentBookmarks}");
-
                         Map<String, Object> db = {};
-                        db['bookmarks'] = data.value;
+                        db['bookmarks'] = [data.value];
 
                         _fireStore
                             .collection("Users")
                             .doc(auth.currentUser!.email.toString())
                             .update(db);
-                      }
 
-                      if (currentBookmarks.isNotEmpty) {
-                        print(
-                            "Current condition is not empty: ${currentBookmarks}");
+                        updateUser();
+
+                        fillBookmark.value = await bookmarkeddd();
+
+                        return;
                       }
 
                       final isBookmarked = currentBookmarks.where(
@@ -215,17 +236,17 @@ class SummaryScreen extends HookWidget {
                       });
 
                       updateUser();
+                      fillBookmark.value = await bookmarkeddd();
                     } catch (e) {
                       Constants.showToast(context, 'Failed to save bookmark');
                       print('Failed: $e');
                     }
                   },
-                  child: appUser.value?.boomarks != null
-                      ? appUser.value?.boomarks.contains(data.value['title'])
-                          //  data.value['bookmarks'].contains(appUser.value?.email)
-                          ? const Icon(FlutterRemix.bookmark_line, size: 30)
-                          : const Icon(FlutterRemix.bookmark_2_fill, size: 30)
-                      : const Icon(FlutterRemix.bookmark_line, size: 30),
+                  icon: fillBookmark.value
+                      ? const Icon(FlutterRemix.bookmark_2_fill)
+                      : const Icon(FlutterRemix.bookmark_line),
+                  iconSize: 30,
+                  padding: EdgeInsets.zero,
                 ),
                 Expanded(
                     child: PrimaryAppButton(

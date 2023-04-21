@@ -29,6 +29,8 @@ class BookmarksScreen extends HookWidget {
         final userData = userDoc.data();
         final bookmarksFromDb = userData?['bookmarks'];
 
+        print("hhh: ${userData?['bookmarks']}");
+
         bookViewModel.setBookmarkedBooks(userData?['bookmarks']);
       });
       return;
