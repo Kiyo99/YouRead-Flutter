@@ -235,6 +235,7 @@ class RegisterPage extends HookWidget {
                         db['gender'] = selectedGenderValue.value;
                         db['phoneNumber'] = numberController.text;
                         db['status'] = selectedStatusValue.value;
+                        db['bookmarks'] = [];
 
                         _fireStore
                             .collection("Users")

@@ -6,3 +6,6 @@
 //Todo: Pg mode
 //Todo: Cover Auth and Lotties today - optimise auth states
 //Todo: Regularly update the user details from DB
+//Todo: Phone number picker
+//Todo: Date published in summary screen
+//Todo: Perfect refresh view

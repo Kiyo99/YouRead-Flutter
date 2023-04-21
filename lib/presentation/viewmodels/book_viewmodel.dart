@@ -16,6 +16,9 @@ class BookViewModel extends ChangeNotifier {
   List<Map<String, dynamic>?>? _filteredBooks = [];
   List<Map<String, dynamic>?>? get filteredBooks => _filteredBooks;
 
+  List<dynamic> _bookmarkedBooks = [];
+  List<dynamic> get bookmarkedBooks => _bookmarkedBooks;
+
   void filterBooks(String category) {
     _showFilteredBooks = false;
     final books = _fetchedBooks?.where((book) => book!['category']
@@ -56,6 +59,11 @@ class BookViewModel extends ChangeNotifier {
 
   void setFetchedBooks(List<Map<String, dynamic>?>? data) {
     _fetchedBooks = data;
+    notifyListeners();
+  }
+
+  void setBookmarkedBooks(List<dynamic> data) {
+    _bookmarkedBooks = data;
     notifyListeners();
   }
 
