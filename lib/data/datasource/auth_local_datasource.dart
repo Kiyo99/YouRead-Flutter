@@ -12,7 +12,6 @@ class AuthLocalDataSource {
   const AuthLocalDataSource(this._preferenceManager);
 
   void cacheUser(AppUser user) {
-    print("Caching");
     _preferenceManager.saveJsonMap(Constants.prefsUserKey, user.toJson());
   }
 

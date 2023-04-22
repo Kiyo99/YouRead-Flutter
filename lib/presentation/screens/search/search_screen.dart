@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:k_books/core/constants.dart';
+import 'package:k_books/core/app_text_style.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 import 'package:k_books/widgets/app_search_field.dart';
 import 'package:k_books/widgets/filtered_books.dart';
@@ -59,9 +59,9 @@ class SearchScreen extends HookWidget {
                                 frameRate: FrameRate(60),
                               ),
                             ),
-                            const Text(
+                            Text(
                               "Remember to search by book title ... happy searching!",
-                              style: TextStyle(fontSize: 18),
+                              style: AppTextStyles.expGStyle,
                               textAlign: TextAlign.center,
                             ),
                           ],

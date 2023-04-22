@@ -25,7 +25,6 @@ class BookViewer extends HookWidget {
 
     return WillPopScope(
       onWillPop: () {
-        print("Leaving ${controller.currentPageNumber}");
         //todo: Save last page to shared Preferences
         Map<String, Object> db = {};
         db['lastPage'] = controller.currentPageNumber;

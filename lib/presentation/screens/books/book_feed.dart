@@ -22,9 +22,6 @@ class BookFeed extends HookWidget {
   Widget build(BuildContext context) {
     final bookViewModel = useProvider(BookViewModel.provider);
 
-    final user = context.read(AuthLocalDataSource.provider).getCachedUser();
-    print("App user: ${user}");
-
     return Scaffold(
       drawer: const AppDrawer(),
       appBar: AppBar(

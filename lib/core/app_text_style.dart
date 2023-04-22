@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:k_books/core/constants.dart';
 
 class AppTextStyles {
+   static final expGStyle = GoogleFonts.exo2(fontWeight: FontWeight.bold)
   static const smallTextStyle =
       TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18);
   static const boldedStyle = TextStyle(fontWeight: FontWeight.bold);

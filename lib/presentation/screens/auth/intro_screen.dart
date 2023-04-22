@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
@@ -17,8 +16,6 @@ class IntroScreen extends HookWidget {
   Widget build(BuildContext context) {
     final currentSlide = useState(0);
     final pageController = usePageController();
-    final auth = FirebaseAuth.instance;
-    User? user = auth.currentUser;
 
     return Scaffold(
       body: Column(

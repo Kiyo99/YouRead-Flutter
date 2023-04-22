@@ -7,7 +7,6 @@ import 'package:k_books/core/app_text_style.dart';
 import 'package:k_books/core/constants.dart';
 import 'package:k_books/presentation/screens/bookmark/bookmarked_books.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
-import 'package:k_books/widgets/all_books.dart';
 
 class BookmarksScreen extends HookWidget {
   static String id = "bookmarks_screen";
@@ -27,9 +26,6 @@ class BookmarksScreen extends HookWidget {
             .get();
 
         final userData = userDoc.data();
-        final bookmarksFromDb = userData?['bookmarks'];
-
-        print("hhh: ${userData?['bookmarks']}");
 
         bookViewModel.setBookmarkedBooks(userData?['bookmarks']);
       });
@@ -37,41 +33,24 @@ class BookmarksScreen extends HookWidget {
     }, const []);
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Your Saved Books",
-            style: AppTextStyles.boldedStyle,
-          ),
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          foregroundColor: Constants.coolBlue,
-          shadowColor: Colors.transparent,
+      appBar: AppBar(
+        title: const Text(
+          "Saved Books",
+          style: AppTextStyles.boldedStyle,
         ),
-        body: bookViewModel.bookmarkedBooks.isEmpty
-            ? Center(
-                child: Text(
-                  "Your saved books appearr here",
-                  style: AppTextStyles.titleTextStyle,
-                ),
-              )
-            : RefreshIndicator(
-                onRefresh: () async {
-                  print("Refreshed");
-                  final userDoc = await _fireStore
-                      .collection("Users")
-                      .doc(auth.currentUser?.email)
-                      .get();
-
-                  final userData = userDoc.data();
-                  final bookmarksFromDb = userData?['bookmarks'];
-
-                  bookViewModel.setBookmarkedBooks(userData?['bookmarks']);
-                },
-                child: Stack(
-                  children: [
-                    ListView(),
-                    BookmarkedBooks(books: bookViewModel.bookmarkedBooks),
-                  ],
-                )));
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Constants.coolBlue,
+        shadowColor: Colors.transparent,
+      ),
+      body: bookViewModel.bookmarkedBooks.isEmpty
+          ? Center(
+              child: Text(
+                "Your saved books appear here",
+                style: AppTextStyles.titleTextStyle,
+              ),
+            )
+          : BookmarkedBooks(books: bookViewModel.bookmarkedBooks),
+    );
   }
 }

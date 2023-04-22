@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/constants.dart';
 import 'package:k_books/presentation/screens/bookmark/bookmarks_screen.dart';
 import 'package:k_books/presentation/screens/books/book_feed.dart';
@@ -42,43 +41,6 @@ class MainApp extends HookWidget {
         // pageController.animateToPage(_selectedIndex.value, duration: const Duration(milliseconds: 1000), curve: Curves.bounceOut);
         pageController.jumpToPage(_selectedIndex.value);
       },
-    );
-
-    final topAppBar = AppBar(
-      elevation: 0.0,
-      title: Text("Qra", style: GoogleFonts.exo2(fontWeight: FontWeight.bold)),
-      // actions: <Widget>[
-      //   if (_selectedIndex.value == 0)
-      //     SearchButton(
-      //       onPressed: () async {
-      //         await showSearch(
-      //           context: context,
-      //           delegate: StaffDelegate(),
-      //         );
-      //       },
-      //     ),
-      //   IconButton(
-      //     icon: const Icon(Icons.logout_outlined),
-      //     onPressed: () async {
-      //       AppModal.showModal(
-      //           context: context,
-      //           title: "Log out?",
-      //           message: "Are you sure you want to log out?",
-      //           asset: "assets/lottie/warning.json",
-      //           primaryAction: () async {
-      //             final auth = FirebaseAuth.instance;
-      //             //
-      //             await auth.signOut();
-      //             ref.read(AuthLocalDataSource.provider).clearUserData();
-      //
-      //             // print(auth.currentUser);
-      //             Get.offAndToNamed(LoginPage.id);
-      //           },
-      //           buttonText: "Yes, log out",
-      //           showSecondary: true);
-      //     },
-      //   )
-      // ],
     );
 
     final navBody = PageView(

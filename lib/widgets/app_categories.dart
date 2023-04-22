@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/app_text_style.dart';
 import 'package:k_books/core/constants.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
@@ -35,9 +34,6 @@ class AppCategories extends HookWidget {
       List<Map<String, dynamic>?>? data = snapshot.data?.docs
           .map((e) => e.data() as Map<String, dynamic>?)
           .toList();
-
-      print("DAAAA: ${snapshot.connectionState}");
-      print("DAAAA: ${data}");
 
       final categories = data?[0]?['values'];
 
@@ -91,8 +87,8 @@ class AppCategories extends HookWidget {
         ),
       );
     } catch (e) {
-      print("HHHH: $e");
-      return SizedBox();
+      debugPrint("Error: $e");
+      return const SizedBox();
     }
   }
 }
