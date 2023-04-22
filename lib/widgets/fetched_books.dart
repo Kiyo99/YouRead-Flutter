@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/constants.dart';
 import 'package:k_books/presentation/screens/books/summary_screen.dart';
@@ -75,7 +76,7 @@ class FetchedBooks extends HookWidget {
                 const SizedBox(height: 10),
                 Text(
                   data[index]!['title'],
-                  style: const TextStyle(
+                  style: GoogleFonts.nunito(
                       color: Colors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.bold),
@@ -83,7 +84,7 @@ class FetchedBooks extends HookWidget {
                 const SizedBox(height: 10),
                 Text(
                   data[index]!['author'],
-                  style: const TextStyle(color: Colors.black, fontSize: 14),
+                  style: GoogleFonts.nunito(color: Colors.black, fontSize: 14),
                 ),
               ],
             ),

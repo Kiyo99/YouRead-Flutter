@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:k_books/core/app_text_style.dart';
 import 'package:k_books/core/constants.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
@@ -72,7 +73,7 @@ class AppCategories extends HookWidget {
                     const SizedBox(width: 10),
                     Text(
                       category,
-                      style: TextStyle(
+                      style: GoogleFonts.nunito(
                           color: bookViewModel.activeCategory == category
                               ? Colors.white
                               : Colors.grey,

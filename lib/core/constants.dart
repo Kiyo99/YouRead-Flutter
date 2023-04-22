@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Constants {
   //colors
@@ -21,7 +22,7 @@ class Constants {
       SnackBar(
         content: Text(
           message,
-          style: TextStyle(color: coolWhite),
+          style: GoogleFonts.nunito(color: coolWhite),
         ),
         action: SnackBarAction(
           label: 'Got it',

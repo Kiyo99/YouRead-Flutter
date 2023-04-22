@@ -5,6 +5,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:k_books/core/constants.dart';
 import 'package:pdf_render/pdf_render_widgets.dart';
 
@@ -39,7 +40,10 @@ class BookViewer extends HookWidget {
       child: Scaffold(
         backgroundColor: Constants.coolBlue,
         appBar: AppBar(
-          title: Text(data.value['title']),
+          title: Text(
+            data.value['title'],
+            style: GoogleFonts.nunito(),
+          ),
           centerTitle: true,
           elevation: 0,
           foregroundColor: Colors.white,
@@ -157,7 +161,7 @@ class BookViewer extends HookWidget {
       SnackBar(
         content: TextField(
           controller: con,
-          style: TextStyle(color: Constants.coolWhite),
+          style: GoogleFonts.nunito(color: Constants.coolWhite),
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.blue),
@@ -174,7 +178,7 @@ class BookViewer extends HookWidget {
                 )),
             border: const OutlineInputBorder(),
             labelText: message,
-            labelStyle: const TextStyle(color: Colors.white),
+            labelStyle: GoogleFonts.nunito(color: Colors.white),
           ),
         ),
         backgroundColor: Constants.coolBlue,

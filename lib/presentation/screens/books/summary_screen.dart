@@ -44,8 +44,6 @@ class SummaryScreen extends HookWidget {
 
       appUser.value = user;
 
-      print("Userrrrr: ${appUser.value}");
-
       Constants.showToast(context, 'Success');
     }
 
@@ -186,7 +184,7 @@ class SummaryScreen extends HookWidget {
                 IconButton(
                   onPressed: () async {
                     try {
-                      AppDialogs.loader();
+                      Get.dialog(AppDialogs.loader());
                       final userDoc = await _fireStore
                           .collection("Users")
                           .doc(auth.currentUser?.email)

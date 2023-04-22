@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_remix/flutter_remix.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:k_books/core/constants.dart';
 import 'package:k_books/presentation/screens/bookmark/bookmarks_screen.dart';
 import 'package:k_books/presentation/screens/books/book_feed.dart';
@@ -33,7 +34,9 @@ class MainApp extends HookWidget {
       showUnselectedLabels: true,
       selectedItemColor: Constants.coolBlue,
       selectedLabelStyle:
-          const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+          GoogleFonts.nunito(fontWeight: FontWeight.bold, fontSize: 12),
+      unselectedLabelStyle:
+          GoogleFonts.nunito(fontWeight: FontWeight.bold, fontSize: 12),
       unselectedItemColor: Colors.grey,
       onTap: (index) {
         _selectedIndex.value = index;
