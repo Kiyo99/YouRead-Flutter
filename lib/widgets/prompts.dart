@@ -63,14 +63,14 @@ class AppPrompts extends HookWidget {
               Text(
                 title,
                 textAlign: TextAlign.center,
-                style:
-                    GoogleFonts.exo2(fontSize: 24, fontWeight: FontWeight.bold),
+                style: GoogleFonts.nunito(
+                    fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 15),
               Text(
                 message,
                 textAlign: TextAlign.center,
-                style: GoogleFonts.exo2(fontSize: 18),
+                style: GoogleFonts.nunito(fontSize: 18),
               ),
               const SizedBox(height: 30),
               PrimaryAppButton(

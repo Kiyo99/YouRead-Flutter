@@ -62,7 +62,7 @@ class RegisterPage extends HookWidget {
                       padding: const EdgeInsets.all(10),
                       child: Text(
                         "Let's get you registered 😃",
-                        style: GoogleFonts.exo2(fontSize: 28),
+                        style: GoogleFonts.nunito(fontSize: 28),
                       )),
                   const SizedBox(height: 50),
                   Container(
@@ -85,7 +85,7 @@ class RegisterPage extends HookWidget {
                                     value: value,
                                     child: Text(
                                       value,
-                                      style: GoogleFonts.exo(
+                                      style: GoogleFonts.nunito(
                                           color: brightness == Brightness.light
                                               ? Constants.coolBlue
                                               : Constants.coolWhite),
@@ -95,7 +95,7 @@ class RegisterPage extends HookWidget {
                       value: selectedStatusValue.value,
                       focusColor: Colors.white,
                       iconEnabledColor: Constants.coolBlue,
-                      style: GoogleFonts.exo2(fontSize: 16),
+                      style: GoogleFonts.nunito(fontSize: 16),
                       dropdownColor: brightness == Brightness.light
                           ? Constants.coolWhite
                           : Constants.coolBlue,
@@ -140,7 +140,7 @@ class RegisterPage extends HookWidget {
                               (String value) => DropdownMenuItem<String>(
                                     value: value,
                                     child: Text(value,
-                                        style: GoogleFonts.exo(
+                                        style: GoogleFonts.nunito(
                                             color:
                                                 brightness == Brightness.light
                                                     ? Constants.coolBlue
@@ -150,7 +150,7 @@ class RegisterPage extends HookWidget {
                       value: selectedGenderValue.value,
                       focusColor: Colors.white,
                       iconEnabledColor: Constants.coolBlue,
-                      style: GoogleFonts.exo2(fontSize: 16),
+                      style: GoogleFonts.nunito(fontSize: 16),
                       dropdownColor: brightness == Brightness.light
                           ? Constants.coolWhite
                           : Constants.coolBlue,
@@ -178,7 +178,7 @@ class RegisterPage extends HookWidget {
                     },
                     child: Text(
                       'Forgot Password?',
-                      style: GoogleFonts.exo2(color: Constants.coolBlue),
+                      style: GoogleFonts.nunito(color: Constants.coolBlue),
                     ),
                   ),
                   PrimaryAppButton(
@@ -278,7 +278,7 @@ class RegisterPage extends HookWidget {
                       TextButton(
                         child: Text(
                           'Sign in',
-                          style: GoogleFonts.exo2(
+                          style: GoogleFonts.nunito(
                               color: Constants.coolBlue, fontSize: 20),
                         ),
                         onPressed: () {

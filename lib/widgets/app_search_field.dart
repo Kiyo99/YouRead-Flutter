@@ -43,7 +43,7 @@ class AppSearchField extends HookWidget {
             border: const OutlineInputBorder(),
             prefixIcon: const Icon(FlutterRemix.search_line),
             labelText: title,
-            labelStyle: GoogleFonts.exo2(
+            labelStyle: GoogleFonts.nunito(
                 color: brightness == Brightness.light
                     ? Constants.coolBlue
                     : Constants.coolWhite)),

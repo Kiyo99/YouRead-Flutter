@@ -45,7 +45,7 @@ class AppTextField extends HookWidget {
                 borderSide: BorderSide(color: Constants.coolBlue)),
             border: const OutlineInputBorder(),
             labelText: title,
-            labelStyle: GoogleFonts.exo2(
+            labelStyle: GoogleFonts.nunito(
                 color: brightness == Brightness.light
                     ? Constants.coolBlue
                     : Constants.coolWhite)),

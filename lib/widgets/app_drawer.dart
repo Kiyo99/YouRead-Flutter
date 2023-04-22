@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NavTile extends StatelessWidget {
   const NavTile(
@@ -29,7 +30,8 @@ class NavTile extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: TextStyle(color: color ?? Colors.white.withOpacity(0.7)),
+        style:
+            GoogleFonts.nunito(color: color ?? Colors.white.withOpacity(0.7)),
       ),
       onTap: onPressed,
       trailing: trailing ?? const SizedBox(),

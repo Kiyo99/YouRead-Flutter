@@ -19,7 +19,7 @@ class AppCategories extends HookWidget {
       // final bookViewModel = useProvider(BookViewModel.provider);
 
       if (snapshot.hasError) {
-        return const Center(
+        return Center(
             child: Text(
           'Something went wrong',
           style: AppTextStyles.bigTextStyle,

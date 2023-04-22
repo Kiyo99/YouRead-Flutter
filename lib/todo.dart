@@ -11,3 +11,4 @@
 //Todo: Summary screen sliver
 //Todo: Differentiate viewmodels and filter like William
 //Todo: Last read should be relative to the user
+//Todo: See all UI change

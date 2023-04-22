@@ -28,7 +28,7 @@ class PrimaryAppButton extends HookWidget {
         onPressed: onPressed,
         child: Text(
           title,
-          style: GoogleFonts.exo2(
+          style: GoogleFonts.nunito(
             color: textColor ?? Constants.coolWhite,
             fontWeight: FontWeight.w600,
           ),

@@ -48,7 +48,7 @@ class ProfileScreen extends HookWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "My Profile",
           style: AppTextStyles.boldedStyle,
         ),
@@ -159,7 +159,7 @@ class ProfileScreen extends HookWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     "Name",
                     style: AppTextStyles.normalSmallTextStyle,
                   ),
@@ -173,7 +173,7 @@ class ProfileScreen extends HookWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     "Email",
                     style: AppTextStyles.normalSmallTextStyle,
                   ),
@@ -187,7 +187,7 @@ class ProfileScreen extends HookWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     "Phone Number",
                     style: AppTextStyles.normalSmallTextStyle,
                   ),

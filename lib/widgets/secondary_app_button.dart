@@ -21,7 +21,7 @@ class SecondaryAppButton extends HookWidget {
         onPressed: onPressed,
         child: Text(
           title,
-          style: GoogleFonts.exo2(color: Constants.coolBlue),
+          style: GoogleFonts.nunito(color: Constants.coolBlue),
         ),
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(

@@ -34,7 +34,7 @@ class BookmarksScreen extends HookWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Saved Books",
           style: AppTextStyles.boldedStyle,
         ),

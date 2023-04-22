@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/constants.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
@@ -57,7 +58,7 @@ class AllBooksScreen extends HookWidget {
                         const SizedBox(width: 10),
                         Text(
                           category,
-                          style: TextStyle(
+                          style: GoogleFonts.nunito(
                               color: bookViewModel.activeCategory == category
                                   ? Colors.white
                                   : Colors.grey,

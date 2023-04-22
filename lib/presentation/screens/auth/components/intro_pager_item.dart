@@ -19,7 +19,7 @@ class IntroPagerItem extends HookWidget {
         ),
         Text(
           slide.title,
-          style: GoogleFonts.exo2(fontSize: 25, fontWeight: FontWeight.w600),
+          style: GoogleFonts.nunito(fontSize: 25, fontWeight: FontWeight.w600),
           textAlign: TextAlign.center,
         ),
         Padding(
@@ -27,7 +27,7 @@ class IntroPagerItem extends HookWidget {
             child: Text(
               slide.description,
               textAlign: TextAlign.center,
-              style: GoogleFonts.exo2(fontSize: 16),
+              style: GoogleFonts.nunito(fontSize: 16),
             )),
       ],
     );
@@ -51,7 +51,7 @@ class IntroPagerModel {
           lottiePath: "assets/lottie/hello.json",
           title: "Okay, let's do this.",
           description:
-              "Welcome to the YouRead, your number 1 go-to app for reading. Let's have a quick walkthrough, shall we?",
+              "Welcome to YouRead, your number 1 go-to app for reading. Let's have a quick walkthrough, shall we?",
         ),
         const IntroPagerModel(
           lottiePath: "assets/lottie/book_world.json",
@@ -63,7 +63,7 @@ class IntroPagerModel {
           lottiePath: "assets/lottie/book_turner.json",
           title: "Enter YouRead",
           description:
-              "Knowledge is power! Expand your knowledge and take on the world",
+              "Knowledge is power! Expand your knowledge and take on the world.",
         ),
         const IntroPagerModel(
           lottiePath: "assets/lottie/slow_book_stack.json",

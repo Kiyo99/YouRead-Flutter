@@ -50,7 +50,7 @@ class LoginPage extends HookWidget {
                         padding: const EdgeInsets.all(10),
                         child: Text(
                           'Sign in',
-                          style: GoogleFonts.exo2(fontSize: 25),
+                          style: GoogleFonts.nunito(fontSize: 25),
                         )),
                     AppTextField(
                       controller: emailController,
@@ -67,7 +67,7 @@ class LoginPage extends HookWidget {
                       },
                       child: Text(
                         'Forgot Password?',
-                        style: GoogleFonts.exo2(color: Constants.coolBlue),
+                        style: GoogleFonts.nunito(color: Constants.coolBlue),
                       ),
                     ),
                     PrimaryAppButton(
@@ -123,12 +123,12 @@ class LoginPage extends HookWidget {
                       children: <Widget>[
                         Text(
                           'Don\'t have account?',
-                          style: GoogleFonts.exo2(),
+                          style: GoogleFonts.nunito(),
                         ),
                         TextButton(
                           child: Text(
                             'Sign up',
-                            style: GoogleFonts.exo2(
+                            style: GoogleFonts.nunito(
                                 color: Constants.coolBlue, fontSize: 20),
                           ),
                           onPressed: () {

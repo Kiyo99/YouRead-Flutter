@@ -12,6 +12,7 @@ import 'package:k_books/core/constants.dart';
 import 'package:k_books/data/app_user/app_user.dart';
 import 'package:k_books/data/datasource/auth_local_datasource.dart';
 import 'package:k_books/presentation/screens/books/book_viewer.dart';
+import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 import 'package:k_books/widgets/app_dialogs.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
 
@@ -22,6 +23,7 @@ class SummaryScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bookViewModel = useProvider(BookViewModel.provider);
     final data = useState<Map<String, dynamic>>(Get.arguments);
 
     final user = context.read(AuthLocalDataSource.provider).getCachedUser();
@@ -41,6 +43,8 @@ class SummaryScreen extends HookWidget {
       context.read(AuthLocalDataSource.provider).cacheUser(user);
 
       appUser.value = user;
+
+      print("Userrrrr: ${appUser.value}");
 
       Constants.showToast(context, 'Success');
     }
@@ -136,7 +140,7 @@ class SummaryScreen extends HookWidget {
                             const SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
+                              children: [
                                 Text(
                                   "November 14, 2016",
                                   style: AppTextStyles.mutedVerySmallTextStyle,
@@ -182,7 +186,7 @@ class SummaryScreen extends HookWidget {
                 IconButton(
                   onPressed: () async {
                     try {
-                      Get.dialog(AppDialogs.loader());
+                      AppDialogs.loader();
                       final userDoc = await _fireStore
                           .collection("Users")
                           .doc(auth.currentUser?.email)

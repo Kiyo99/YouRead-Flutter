@@ -69,7 +69,7 @@ class BookFeed extends HookWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     "Library",
                     style: AppTextStyles.smallTextStyle,
                   ),
@@ -77,7 +77,7 @@ class BookFeed extends HookWidget {
                     onPressed: () {
                       Get.toNamed(AllBooksScreen.id, arguments: "bookStream");
                     },
-                    child: const Text(
+                    child: Text(
                       "See all",
                       style: AppTextStyles.mutedSmallTextStyle,
                     ),
@@ -95,7 +95,7 @@ class BookFeed extends HookWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     "Recent books",
                     style: AppTextStyles.smallTextStyle,
                   ),
@@ -104,7 +104,7 @@ class BookFeed extends HookWidget {
                       Get.toNamed(AllBooksScreen.id,
                           arguments: "orderedBookStream");
                     },
-                    child: const Text(
+                    child: Text(
                       "See all",
                       style: AppTextStyles.mutedSmallTextStyle,
                     ),
