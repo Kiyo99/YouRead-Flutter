@@ -32,7 +32,7 @@ class BookViewer extends HookWidget {
             .collection("books")
             .doc(data.value['title'])
             .update(db)
-            .onError((error, stackTrace) => print("ERRRRRR: $error"));
+            .onError((error, stackTrace) => debugPrint("ERRRRRR: $error"));
 
         return Future.value(true);
       },

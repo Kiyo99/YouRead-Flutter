@@ -9,11 +9,13 @@ class MutedAppTextField extends HookWidget {
   final Function()? onTap;
   final bool? obscureText;
 
-  MutedAppTextField(
-      {required this.controller,
+  const MutedAppTextField(
+      {Key? key,
+      required this.controller,
       required this.title,
       this.obscureText,
-      this.onTap});
+      this.onTap})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     final brightness = Theme.of(context).brightness;

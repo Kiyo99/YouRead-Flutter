@@ -30,7 +30,6 @@ class ProfileScreen extends HookWidget {
     final user = context.read(AuthLocalDataSource.provider).getCachedUser();
     final appUser = useState<AppUser?>(user);
 
-    print("App user: ${user}");
     final isImageLoading = useState(false);
 
     Future saveImage(File file, String name) async {
@@ -69,13 +68,11 @@ class ProfileScreen extends HookWidget {
                   children: [
                     GestureDetector(
                       onTap: () async {
-                        print("I'm getting tapped oh");
                         FilePickerResult? result = await FilePicker.platform
                             .pickFiles(type: FileType.image);
 
                         if (result != null) {
                           File file = File(result.files.single.path!);
-                          print("File chosen: $file");
 
                           String fileNameToDisplay = file.path.split('/').last;
 
@@ -113,7 +110,7 @@ class ProfileScreen extends HookWidget {
                           }).catchError((error, stackTrace) => () {
                                     Constants.showToast(
                                         context, 'Failed to save 😪');
-                                    print('Failed: $error');
+                                    debugPrint('Failed: $error');
                                   });
                         } else {
                           // User canceled the picker

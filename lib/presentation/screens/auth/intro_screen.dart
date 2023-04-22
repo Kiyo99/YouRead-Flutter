@@ -12,6 +12,8 @@ import 'package:k_books/widgets/slider_indicator.dart';
 class IntroScreen extends HookWidget {
   static const id = "/intro";
 
+  const IntroScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final currentSlide = useState(0);

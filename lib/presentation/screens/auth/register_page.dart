@@ -256,7 +256,7 @@ class RegisterPage extends HookWidget {
                         }).catchError((error, stackTrace) => () {
                                   Constants.showToast(
                                       context, 'Failed to save 😪');
-                                  print('Failed: $error');
+                                  debugPrint('Failed: $error');
                                 });
                       } on FirebaseAuthException catch (e) {
                         isLoading.value = false;

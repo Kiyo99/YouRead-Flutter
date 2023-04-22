@@ -77,7 +77,7 @@ class MyApp extends HookWidget {
             AllBooksScreen.id: (context) => const AllBooksScreen(),
             SummaryScreen.id: (context) => const SummaryScreen(),
             LoginPage.id: (context) => LoginPage(),
-            IntroScreen.id: (context) => IntroScreen(),
+            IntroScreen.id: (context) => const IntroScreen(),
           },
           home: const SplashScreen()),
     );

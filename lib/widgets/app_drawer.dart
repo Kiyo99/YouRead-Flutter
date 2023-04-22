@@ -22,7 +22,7 @@ class NavTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       visualDensity: const VisualDensity(horizontal: -4, vertical: -2.5),
-      contentPadding: padding ?? EdgeInsets.symmetric(horizontal: 16),
+      contentPadding: padding ?? const EdgeInsets.symmetric(horizontal: 16),
       leading: Icon(
         icon,
         color: color ?? Colors.white.withOpacity(0.7),

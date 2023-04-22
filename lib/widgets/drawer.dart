@@ -7,14 +7,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/constants.dart';
 import 'package:k_books/data/datasource/auth_local_datasource.dart';
 import 'package:k_books/presentation/screens/auth/login_page.dart';
-import 'package:k_books/presentation/screens/bookmark/bookmarks_screen.dart';
 import 'package:k_books/presentation/screens/misc/about_screen.dart';
 import 'package:k_books/presentation/screens/misc/settings_screen.dart';
 import 'package:k_books/presentation/screens/upload/upload_screen.dart';
 import 'package:k_books/widgets/app_drawer.dart';
 import 'package:k_books/widgets/app_modal.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
-import 'package:k_books/widgets/secondary_app_button.dart';
 
 class AppDrawer extends HookWidget {
   const AppDrawer({Key? key}) : super(key: key);

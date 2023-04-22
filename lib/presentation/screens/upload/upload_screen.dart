@@ -118,7 +118,6 @@ class UploadScreen extends HookWidget {
 
                           if (result != null) {
                             File file = File(result.files.single.path!);
-                            print("File chosen: $file");
 
                             String fileNameToDisplay =
                                 file.path.split('/').last;

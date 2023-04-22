@@ -30,8 +30,8 @@ class AllBooks extends HookWidget {
                     Get.toNamed(SummaryScreen.id, arguments: books![index]);
                   },
                   child: Container(
-                    margin: EdgeInsets.all(0),
-                    padding: EdgeInsets.only(top: 30),
+                    margin: const EdgeInsets.all(0),
+                    padding: const EdgeInsets.only(top: 30),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [

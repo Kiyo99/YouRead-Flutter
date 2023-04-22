@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/app_text_style.dart';
 import 'package:k_books/core/firebase/firebase_service.dart';
-import 'package:k_books/data/datasource/auth_local_datasource.dart';
 import 'package:k_books/presentation/screens/books/all_books_screen.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 import 'package:k_books/widgets/app_categories.dart';

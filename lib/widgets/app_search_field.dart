@@ -8,10 +8,11 @@ class AppSearchField extends HookWidget {
   final String title;
   final Function(String query) searchDB;
 
-  AppSearchField({
+  const AppSearchField({
+    Key? key,
     required this.searchDB,
     required this.title,
-  });
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final brightness = Theme.of(context).brightness;

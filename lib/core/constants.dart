@@ -15,7 +15,7 @@ class Constants {
 
   //Toast
   static void showToast(BuildContext context, String message) {
-    final brightness = Theme.of(context).brightness;
+    // final brightness = Theme.of(context).brightness;
     final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
       SnackBar(

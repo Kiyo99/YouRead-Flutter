@@ -9,12 +9,13 @@ class AppTextField extends HookWidget {
   final bool? obscureText;
   final TextCapitalization? capitilize;
 
-  AppTextField({
+  const AppTextField({
+    Key? key,
     required this.controller,
     required this.title,
     this.obscureText,
     this.capitilize,
-  });
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final brightness = Theme.of(context).brightness;

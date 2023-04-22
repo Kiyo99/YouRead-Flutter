@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:get/get.dart';
@@ -188,7 +190,7 @@ class AppDialogs {
         ),
         if (showCancel == true)
           PlatformDialogAction(
-            child: Text("Cancel"),
+            child: const Text("Cancel"),
             onPressed: () {
               Get.back();
             },
@@ -230,17 +232,17 @@ class AppDialogs {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Text(
             message,
-            style: TextStyle(fontSize: 12),
+            style: const TextStyle(fontSize: 12),
             textAlign: TextAlign.center,
           ),
         ],
@@ -334,7 +336,7 @@ class AppDialogs {
       actions: [
         if (hasCancel)
           PlatformDialogAction(
-            child: Text("Stay here"),
+            child: const Text("Stay here"),
             onPressed: () => Get.back(result: "Cancel"),
           ),
         PlatformDialogAction(

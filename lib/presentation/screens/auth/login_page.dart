@@ -78,7 +78,6 @@ class LoginPage extends HookWidget {
 
                         if (emailController.text.isEmpty ||
                             passwordController.text.isEmpty) {
-                          print("Please enter all fields");
                           Constants.showToast(
                             context,
                             'Please enter all fields',
