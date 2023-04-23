@@ -11,44 +11,44 @@ class FilteredBooks extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
       physics: const BouncingScrollPhysics(),
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
       itemCount: data!.length,
+      separatorBuilder: (BuildContext context, int index) {
+        return const SizedBox(height: 10);
+      },
       itemBuilder: (BuildContext context, int index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: ListTile(
-            visualDensity: const VisualDensity(horizontal: -4, vertical: -2.5),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-            leading: CircleAvatar(
-              backgroundColor: Colors.white,
-              radius: 25,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.network(
-                  data![index]!['url'],
-                  width: double.maxFinite,
-                  fit: BoxFit.cover,
-                  // width: 180,
-                ),
+        return ListTile(
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -2.5),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+          leading: CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: 25,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.network(
+                data![index]!['url'],
+                width: double.maxFinite,
+                fit: BoxFit.cover,
+                // width: 180,
               ),
             ),
-            title: Text(
-              data![index]!['title'],
-              style: GoogleFonts.nunito(
-                  color: Colors.black, fontWeight: FontWeight.bold),
-            ),
-            subtitle: Text(
-              data![index]!['author'],
-              style: GoogleFonts.nunito(color: Colors.black),
-            ),
-            onTap: () {
-              Get.toNamed(SummaryScreen.id, arguments: data![index]);
-            },
-            trailing: const Icon(Icons.arrow_forward_ios_outlined),
           ),
+          title: Text(
+            data![index]!['title'],
+            style: GoogleFonts.nunito(
+                color: Colors.black, fontWeight: FontWeight.bold),
+          ),
+          subtitle: Text(
+            data![index]!['author'],
+            style: GoogleFonts.nunito(color: Colors.black),
+          ),
+          onTap: () {
+            Get.toNamed(SummaryScreen.id, arguments: data![index]);
+          },
+          trailing: const Icon(Icons.arrow_forward_ios_outlined),
         );
       },
     );
