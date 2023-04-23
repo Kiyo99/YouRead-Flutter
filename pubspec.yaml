@@ -20,6 +20,7 @@ dependencies:
   flutter_platform_widgets: ^1.20.0
   url_launcher: ^6.1.2
   lottie: ^1.2.1
+  intl: 0.17.0
 
   # Icons
   flutter_remix: ^0.0.3

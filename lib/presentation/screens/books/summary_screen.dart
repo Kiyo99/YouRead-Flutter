@@ -7,6 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:k_books/core/app_text_style.dart';
 import 'package:k_books/core/constants.dart';
 import 'package:k_books/data/app_user/app_user.dart';
@@ -71,6 +72,11 @@ class SummaryScreen extends HookWidget {
       });
       return;
     }, const []);
+
+    print("Book: ${data.value['dateCreated'].toDate()}");
+    final date = DateFormat('EEEE, d MMM, yyyy')
+        .format(data.value['dateCreated'].toDate());
+    print("Book: ${date}");
 
     return Scaffold(
       appBar: AppBar(
@@ -140,7 +146,7 @@ class SummaryScreen extends HookWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "November 14, 2016",
+                                  date,
                                   style: AppTextStyles.mutedVerySmallTextStyle,
                                 )
                               ],

@@ -1,11 +1,9 @@
-//Todo: book => reads,rating, likes
+//Todo: book => reads,rating,likes - rating system, just star out of 5 and take the average
 //Todo: most popular, based by rating
-//Todo: user: books read
 //Todo: Author: All books, follow author
 //Todo: comment section
-//Todo: Pg mode
+//Todo: Pg mode and dark mode
 //Todo: Phone number picker
-//Todo: Date published in summary screen
 //Todo: Perfect refresh view
 //Todo: Edit profile screen
 //Todo: Summary screen sliver

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/app_text_style.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
@@ -34,10 +35,10 @@ class SearchScreen extends HookWidget {
           bookViewModel.showBooks
               ? Visibility(
                   visible: bookViewModel.searchedBooks!.isNotEmpty,
-                  replacement: const Center(
+                  replacement: Center(
                     child: Text(
                       "Couldn't find that book",
-                      style: TextStyle(color: Colors.red),
+                      style: GoogleFonts.nunito(color: Colors.red),
                     ),
                   ),
                   child: Padding(
