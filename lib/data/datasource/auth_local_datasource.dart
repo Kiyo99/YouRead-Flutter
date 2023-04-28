@@ -13,7 +13,6 @@ class AuthLocalDataSource {
 
   void cacheUser(AppUser user) {
     try {
-      print("Incoming user: ${user}");
       _preferenceManager.saveJsonMap(Constants.prefsUserKey, user.toJson());
     } catch (e){
       print("Errrrrrr: ${e}");

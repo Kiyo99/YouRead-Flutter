@@ -8,23 +8,25 @@ class BookViewModel extends ChangeNotifier {
   BookViewModel(this._ref);
 
   List<Map<String, dynamic>?>? _fetchedBooks = [];
+
   List<Map<String, dynamic>?>? get fetchedBooks => _fetchedBooks;
 
   List<Map<String, dynamic>?>? _orderedBooks = [];
+
   List<Map<String, dynamic>?>? get orderedBooks => _orderedBooks;
 
   List<Map<String, dynamic>?>? _filteredBooks = [];
+
   List<Map<String, dynamic>?>? get filteredBooks => _filteredBooks;
 
   List<dynamic> _bookmarkedBooks = [];
+
   List<dynamic> get bookmarkedBooks => _bookmarkedBooks;
 
   void filterBooks(String category) {
     _showFilteredBooks = false;
-    final books = _fetchedBooks?.where((book) => book!['category']
-        .toString()
-        .toLowerCase()
-        .contains(category.toLowerCase()));
+    final books = _fetchedBooks?.where((book) =>
+        book!['category'].toString().toLowerCase() == category.toLowerCase());
 
     _filteredBooks?.clear();
     _filteredBooks?.addAll(books!);
@@ -34,6 +36,7 @@ class BookViewModel extends ChangeNotifier {
   }
 
   List<dynamic> _categories = [];
+
   List<dynamic> get categories => _categories;
 
   void setCategories(List<dynamic> data) {
@@ -42,6 +45,7 @@ class BookViewModel extends ChangeNotifier {
   }
 
   String _activeCategory = "";
+
   String get activeCategory => _activeCategory;
 
   void setActiveCategory(String category) {
@@ -73,12 +77,15 @@ class BookViewModel extends ChangeNotifier {
   }
 
   List<Map<String, dynamic>?>? _searchedBooks = [];
+
   List<Map<String, dynamic>?>? get searchedBooks => _searchedBooks;
 
   bool _showBooks = false;
+
   bool get showBooks => _showBooks;
 
   bool _showFilteredBooks = false;
+
   bool get showFilteredBooks => _showFilteredBooks;
 
   Future<void> fetchBooks(String query) async {

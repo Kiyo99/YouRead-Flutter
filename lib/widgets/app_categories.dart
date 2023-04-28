@@ -44,10 +44,6 @@ class AppCategories extends HookWidget {
 
       useEffect(() {
         WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-          List<Map<String, dynamic>?>? data = snapshot.data?.docs
-              .map((e) => e.data() as Map<String, dynamic>?)
-              .toList();
-
           final categories = data?[0]?['values'];
 
           bookViewModel.setCategories(categories);
