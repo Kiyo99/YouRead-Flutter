@@ -42,7 +42,18 @@ class AppCategories extends HookWidget {
         return const SizedBox();
       }
 
-      bookViewModel.setCategories(categories);
+      useEffect(() {
+        WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+          List<Map<String, dynamic>?>? data = snapshot.data?.docs
+              .map((e) => e.data() as Map<String, dynamic>?)
+              .toList();
+
+          final categories = data?[0]?['values'];
+
+          bookViewModel.setCategories(categories);
+        });
+        return;
+      }, const []);
 
       return SizedBox(
         height: 50,

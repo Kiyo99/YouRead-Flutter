@@ -27,14 +27,18 @@ class FetchedBooks extends HookWidget {
       return Center(
           child: CircularProgressIndicator(color: Constants.coolBlue));
     }
-
     List<Map<String, dynamic>?>? data = snapshot.data?.docs
         .map((e) => e.data() as Map<String, dynamic>?)
         .toList();
 
-    origin == "bookStream"
-        ? bookViewModel.setFetchedBooks(data)
-        : bookViewModel.setOrderedBooks(data);
+    useEffect(() {
+      WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+        origin == "bookStream"
+            ? bookViewModel.setFetchedBooks(data)
+            : bookViewModel.setOrderedBooks(data);
+      });
+      return;
+    }, const []);
 
     if (data!.isEmpty) {
       return const SizedBox();

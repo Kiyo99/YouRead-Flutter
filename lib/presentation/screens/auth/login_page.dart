@@ -34,7 +34,7 @@ class LoginPage extends HookWidget {
         }
       });
       return;
-    });
+    }, const []);
 
     final isLoading = useState(false);
     return Scaffold(
