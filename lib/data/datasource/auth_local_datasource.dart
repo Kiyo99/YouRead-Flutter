@@ -6,13 +6,19 @@ import 'package:k_books/data/app_user/app_user.dart';
 class AuthLocalDataSource {
   final PreferenceManager _preferenceManager;
   static final provider = Provider<AuthLocalDataSource>(
-    (ref) => AuthLocalDataSource(ref.watch(preferenceManagerProvider)),
+        (ref) => AuthLocalDataSource(ref.watch(preferenceManagerProvider)),
   );
 
   const AuthLocalDataSource(this._preferenceManager);
 
   void cacheUser(AppUser user) {
-    _preferenceManager.saveJsonMap(Constants.prefsUserKey, user.toJson());
+    try {
+      print("Incoming user: ${user}");
+      _preferenceManager.saveJsonMap(Constants.prefsUserKey, user.toJson());
+    } catch (e){
+      print("Errrrrrr: ${e}");
+    }
+
   }
 
   bool? viewedIntro() {

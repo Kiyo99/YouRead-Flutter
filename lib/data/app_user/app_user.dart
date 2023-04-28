@@ -16,7 +16,7 @@ class AppUser with _$AppUser {
     dynamic gender,
     dynamic status,
     dynamic booksRead,
-    dynamic boomarks,
+    dynamic bookmarks,
     dynamic profilePicture,
   }) = _AppUser;
 

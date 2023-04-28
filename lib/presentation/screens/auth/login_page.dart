@@ -99,6 +99,8 @@ class LoginPage extends HookWidget {
 
                           final user = AppUser.fromJson(studentsDoc.data()!);
 
+                          print("Userrrrrr: $user");
+
                           context
                               .read(AuthLocalDataSource.provider)
                               .cacheUser(user);

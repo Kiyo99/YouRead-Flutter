@@ -73,10 +73,9 @@ class SummaryScreen extends HookWidget {
       return;
     }, const []);
 
-    print("Book: ${data.value['dateCreated'].toDate()}");
     final date = DateFormat('EEEE, d MMM, yyyy')
-        .format(data.value['dateCreated'].toDate());
-    print("Book: ${date}");
+        .format(DateTime.parse(data.value['dateCreated']));
+    print("Dateeeeee: ${data.value['dateCreated']}");
 
     return Scaffold(
       appBar: AppBar(

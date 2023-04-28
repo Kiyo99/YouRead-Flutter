@@ -30,7 +30,7 @@ class _$AppUserTearOff {
       dynamic gender,
       dynamic status,
       dynamic booksRead,
-      dynamic boomarks,
+      dynamic bookmarks,
       dynamic profilePicture}) {
     return _AppUser(
       firstName: firstName,
@@ -41,7 +41,7 @@ class _$AppUserTearOff {
       gender: gender,
       status: status,
       booksRead: booksRead,
-      boomarks: boomarks,
+      bookmarks: bookmarks,
       profilePicture: profilePicture,
     );
   }
@@ -64,7 +64,7 @@ mixin _$AppUser {
   dynamic get gender => throw _privateConstructorUsedError;
   dynamic get status => throw _privateConstructorUsedError;
   dynamic get booksRead => throw _privateConstructorUsedError;
-  dynamic get boomarks => throw _privateConstructorUsedError;
+  dynamic get bookmarks => throw _privateConstructorUsedError;
   dynamic get profilePicture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -85,7 +85,7 @@ abstract class $AppUserCopyWith<$Res> {
       dynamic gender,
       dynamic status,
       dynamic booksRead,
-      dynamic boomarks,
+      dynamic bookmarks,
       dynamic profilePicture});
 }
 
@@ -107,7 +107,7 @@ class _$AppUserCopyWithImpl<$Res> implements $AppUserCopyWith<$Res> {
     Object? gender = freezed,
     Object? status = freezed,
     Object? booksRead = freezed,
-    Object? boomarks = freezed,
+    Object? bookmarks = freezed,
     Object? profilePicture = freezed,
   }) {
     return _then(_value.copyWith(
@@ -143,9 +143,9 @@ class _$AppUserCopyWithImpl<$Res> implements $AppUserCopyWith<$Res> {
           ? _value.booksRead
           : booksRead // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      boomarks: boomarks == freezed
-          ? _value.boomarks
-          : boomarks // ignore: cast_nullable_to_non_nullable
+      bookmarks: bookmarks == freezed
+          ? _value.bookmarks
+          : bookmarks // ignore: cast_nullable_to_non_nullable
               as dynamic,
       profilePicture: profilePicture == freezed
           ? _value.profilePicture
@@ -169,7 +169,7 @@ abstract class _$AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       dynamic gender,
       dynamic status,
       dynamic booksRead,
-      dynamic boomarks,
+      dynamic bookmarks,
       dynamic profilePicture});
 }
 
@@ -192,7 +192,7 @@ class __$AppUserCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res>
     Object? gender = freezed,
     Object? status = freezed,
     Object? booksRead = freezed,
-    Object? boomarks = freezed,
+    Object? bookmarks = freezed,
     Object? profilePicture = freezed,
   }) {
     return _then(_AppUser(
@@ -228,9 +228,9 @@ class __$AppUserCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res>
           ? _value.booksRead
           : booksRead // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      boomarks: boomarks == freezed
-          ? _value.boomarks
-          : boomarks // ignore: cast_nullable_to_non_nullable
+      bookmarks: bookmarks == freezed
+          ? _value.bookmarks
+          : bookmarks // ignore: cast_nullable_to_non_nullable
               as dynamic,
       profilePicture: profilePicture == freezed
           ? _value.profilePicture
@@ -252,7 +252,7 @@ class _$_AppUser extends _AppUser {
       this.gender,
       this.status,
       this.booksRead,
-      this.boomarks,
+      this.bookmarks,
       this.profilePicture})
       : super._();
 
@@ -276,13 +276,13 @@ class _$_AppUser extends _AppUser {
   @override
   final dynamic booksRead;
   @override
-  final dynamic boomarks;
+  final dynamic bookmarks;
   @override
   final dynamic profilePicture;
 
   @override
   String toString() {
-    return 'AppUser(firstName: $firstName, lastName: $lastName, fullName: $fullName, email: $email, phoneNumber: $phoneNumber, gender: $gender, status: $status, booksRead: $booksRead, boomarks: $boomarks, profilePicture: $profilePicture)';
+    return 'AppUser(firstName: $firstName, lastName: $lastName, fullName: $fullName, email: $email, phoneNumber: $phoneNumber, gender: $gender, status: $status, booksRead: $booksRead, bookmarks: $bookmarks, profilePicture: $profilePicture)';
   }
 
   @override
@@ -310,9 +310,9 @@ class _$_AppUser extends _AppUser {
             (identical(other.booksRead, booksRead) ||
                 const DeepCollectionEquality()
                     .equals(other.booksRead, booksRead)) &&
-            (identical(other.boomarks, boomarks) ||
+            (identical(other.bookmarks, bookmarks) ||
                 const DeepCollectionEquality()
-                    .equals(other.boomarks, boomarks)) &&
+                    .equals(other.bookmarks, bookmarks)) &&
             (identical(other.profilePicture, profilePicture) ||
                 const DeepCollectionEquality()
                     .equals(other.profilePicture, profilePicture)));
@@ -329,7 +329,7 @@ class _$_AppUser extends _AppUser {
       const DeepCollectionEquality().hash(gender) ^
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(booksRead) ^
-      const DeepCollectionEquality().hash(boomarks) ^
+      const DeepCollectionEquality().hash(bookmarks) ^
       const DeepCollectionEquality().hash(profilePicture);
 
   @JsonKey(ignore: true)
@@ -353,7 +353,7 @@ abstract class _AppUser extends AppUser {
       dynamic gender,
       dynamic status,
       dynamic booksRead,
-      dynamic boomarks,
+      dynamic bookmarks,
       dynamic profilePicture}) = _$_AppUser;
   _AppUser._() : super._();
 
@@ -376,7 +376,7 @@ abstract class _AppUser extends AppUser {
   @override
   dynamic get booksRead => throw _privateConstructorUsedError;
   @override
-  dynamic get boomarks => throw _privateConstructorUsedError;
+  dynamic get bookmarks => throw _privateConstructorUsedError;
   @override
   dynamic get profilePicture => throw _privateConstructorUsedError;
   @override

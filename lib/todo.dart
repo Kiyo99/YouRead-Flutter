@@ -10,3 +10,4 @@
 //Todo: Differentiate viewmodels and filter like William
 //Todo: Last read should be relative to the user
 //Todo: See all UI change
+//Todo: Have the last read be stored locally
