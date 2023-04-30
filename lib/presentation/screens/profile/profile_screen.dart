@@ -126,7 +126,7 @@ class ProfileScreen extends HookWidget {
                               )
                             : appUser.value?.profilePicture == null
                                 ? CircleAvatar(
-                                    radius: 60,
+                                    radius: 70,
                                     backgroundImage: AssetImage(
                                       appUser.value?.gender == "Male"
                                           ? "assets/images/placeholder-male.jpg"
@@ -134,7 +134,8 @@ class ProfileScreen extends HookWidget {
                                     ),
                                   )
                                 : CircleAvatar(
-                                    radius: 60,
+                                    radius: 70,
+                                    backgroundColor: Colors.white,
                                     backgroundImage: NetworkImage(
                                       appUser.value?.profilePicture,
                                     ),

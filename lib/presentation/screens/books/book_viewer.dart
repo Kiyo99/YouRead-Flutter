@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/file.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -6,7 +7,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/constants.dart';
+import 'package:k_books/data/app_user/app_user.dart';
+import 'package:k_books/data/datasource/auth_local_datasource.dart';
+import 'package:k_books/widgets/app_dialogs.dart';
 import 'package:pdf_render/pdf_render_widgets.dart';
 
 class BookViewer extends HookWidget {
@@ -23,6 +28,51 @@ class BookViewer extends HookWidget {
     TapDownDetails? doubleTapDetails;
 
     final bookmarked = useState(false);
+    final fillBookmark = useState(false);
+
+    final _fireStore = FirebaseFirestore.instance;
+    final auth = FirebaseAuth.instance;
+
+    final user = context.read(AuthLocalDataSource.provider).getCachedUser();
+    final appUser = useState<AppUser?>(user);
+
+    Future<bool> bookmarkeddd() async {
+      final userDoc = await _fireStore
+          .collection("Users")
+          .doc(auth.currentUser?.email)
+          .get();
+
+      final userDetails = userDoc.data();
+
+      final currentBookmarks = userDetails?['bookmarks'] as List;
+
+      final isBookmarked = currentBookmarks
+          .where((book) => book['title'] == data.value['title']);
+
+      return isBookmarked.isNotEmpty ? true : false;
+    }
+
+    Future<void> updateUser() async {
+      final studentsDoc = await _fireStore
+          .collection("Users")
+          .doc(auth.currentUser?.email)
+          .get();
+
+      final user = AppUser.fromJson(studentsDoc.data()!);
+
+      context.read(AuthLocalDataSource.provider).cacheUser(user);
+
+      appUser.value = user;
+
+      Constants.showToast(context, 'Success');
+    }
+
+    useEffect(() {
+      WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
+        fillBookmark.value = await bookmarkeddd();
+      });
+      return;
+    }, const []);
 
     return WillPopScope(
       onWillPop: () {
@@ -51,11 +101,65 @@ class BookViewer extends HookWidget {
           shadowColor: Colors.transparent,
           actions: [
             IconButton(
-                onPressed: () {
-                  bookmarked.value = !bookmarked.value;
-                  //todo: More logic on this
+                onPressed: () async {
+                  try {
+                    Get.dialog(AppDialogs.loader());
+                    final userDoc = await _fireStore
+                        .collection("Users")
+                        .doc(auth.currentUser?.email)
+                        .get();
+
+                    final userDetails = userDoc.data();
+
+                    final currentBookmarks = userDetails?['bookmarks'] as List;
+
+                    if (currentBookmarks.isEmpty) {
+                      Map<String, Object> db = {};
+                      db['bookmarks'] = [data.value];
+
+                      _fireStore
+                          .collection("Users")
+                          .doc(auth.currentUser!.email.toString())
+                          .update(db);
+
+                      updateUser();
+
+                      fillBookmark.value = await bookmarkeddd();
+                      Get.back();
+                      return;
+                    }
+
+                    final isBookmarked = currentBookmarks
+                        .where((book) => book['title'] == data.value['title']);
+
+                    if (isBookmarked.isEmpty) {
+                      currentBookmarks.add(data.value);
+                    } else {
+                      currentBookmarks.removeWhere(
+                              (book) => book['title'] == data.value['title']);
+                    }
+
+                    await _fireStore
+                        .collection("Users")
+                        .doc(auth.currentUser?.email)
+                        .update({"bookmarks": FieldValue.delete()});
+
+                    await _fireStore
+                        .collection("Users")
+                        .doc(auth.currentUser?.email)
+                        .update({
+                      "bookmarks": FieldValue.arrayUnion(currentBookmarks),
+                    });
+
+                    updateUser();
+                    fillBookmark.value = await bookmarkeddd();
+                    Get.back();
+                  } catch (e) {
+                    Constants.showToast(context, 'Failed to save bookmark');
+                    print('Failed: $e');
+                  }
                 },
-                icon: Icon(bookmarked.value
+                icon: Icon(fillBookmark.value
                     ? FlutterRemix.bookmark_fill
                     : FlutterRemix.bookmark_line))
           ],

@@ -7,7 +7,6 @@
 //Todo: Perfect refresh view
 //Todo: Differentiate viewmodels and filter like William
 //Todo: Last read should be relative to the user
-//Todo: See all UI change
 //Todo: Have the last read be stored locally
 //Todo: Look at infinite loading
-//Todo: Fix the stream builder issue by using useEffect to get the firebase
+//Todo: Move bookmark to viewModel

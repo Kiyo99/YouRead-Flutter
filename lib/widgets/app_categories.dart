@@ -28,7 +28,7 @@ class AppCategories extends HookWidget {
       }
 
       if (snapshot.connectionState == ConnectionState.waiting) {
-        print("errorr");
+        print("errorr: ${snapshot.connectionState}");
         return Center(
             child: CircularProgressIndicator(color: Constants.coolBlue));
       }
