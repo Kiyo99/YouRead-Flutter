@@ -17,6 +17,7 @@ class BookFeed extends HookWidget {
   static String id = "book_viewer";
 
   const BookFeed({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final bookViewModel = useProvider(BookViewModel.provider);
@@ -51,21 +52,21 @@ class BookFeed extends HookWidget {
                   builder: (BuildContext context,
                           AsyncSnapshot<QuerySnapshot> snapshot) =>
                       AppCategories(snapshot, bookViewModel)),
-              if (bookViewModel.showFilteredBooks == true)
-                Visibility(
-                    visible: bookViewModel.filteredBooks!.isNotEmpty,
-                    replacement: const Center(
-                      child: Text(
-                        "Nothing yet in this category",
-                        style: TextStyle(color: Colors.red),
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 10),
-                        FilteredBooks(bookViewModel.filteredBooks),
-                      ],
-                    )),
+              // if (bookViewModel.showFilteredBooks == true)
+              //   Visibility(
+              //       visible: bookViewModel.filteredBooks!.isNotEmpty,
+              //       replacement: const Center(
+              //         child: Text(
+              //           "Nothing yet in this category",
+              //           style: TextStyle(color: Colors.red),
+              //         ),
+              //       ),
+              //       child: Column(
+              //         children: [
+              //           const SizedBox(height: 10),
+              //           FilteredBooks(bookViewModel.filteredBooks),
+              //         ],
+              //       )),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

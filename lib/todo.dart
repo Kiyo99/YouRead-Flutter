@@ -5,10 +5,9 @@
 //Todo: Pg mode and dark mode
 //Todo: Phone number picker
 //Todo: Perfect refresh view
-//Todo: Edit profile screen
-//Todo: Summary screen sliver
 //Todo: Differentiate viewmodels and filter like William
 //Todo: Last read should be relative to the user
 //Todo: See all UI change
 //Todo: Have the last read be stored locally
 //Todo: Look at infinite loading
+//Todo: Fix the stream builder issue by using useEffect to get the firebase

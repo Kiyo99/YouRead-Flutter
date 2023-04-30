@@ -118,7 +118,8 @@ class ProfileScreen extends HookWidget {
                         }
                       },
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(100)),
                         child: isImageLoading.value == true
                             ? CircularProgressIndicator(
                                 color: Constants.coolBlue,
@@ -130,9 +131,11 @@ class ProfileScreen extends HookWidget {
                                         : "assets/images/placeholder-female.jpg",
                                     height: 130,
                                   )
-                                : Image.network(
-                                    appUser.value?.profilePicture,
-                                    height: 130,
+                                : CircleAvatar(
+                                    radius: 60,
+                                    backgroundImage: NetworkImage(
+                                      appUser.value?.profilePicture,
+                                    ),
                                   ),
                       ),
                     ),

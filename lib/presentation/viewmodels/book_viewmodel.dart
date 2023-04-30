@@ -31,6 +31,12 @@ class BookViewModel extends ChangeNotifier {
     _filteredBooks?.clear();
     _filteredBooks?.addAll(books!);
 
+    _fetchedBooks?.clear();
+    _fetchedBooks?.addAll(books!);
+
+    _orderedBooks?.clear();
+    _orderedBooks?.addAll(books!);
+
     _showFilteredBooks = true;
     notifyListeners();
   }
