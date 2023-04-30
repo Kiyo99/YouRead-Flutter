@@ -125,11 +125,13 @@ class ProfileScreen extends HookWidget {
                                 color: Constants.coolBlue,
                               )
                             : appUser.value?.profilePicture == null
-                                ? Image.asset(
-                                    appUser.value?.gender == "Male"
-                                        ? "assets/images/placeholder-male.jpg"
-                                        : "assets/images/placeholder-female.jpg",
-                                    height: 130,
+                                ? CircleAvatar(
+                                    radius: 60,
+                                    backgroundImage: AssetImage(
+                                      appUser.value?.gender == "Male"
+                                          ? "assets/images/placeholder-male.jpg"
+                                          : "assets/images/placeholder-female.jpg",
+                                    ),
                                   )
                                 : CircleAvatar(
                                     radius: 60,
