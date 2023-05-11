@@ -5,8 +5,9 @@
 //Todo: Pg mode and dark mode
 //Todo: Phone number picker
 //Todo: Perfect refresh view
-//Todo: Differentiate viewmodels and filter like William
+//Todo: Differentiate viewModels and filter like William
 //Todo: Last read should be relative to the user
 //Todo: Have the last read be stored locally
 //Todo: Look at infinite loading
 //Todo: Move bookmark to viewModel
+//Todo: Something is going wrong with the with hr 

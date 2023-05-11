@@ -62,6 +62,8 @@ class BookViewModel extends ChangeNotifier {
       notifyListeners();
       return;
     }
+
+    //todo: Something is going wrong here
     _activeCategory = category;
     filterBooks(category);
     notifyListeners();
