@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/app_text_style.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 import 'package:k_books/widgets/app_search_field.dart';
-import 'package:k_books/widgets/filtered_books.dart';
+import 'package:k_books/widgets/searched_books.dart';
 import 'package:lottie/lottie.dart';
 
 class SearchScreen extends HookWidget {
@@ -44,7 +44,7 @@ class SearchScreen extends HookWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: FilteredBooks(bookViewModel.searchedBooks),
+                    child: SearchedBooks(bookViewModel.searchedBooks),
                   ))
               : Column(
                   mainAxisAlignment: MainAxisAlignment.center,

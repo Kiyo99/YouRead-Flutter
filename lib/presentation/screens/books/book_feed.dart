@@ -12,7 +12,7 @@ import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 import 'package:k_books/widgets/app_categories.dart';
 import 'package:k_books/widgets/fetched_books.dart';
 import 'package:k_books/widgets/drawer.dart';
-import 'package:k_books/widgets/filtered_books.dart';
+import 'package:k_books/widgets/searched_books.dart';
 import 'package:k_books/widgets/recent_books.dart';
 import 'package:k_books/widgets/sortedBooks.dart';
 
@@ -29,15 +29,8 @@ class BookFeed extends HookWidget {
 
     useEffect(() {
       WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
-        //Use methods like getAllBooks etc
-
-        //get categories
         await bookViewModel.fetchCategories();
-
-        //get all books
         await bookViewModel.fetchAllBooks();
-
-        //get recent books
         await bookViewModel.fetchRecentBooks();
       });
       return;
@@ -75,22 +68,6 @@ class BookFeed extends HookWidget {
             child: Column(
               children: [
                 const AppCategories(),
-
-                // if (bookViewModel.showFilteredBooks == true)
-                //   Visibility(
-                //       visible: bookViewModel.filteredBooks!.isNotEmpty,
-                //       replacement: const Center(
-                //         child: Text(
-                //           "Nothing yet in this category",
-                //           style: TextStyle(color: Colors.red),
-                //         ),
-                //       ),
-                //       child: Column(
-                //         children: [
-                //           const SizedBox(height: 10),
-                //           FilteredBooks(bookViewModel.filteredBooks),
-                //         ],
-                //       )),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -113,7 +90,7 @@ class BookFeed extends HookWidget {
                 // const FetchedBooks(),
                 Visibility(
                   visible: bookViewModel.showFilteredBooks,
-                  replacement: const FetchedBooks(),
+                  replacement: const FetchedBooks(origin: "all",),
                   child: const SortedBooks(origin: "all"),
                 ),
                 const SizedBox(height: 20),
@@ -139,7 +116,7 @@ class BookFeed extends HookWidget {
                 const SizedBox(height: 20),
                 Visibility(
                   visible: bookViewModel.showFilteredBooks,
-                  replacement: const RecentBooks(),
+                  replacement: const FetchedBooks(origin: "recent"),
                   child: const SortedBooks(origin: "recent"),
                 ),
                 const SizedBox(height: 20),

@@ -15,9 +15,9 @@ class BookViewModel extends ChangeNotifier {
 
   List<Map<String, dynamic>?>? get recentBooks => _recentBooks;
 
-  List<Map<String, dynamic>?>? _filteredBooks = [];
+  List<Map<String, dynamic>?>? _filteredAllBooks = [];
 
-  List<Map<String, dynamic>?>? get filteredBooks => _filteredBooks;
+  List<Map<String, dynamic>?>? get filteredAllBooks => _filteredAllBooks;
 
   List<Map<String, dynamic>?>? _filteredRecentBooks = [];
 
@@ -27,9 +27,6 @@ class BookViewModel extends ChangeNotifier {
 
   List<dynamic> get bookmarkedBooks => _bookmarkedBooks;
 
-  List<Map<String, dynamic>?> _currentFilteredBooks = [];
-  List<Map<String, dynamic>?> _currentFilteredRecentBooks = [];
-
   void filterBooks(String category) {
     _showFilteredBooks = false;
     final allBooks = _allBooks?.where((book) =>
@@ -38,8 +35,8 @@ class BookViewModel extends ChangeNotifier {
     final recentBooks = _recentBooks?.where((book) =>
         book!['category'].toString().toLowerCase() == category.toLowerCase());
 
-    _filteredBooks?.clear();
-    _filteredBooks?.addAll(allBooks!);
+    _filteredAllBooks?.clear();
+    _filteredAllBooks?.addAll(allBooks!);
 
     _filteredRecentBooks?.clear();
     _filteredRecentBooks?.addAll(recentBooks!);
@@ -65,7 +62,7 @@ class BookViewModel extends ChangeNotifier {
     if (_activeCategory == category) {
       _activeCategory = "";
       _showFilteredBooks = false;
-      _filteredBooks?.clear();
+      _filteredAllBooks?.clear();
       // fetchAllBooks();
       // fetchRecentBooks();
       notifyListeners();

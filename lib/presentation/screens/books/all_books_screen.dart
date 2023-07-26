@@ -76,7 +76,7 @@ class AllBooksScreen extends HookWidget {
           Expanded(
             child: AllBooks(
               books: bookViewModel.showFilteredBooks == true
-                  ? bookViewModel.filteredBooks
+                  ? bookViewModel.filteredAllBooks
                   : origin == "bookStream"
                       ? bookViewModel.allBooks
                       : bookViewModel.recentBooks,

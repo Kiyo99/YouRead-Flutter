@@ -17,7 +17,7 @@ class SortedBooks extends HookWidget {
     final bookViewModel = useProvider(BookViewModel.provider);
 
     List<Map<String, dynamic>?>? data = origin == "all"
-        ? bookViewModel.filteredBooks
+        ? bookViewModel.filteredAllBooks
         : bookViewModel.filteredRecentBooks;
 
     if (data!.isEmpty) {

@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:k_books/presentation/screens/books/summary_screen.dart';
 
-class FilteredBooks extends HookWidget {
-  const FilteredBooks(this.data, {Key? key}) : super(key: key);
+class SearchedBooks extends HookWidget {
+  const SearchedBooks(this.data, {Key? key}) : super(key: key);
 
   final List<Map<String, dynamic>?>? data;
 
