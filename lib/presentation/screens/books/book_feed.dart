@@ -14,6 +14,7 @@ import 'package:k_books/widgets/fetched_books.dart';
 import 'package:k_books/widgets/drawer.dart';
 import 'package:k_books/widgets/filtered_books.dart';
 import 'package:k_books/widgets/recent_books.dart';
+import 'package:k_books/widgets/sortedBooks.dart';
 
 class BookFeed extends HookWidget {
   static String id = "book_viewer";
@@ -31,35 +32,13 @@ class BookFeed extends HookWidget {
         //Use methods like getAllBooks etc
 
         //get categories
-        final categoriesCol = await _fireStore.collection("categories").get();
-        final categoriesDoc = categoriesCol.docs;
-        List<Map<String, dynamic>?>? categories =
-            categoriesDoc.map((cat) => cat.data()).toList();
-        final cat = categories?[0]?['values'];
-
-        bookViewModel.setCategories(cat);
-
-        //get recent books
-        final recentBooksCol = await _fireStore
-            .collection("books")
-            .orderBy("dateCreated", descending: true)
-            .get();
-
-        final recentBooksDocs = recentBooksCol.docs;
-
-        List<Map<String, dynamic>?>? recentBooks =
-            recentBooksDocs.map((book) => book.data()).toList();
-
-        bookViewModel.setOrderedBooks(recentBooks);
+        await bookViewModel.fetchCategories();
 
         //get all books
-        final allBooks = await _fireStore.collection("books").get();
-        final books = allBooks.docs;
+        await bookViewModel.fetchAllBooks();
 
-        List<Map<String, dynamic>?>? bookList =
-            books.map((book) => book.data()).toList();
-
-        bookViewModel.setFetchedBooks(bookList);
+        //get recent books
+        await bookViewModel.fetchRecentBooks();
       });
       return;
     }, const []);
@@ -86,14 +65,9 @@ class BookFeed extends HookWidget {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          print("Refreshed");
-          final userDoc = await _fireStore.collection("books").get();
-          final books = userDoc.docs;
-
-          List<Map<String, dynamic>?>? bookList =
-              books.map((book) => book.data()).toList();
-
-          bookViewModel.setOrderedBooks(bookList);
+          await bookViewModel.fetchCategories();
+          await bookViewModel.fetchAllBooks();
+          await bookViewModel.fetchRecentBooks();
         },
         child: SingleChildScrollView(
           child: Padding(
@@ -136,7 +110,12 @@ class BookFeed extends HookWidget {
                   ],
                 ),
                 const SizedBox(height: 20),
-                const FetchedBooks(),
+                // const FetchedBooks(),
+                Visibility(
+                  visible: bookViewModel.showFilteredBooks,
+                  replacement: const FetchedBooks(),
+                  child: const SortedBooks(origin: "all"),
+                ),
                 const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -158,7 +137,11 @@ class BookFeed extends HookWidget {
                   ],
                 ),
                 const SizedBox(height: 20),
-                const RecentBooks(),
+                Visibility(
+                  visible: bookViewModel.showFilteredBooks,
+                  replacement: const RecentBooks(),
+                  child: const SortedBooks(origin: "recent"),
+                ),
                 const SizedBox(height: 20),
               ],
             ),

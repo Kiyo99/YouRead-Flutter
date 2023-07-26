@@ -7,35 +7,42 @@ class BookViewModel extends ChangeNotifier {
 
   BookViewModel(this._ref);
 
-  List<Map<String, dynamic>?>? _fetchedBooks = [];
+  List<Map<String, dynamic>?>? _allBooks = [];
 
-  List<Map<String, dynamic>?>? get fetchedBooks => _fetchedBooks;
+  List<Map<String, dynamic>?>? get allBooks => _allBooks;
 
-  List<Map<String, dynamic>?>? _orderedBooks = [];
+  List<Map<String, dynamic>?>? _recentBooks = [];
 
-  List<Map<String, dynamic>?>? get orderedBooks => _orderedBooks;
+  List<Map<String, dynamic>?>? get recentBooks => _recentBooks;
 
   List<Map<String, dynamic>?>? _filteredBooks = [];
 
   List<Map<String, dynamic>?>? get filteredBooks => _filteredBooks;
 
+  List<Map<String, dynamic>?>? _filteredRecentBooks = [];
+
+  List<Map<String, dynamic>?>? get filteredRecentBooks => _filteredRecentBooks;
+
   List<dynamic> _bookmarkedBooks = [];
 
   List<dynamic> get bookmarkedBooks => _bookmarkedBooks;
 
+  List<Map<String, dynamic>?> _currentFilteredBooks = [];
+  List<Map<String, dynamic>?> _currentFilteredRecentBooks = [];
+
   void filterBooks(String category) {
     _showFilteredBooks = false;
-    final books = _fetchedBooks?.where((book) =>
+    final allBooks = _allBooks?.where((book) =>
+        book!['category'].toString().toLowerCase() == category.toLowerCase());
+
+    final recentBooks = _recentBooks?.where((book) =>
         book!['category'].toString().toLowerCase() == category.toLowerCase());
 
     _filteredBooks?.clear();
-    _filteredBooks?.addAll(books!);
+    _filteredBooks?.addAll(allBooks!);
 
-    _fetchedBooks?.clear();
-    _fetchedBooks?.addAll(books!);
-
-    _orderedBooks?.clear();
-    _orderedBooks?.addAll(books!);
+    _filteredRecentBooks?.clear();
+    _filteredRecentBooks?.addAll(recentBooks!);
 
     _showFilteredBooks = true;
     notifyListeners();
@@ -59,6 +66,8 @@ class BookViewModel extends ChangeNotifier {
       _activeCategory = "";
       _showFilteredBooks = false;
       _filteredBooks?.clear();
+      // fetchAllBooks();
+      // fetchRecentBooks();
       notifyListeners();
       return;
     }
@@ -70,7 +79,7 @@ class BookViewModel extends ChangeNotifier {
   }
 
   void setFetchedBooks(List<Map<String, dynamic>?>? data) {
-    _fetchedBooks = data;
+    _allBooks = data;
     notifyListeners();
   }
 
@@ -79,8 +88,8 @@ class BookViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setOrderedBooks(List<Map<String, dynamic>?>? data) {
-    _orderedBooks = data;
+  void setRecentBooks(List<Map<String, dynamic>?>? data) {
+    _recentBooks = data;
     notifyListeners();
   }
 
@@ -92,11 +101,15 @@ class BookViewModel extends ChangeNotifier {
 
   bool get showBooks => _showBooks;
 
+  bool _showLoader = false;
+
+  bool get showLoader => _showLoader;
+
   bool _showFilteredBooks = false;
 
   bool get showFilteredBooks => _showFilteredBooks;
 
-  Future<void> fetchBooks(String query) async {
+  Future<void> searchBooks(String query) async {
     if (query.isEmpty) {
       _showBooks = false;
       notifyListeners();
@@ -108,13 +121,62 @@ class BookViewModel extends ChangeNotifier {
 
     setFetchedBooks(data);
 
-    //
-    final books = _fetchedBooks?.where((book) =>
+    final books = _allBooks?.where((book) =>
         book!['title'].toString().toLowerCase().contains(query.toLowerCase()));
 
     _searchedBooks?.clear();
     _searchedBooks?.addAll(books!);
     _showBooks = true;
+    notifyListeners();
+  }
+
+  Future<void> fetchRecentBooks() async {
+    _showLoader = false;
+
+    final data = await FirebaseService.fetchRecentBooks();
+
+    setRecentBooks(data);
+
+    // _searchedBooks?.clear();
+    // _searchedBooks?.addAll(books!);
+    _showLoader = true;
+    notifyListeners();
+  }
+
+  Future<void> fetchAllBooks() async {
+    _showLoader = false;
+
+    final data = await FirebaseService.fetchBooks();
+
+    setFetchedBooks(data);
+
+    // _searchedBooks?.clear();
+    // _searchedBooks?.addAll(books!);
+    _showLoader = true;
+    notifyListeners();
+  }
+
+  Future<void> fetchCategories() async {
+    _showLoader = false;
+
+    final data = await FirebaseService.fetchCategories();
+
+    setCategories(data);
+
+    // _searchedBooks?.clear();
+    // _searchedBooks?.addAll(books!);
+    _showLoader = true;
+    notifyListeners();
+  }
+
+  Future<void> fetchBookmarks() async {
+    _showLoader = false;
+
+    final userData = await FirebaseService.fetchUser();
+
+    setBookmarkedBooks(userData?['bookmarks']);
+
+    _showLoader = true;
     notifyListeners();
   }
 

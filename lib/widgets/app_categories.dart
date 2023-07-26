@@ -18,7 +18,7 @@ class AppCategories extends HookWidget {
 
       List<dynamic> categories = bookViewModel.categories;
 
-      if (categories!.isEmpty) {
+      if (categories.isEmpty) {
         return const SizedBox();
       }
 

@@ -12,6 +12,7 @@ class SearchScreen extends HookWidget {
   static String id = "search_screen";
 
   const SearchScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final bookViewModel = useProvider(BookViewModel.provider);
@@ -26,7 +27,7 @@ class SearchScreen extends HookWidget {
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                   child: AppSearchField(
                     title: "Search titles",
-                    searchDB: (query) => bookViewModel.fetchBooks(query),
+                    searchDB: (query) => bookViewModel.searchBooks(query),
                   ),
                 ),
               )

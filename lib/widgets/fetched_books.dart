@@ -15,7 +15,7 @@ class FetchedBooks extends HookWidget {
   Widget build(BuildContext context) {
     final bookViewModel = useProvider(BookViewModel.provider);
 
-    List<Map<String, dynamic>?>? data = bookViewModel.fetchedBooks;
+    List<Map<String, dynamic>?>? data = bookViewModel.allBooks;
 
     if (data!.isEmpty) {
       return const SizedBox();

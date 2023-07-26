@@ -8,14 +8,17 @@ import 'package:k_books/core/constants.dart';
 import 'package:k_books/presentation/screens/books/summary_screen.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 
-class RecentBooks extends HookWidget {
-  const RecentBooks({Key? key}) : super(key: key);
+class SortedBooks extends HookWidget {
+  const SortedBooks({Key? key, required this.origin}) : super(key: key);
+  final String origin;
 
   @override
   Widget build(BuildContext context) {
     final bookViewModel = useProvider(BookViewModel.provider);
 
-    List<Map<String, dynamic>?>? data = bookViewModel.recentBooks;
+    List<Map<String, dynamic>?>? data = origin == "all"
+        ? bookViewModel.filteredBooks
+        : bookViewModel.filteredRecentBooks;
 
     if (data!.isEmpty) {
       return const SizedBox();

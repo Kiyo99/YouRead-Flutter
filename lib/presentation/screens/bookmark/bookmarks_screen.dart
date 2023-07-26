@@ -12,6 +12,7 @@ class BookmarksScreen extends HookWidget {
   static String id = "bookmarks_screen";
 
   const BookmarksScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final _fireStore = FirebaseFirestore.instance;
@@ -20,14 +21,7 @@ class BookmarksScreen extends HookWidget {
 
     useEffect(() {
       WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
-        final userDoc = await _fireStore
-            .collection("Users")
-            .doc(auth.currentUser?.email)
-            .get();
-
-        final userData = userDoc.data();
-
-        bookViewModel.setBookmarkedBooks(userData?['bookmarks']);
+        bookViewModel.fetchBookmarks();
       });
       return;
     }, const []);

@@ -78,8 +78,8 @@ class AllBooksScreen extends HookWidget {
               books: bookViewModel.showFilteredBooks == true
                   ? bookViewModel.filteredBooks
                   : origin == "bookStream"
-                      ? bookViewModel.fetchedBooks
-                      : bookViewModel.orderedBooks,
+                      ? bookViewModel.allBooks
+                      : bookViewModel.recentBooks,
             ),
           ),
         ],

@@ -11,4 +11,3 @@
 //Todo: Move bookmark to viewModel
 //TODO: When a user clicks on the see all after clicking on qa category, ALL BOOK SARE CLEARED
 //TODO: Is there a refersh indicator for all pages?
-//TODO: Infinite loading just after logging in -> Stop using streams

@@ -23,14 +23,7 @@ class BookmarkedBooks extends HookWidget {
 
     return RefreshIndicator(
       onRefresh: () async {
-        final userDoc = await _fireStore
-            .collection("Users")
-            .doc(auth.currentUser?.email)
-            .get();
-
-        final userData = userDoc.data();
-
-        bookViewModel.setBookmarkedBooks(userData?['bookmarks']);
+        bookViewModel.fetchBookmarks();
       },
       child: GridView.count(
         crossAxisCount: 2,
