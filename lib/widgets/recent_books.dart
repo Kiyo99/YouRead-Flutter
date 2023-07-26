@@ -8,14 +8,14 @@ import 'package:k_books/core/constants.dart';
 import 'package:k_books/presentation/screens/books/summary_screen.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 
-class FetchedBooks extends HookWidget {
-  const FetchedBooks({Key? key}) : super(key: key);
+class RecentBooks extends HookWidget {
+  const RecentBooks({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final bookViewModel = useProvider(BookViewModel.provider);
 
-    List<Map<String, dynamic>?>? data = bookViewModel.fetchedBooks;
+    List<Map<String, dynamic>?>? data = bookViewModel.orderedBooks;
 
     if (data!.isEmpty) {
       return const SizedBox();
