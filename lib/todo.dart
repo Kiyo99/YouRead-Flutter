@@ -8,6 +8,7 @@
 //Todo: Differentiate viewModels and filter like William
 //Todo: Last read should be relative to the user
 //Todo: Have the last read be stored locally
-//Todo: Look at infinite loading
 //Todo: Move bookmark to viewModel
-//Todo: Something is going wrong with the with hr 
+//TODO: When a user clicks on the see all after clicking on qa category, ALL BOOK SARE CLEARED
+//TODO: Is there a refersh indicator for all pages?
+//TODO: Infinite loading just after logging in -> Stop using streams

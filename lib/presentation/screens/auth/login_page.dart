@@ -104,7 +104,7 @@ class LoginPage extends HookWidget {
                               .cacheUser(user);
 
                           isLoading.value = false;
-                          Get.toNamed(MainApp.id);
+                          Get.offAllNamed(MainApp.id);
                         } on FirebaseAuthException catch (e) {
                           isLoading.value = false;
 
@@ -116,6 +116,8 @@ class LoginPage extends HookWidget {
                             primaryAction: () => Get.back(),
                             buttonText: "Okay",
                           );
+
+                          print("The error here is: ${e}");
                         }
                       },
                     ),

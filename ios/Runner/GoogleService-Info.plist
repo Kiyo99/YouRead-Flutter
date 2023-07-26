@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>264824026715-h9l10b39iemch7f64ovdn8q81qqm8r84.apps.googleusercontent.com</string>
+	<string>47065579460-oc4m44cb6lk9kthhj7e2vqhbj9r9kt7r.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.264824026715-h9l10b39iemch7f64ovdn8q81qqm8r84</string>
+	<string>com.googleusercontent.apps.47065579460-oc4m44cb6lk9kthhj7e2vqhbj9r9kt7r</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCxuE93YqimhmVlX5CvoR-ZaxWTw7wPjhE</string>
+	<string>AIzaSyBlUwyFY43w1duqhLQJEkn1SG8jF1I8-WQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>264824026715</string>
+	<string>47065579460</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.kBooks</string>
 	<key>PROJECT_ID</key>
-	<string>vvusa-cb6ac</string>
+	<string>kbooks-d91c6</string>
 	<key>STORAGE_BUCKET</key>
-	<string>vvusa-cb6ac.appspot.com</string>
+	<string>kbooks-d91c6.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:264824026715:ios:0bda016f3f1ae48b95b17e</string>
+	<string>1:47065579460:ios:30654d087aba1827016e91</string>
 </dict>
 </plist>

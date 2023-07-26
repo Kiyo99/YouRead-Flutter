@@ -129,13 +129,15 @@ class SummaryScreen extends HookWidget {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          child: Image.network(
-                                            data.value['url'],
-                                            height: 250,
-                                          )),
+                                      Expanded(
+                                        child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.network(
+                                              data.value['url'],
+                                              height: 250,
+                                            )),
+                                      ),
                                     ],
                                   ),
                                   const SizedBox(height: 30),

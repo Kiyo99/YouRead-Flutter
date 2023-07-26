@@ -31,6 +31,7 @@ Future<void> main() async {
   final sharedPreferences = await SharedPreferences.getInstance();
 
   await Firebase.initializeApp(
+    name: 'kbooks-d91c6',
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
