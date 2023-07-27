@@ -6,3 +6,4 @@
 //Todo: Last read should be relative to the user
 //Todo: Have the last read be stored locally
 //Todo: Move bookmark to viewModel
+//Todo: Have help for updating. FAQs?

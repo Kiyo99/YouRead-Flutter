@@ -16,16 +16,20 @@ class FetchedBooks extends HookWidget {
   Widget build(BuildContext context) {
     final bookViewModel = useProvider(BookViewModel.provider);
 
-    List<Map<String, dynamic>?>? data = origin == "all"
-        ? bookViewModel.allBooks
-        : bookViewModel.recentBooks;
+    List<Map<String, dynamic>?>? data =
+        origin == "all" ? bookViewModel.allBooks : bookViewModel.recentBooks;
 
     if (data!.isEmpty) {
-      return const SizedBox();
+      return Center(
+        child: Text(
+          "No books yet!",
+          style: GoogleFonts.nunito(color: Colors.red, fontSize: 15),
+        ),
+      );
     }
 
     return SizedBox(
-      height: 250,
+      height: 260,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
@@ -49,7 +53,7 @@ class FetchedBooks extends HookWidget {
                           child: Image.network(
                             data[index]!['url'],
                             height: 180,
-                            // width: 180,
+                            // width: 120,
                             // color: Colors.yellow,
                           ),
                         ),
@@ -58,14 +62,21 @@ class FetchedBooks extends HookWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Text(
-                  data[index]!['title'],
-                  style: GoogleFonts.nunito(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
+                SizedBox(
+                  width: 140,
+                  child: Text(
+                    data[index]!['title'],
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: true,
+                    maxLines: 2,
+                    style: GoogleFonts.nunito(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 Text(
                   data[index]!['author'],
                   style: GoogleFonts.nunito(color: Colors.black, fontSize: 14),

@@ -13,7 +13,7 @@ class AboutScreen extends HookWidget {
       appBar: AppBar(
         title: Text(
           "About",
-          style: AppTextStyles.plainTextStyle,
+          style: AppTextStyles.boldedStyle,
         ),
         elevation: 0,
         backgroundColor: Colors.transparent,

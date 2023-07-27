@@ -21,11 +21,16 @@ class SortedBooks extends HookWidget {
         : bookViewModel.filteredRecentBooks;
 
     if (data!.isEmpty) {
-      return const SizedBox();
+      return Center(
+        child: Text(
+          "No books yet in this category!",
+          style: GoogleFonts.nunito(color: Colors.red, fontSize: 15),
+        ),
+      );
     }
 
     return SizedBox(
-      height: 250,
+      height: 260,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
@@ -58,12 +63,19 @@ class SortedBooks extends HookWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Text(
-                  data[index]!['title'],
-                  style: GoogleFonts.nunito(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
+                SizedBox(
+                  width: 140,
+                  child: Text(
+                    data[index]!['title'],
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: true,
+                    maxLines: 2,
+                    style: GoogleFonts.nunito(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Text(

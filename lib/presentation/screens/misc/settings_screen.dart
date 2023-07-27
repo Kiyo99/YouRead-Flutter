@@ -13,7 +13,7 @@ class SettingsScreen extends HookWidget {
       appBar: AppBar(
         title: Text(
           "Settings",
-          style: AppTextStyles.plainTextStyle,
+          style: AppTextStyles.boldedStyle,
         ),
         elevation: 0,
         backgroundColor: Colors.transparent,

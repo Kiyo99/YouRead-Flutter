@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:k_books/presentation/screens/books/summary_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,7 +24,7 @@ class BookmarkedBooks extends HookWidget {
 
     return RefreshIndicator(
       onRefresh: () async {
-        bookViewModel.fetchBookmarks();
+        bookViewModel.getBookmarks();
       },
       child: GridView.count(
         crossAxisCount: 2,
@@ -61,12 +62,19 @@ class BookmarkedBooks extends HookWidget {
                             ],
                           ),
                           const SizedBox(height: 5),
-                          Text(
-                            books[index]['title'],
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+                          SizedBox(
+                            width: 140,
+                            child: Text(
+                              books![index]!['title'],
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: true,
+                              maxLines: 2,
+                              style: GoogleFonts.nunito(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                           const SizedBox(height: 5),
                           Text(

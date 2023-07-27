@@ -127,7 +127,7 @@ class BookViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fetchRecentBooks() async {
+  Future<void> getRecentBooks() async {
     _showLoader = false;
 
     final data = await FirebaseService.fetchRecentBooks();
@@ -140,7 +140,7 @@ class BookViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fetchAllBooks() async {
+  Future<void> getAllBooks() async {
     _showLoader = false;
 
     final data = await FirebaseService.fetchBooks();
@@ -153,7 +153,7 @@ class BookViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fetchCategories() async {
+  Future<void> getCategories() async {
     _showLoader = false;
 
     final data = await FirebaseService.fetchCategories();
@@ -166,7 +166,7 @@ class BookViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fetchBookmarks() async {
+  Future<void> getBookmarks() async {
     _showLoader = false;
 
     final userData = await FirebaseService.fetchUser();

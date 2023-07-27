@@ -21,7 +21,7 @@ class BookmarksScreen extends HookWidget {
 
     useEffect(() {
       WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
-        bookViewModel.fetchBookmarks();
+        bookViewModel.getBookmarks();
       });
       return;
     }, const []);

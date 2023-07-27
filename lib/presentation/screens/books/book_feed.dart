@@ -24,14 +24,12 @@ class BookFeed extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final bookViewModel = useProvider(BookViewModel.provider);
-    final _fireStore = FirebaseFirestore.instance;
-    final auth = FirebaseAuth.instance;
 
     useEffect(() {
       WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
-        await bookViewModel.fetchCategories();
-        await bookViewModel.fetchAllBooks();
-        await bookViewModel.fetchRecentBooks();
+        await bookViewModel.getCategories();
+        await bookViewModel.getAllBooks();
+        await bookViewModel.getRecentBooks();
       });
       return;
     }, const []);
@@ -58,9 +56,9 @@ class BookFeed extends HookWidget {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          await bookViewModel.fetchCategories();
-          await bookViewModel.fetchAllBooks();
-          await bookViewModel.fetchRecentBooks();
+          await bookViewModel.getCategories();
+          await bookViewModel.getAllBooks();
+          await bookViewModel.getRecentBooks();
         },
         child: SingleChildScrollView(
           child: Padding(
@@ -86,7 +84,7 @@ class BookFeed extends HookWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 // const FetchedBooks(),
                 Visibility(
                   visible: bookViewModel.showFilteredBooks,
@@ -113,7 +111,7 @@ class BookFeed extends HookWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 Visibility(
                   visible: bookViewModel.showFilteredBooks,
                   replacement: const FetchedBooks(origin: "recent"),

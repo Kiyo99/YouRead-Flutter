@@ -86,6 +86,12 @@ class SummaryScreen extends HookWidget {
         backgroundColor: Colors.transparent,
         foregroundColor: Constants.coolBlue,
         shadowColor: Colors.transparent,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.download),
+          ),
+        ],
       ),
       body: CustomScrollView(
         slivers: [

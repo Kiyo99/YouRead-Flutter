@@ -1,4 +1,8 @@
 import 'dart:io';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:image/image.dart' as img;
+import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
@@ -53,8 +57,52 @@ class UploadScreen extends HookWidget {
     }
   }
 
+  Future<File?> resizeImage(
+      File originalImageFile, int targetWidth, int targetHeight) async {
+    try {
+      img.Image? originalImage =
+          img.decodeImage(originalImageFile.readAsBytesSync());
+      img.Image resizedImage = img.copyResize(originalImage!,
+          width: targetWidth, height: targetHeight);
+
+      Directory tempDir = await getTemporaryDirectory();
+      String tempPath = tempDir.path;
+      File resizedImageFile = File('$tempPath/resized_image.jpg');
+      resizedImageFile
+          .writeAsBytesSync(img.encodeJpg(resizedImage, quality: 85));
+
+      return resizedImageFile;
+    } catch (e) {
+      print("Error resizing: ${e}");
+    }
+  }
+
+  // Future<File?> resizeImage(
+  //     File originalImageFile, int targetWidth, int targetHeight) async {
+  //   try {
+  //     // Read the original image file
+  //     img.Image? originalImage =
+  //         img.decodeImage(originalImageFile.readAsBytesSync());
+  //
+  //     // Resize the image
+  //     img.Image resizedImage = img.copyResize(originalImage!,
+  //         width: targetWidth, height: targetHeight);
+  //
+  //     // Encode the resized image to a file
+  //     File resizedImageFile = File('path_to_save_resized_image.jpg');
+  //     resizedImageFile
+  //         .writeAsBytesSync(img.encodeJpg(resizedImage, quality: 85));
+  //
+  //     return resizedImageFile;
+  //   } catch (e) {
+  //     print("Error resizing: ${e}");
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
+    final bookViewModel = useProvider(BookViewModel.provider);
+
     final isImageLoading = useState(false);
     final isPdfLoading = useState(false);
     final isLoading = useState(false);
@@ -65,6 +113,7 @@ class UploadScreen extends HookWidget {
     final brightness = Theme.of(context).brightness;
     final categoryItems = useState([
       "Category ...",
+      "Adult",
       "Christian",
       "Drama",
       "Educational",
@@ -124,8 +173,13 @@ class UploadScreen extends HookWidget {
                             imageUrl.text = fileNameToDisplay;
 
                             isImageLoading.value = true;
-                            final imageDownloadLink =
-                                await saveImage(file, fileNameToDisplay);
+                            //Resizing image
+                            final resizedImage =
+                                await resizeImage(file, 880, 1360);
+
+                            //Getting the download url from Firebase
+                            final imageDownloadLink = await saveImage(
+                                resizedImage!, fileNameToDisplay);
                             isImageLoading.value = false;
 
                             imageUrl.text = fileNameToDisplay;
@@ -268,6 +322,8 @@ class UploadScreen extends HookWidget {
                                   asset: 'assets/lottie/success.json',
                                   primaryAction: () {
                                     Get.back();
+                                    bookViewModel.getAllBooks();
+                                    bookViewModel.getRecentBooks();
                                   },
                                   buttonText: 'Okay',
                                 );

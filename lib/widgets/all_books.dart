@@ -51,12 +51,19 @@ class AllBooks extends HookWidget {
                           ],
                         ),
                         const SizedBox(height: 5),
-                        Text(
-                          books![index]!['title'],
-                          style: GoogleFonts.nunito(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
+                        SizedBox(
+                          width: 140,
+                          child: Text(
+                            books![index]!['title'],
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: true,
+                            maxLines: 2,
+                            style: GoogleFonts.nunito(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                         const SizedBox(height: 5),
                         Text(
