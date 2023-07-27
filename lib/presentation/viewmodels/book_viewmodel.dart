@@ -98,9 +98,21 @@ class BookViewModel extends ChangeNotifier {
 
   bool get showBooks => _showBooks;
 
-  bool _showLoader = false;
+  bool _showCatLoader = false;
 
-  bool get showLoader => _showLoader;
+  bool get showCatLoader => _showCatLoader;
+
+  bool _showBookmarkLoader = false;
+
+  bool get showBookmarkLoader => _showBookmarkLoader;
+
+  bool _showAllLoader = false;
+
+  bool get showAllLoader => _showAllLoader;
+
+  bool _showRecentLoader = false;
+
+  bool get showRecentLoader => _showRecentLoader;
 
   bool _showFilteredBooks = false;
 
@@ -128,7 +140,8 @@ class BookViewModel extends ChangeNotifier {
   }
 
   Future<void> getRecentBooks() async {
-    _showLoader = false;
+    _showRecentLoader = true;
+    notifyListeners();
 
     final data = await FirebaseService.fetchRecentBooks();
 
@@ -136,12 +149,13 @@ class BookViewModel extends ChangeNotifier {
 
     // _searchedBooks?.clear();
     // _searchedBooks?.addAll(books!);
-    _showLoader = true;
+    _showRecentLoader = false;
     notifyListeners();
   }
 
   Future<void> getAllBooks() async {
-    _showLoader = false;
+    _showAllLoader = true;
+    notifyListeners();
 
     final data = await FirebaseService.fetchBooks();
 
@@ -149,12 +163,13 @@ class BookViewModel extends ChangeNotifier {
 
     // _searchedBooks?.clear();
     // _searchedBooks?.addAll(books!);
-    _showLoader = true;
+    _showAllLoader = false;
     notifyListeners();
   }
 
   Future<void> getCategories() async {
-    _showLoader = false;
+    _showCatLoader = true;
+    notifyListeners();
 
     final data = await FirebaseService.fetchCategories();
 
@@ -162,18 +177,19 @@ class BookViewModel extends ChangeNotifier {
 
     // _searchedBooks?.clear();
     // _searchedBooks?.addAll(books!);
-    _showLoader = true;
+    _showCatLoader = false;
     notifyListeners();
   }
 
   Future<void> getBookmarks() async {
-    _showLoader = false;
+    _showBookmarkLoader = true;
+    notifyListeners();
 
     final userData = await FirebaseService.fetchUser();
 
     setBookmarkedBooks(userData?['bookmarks']);
 
-    _showLoader = true;
+    _showBookmarkLoader = false;
     notifyListeners();
   }
 

@@ -65,7 +65,7 @@ class BookmarkedBooks extends HookWidget {
                           SizedBox(
                             width: 140,
                             child: Text(
-                              books![index]!['title'],
+                              books[index]!['title'],
                               textAlign: TextAlign.center,
                               overflow: TextOverflow.ellipsis,
                               softWrap: true,

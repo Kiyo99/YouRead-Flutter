@@ -88,7 +88,9 @@ class BookFeed extends HookWidget {
                 // const FetchedBooks(),
                 Visibility(
                   visible: bookViewModel.showFilteredBooks,
-                  replacement: const FetchedBooks(origin: "all",),
+                  replacement: const FetchedBooks(
+                    origin: "all",
+                  ),
                   child: const SortedBooks(origin: "all"),
                 ),
                 const SizedBox(height: 20),
