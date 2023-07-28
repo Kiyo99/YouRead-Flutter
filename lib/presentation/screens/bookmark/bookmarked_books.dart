@@ -18,8 +18,6 @@ class BookmarkedBooks extends HookWidget {
     if (books.isEmpty) {
       return const Center(child: Text("No books at the moment"));
     }
-    final _fireStore = FirebaseFirestore.instance;
-    final auth = FirebaseAuth.instance;
     final bookViewModel = useProvider(BookViewModel.provider);
 
     return RefreshIndicator(

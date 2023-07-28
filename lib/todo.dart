@@ -7,4 +7,3 @@
 //Todo: Have the last read be stored locally
 //Todo: Move bookmark to viewModel
 //Todo: Have help for updating. FAQs?
-//Todo: Finalize loader View

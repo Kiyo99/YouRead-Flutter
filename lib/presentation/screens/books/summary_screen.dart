@@ -24,7 +24,6 @@ class SummaryScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bookViewModel = useProvider(BookViewModel.provider);
     final data = useState<Map<String, dynamic>>(Get.arguments);
 
     final user = context.read(AuthLocalDataSource.provider).getCachedUser();
@@ -86,12 +85,12 @@ class SummaryScreen extends HookWidget {
         backgroundColor: Colors.transparent,
         foregroundColor: Constants.coolBlue,
         shadowColor: Colors.transparent,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.download),
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {},
+        //     icon: Icon(Icons.download),
+        //   ),
+        // ],
       ),
       body: CustomScrollView(
         slivers: [

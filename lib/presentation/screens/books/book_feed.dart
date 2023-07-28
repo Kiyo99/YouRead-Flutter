@@ -6,6 +6,7 @@ import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/app_text_style.dart';
+import 'package:k_books/core/constants.dart';
 import 'package:k_books/core/firebase/firebase_service.dart';
 import 'package:k_books/presentation/screens/books/all_books_screen.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
@@ -65,7 +66,13 @@ class BookFeed extends HookWidget {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                const AppCategories(),
+                bookViewModel.showCatLoader
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          color: Constants.coolBlue,
+                        ),
+                      )
+                    : const AppCategories(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -86,13 +93,19 @@ class BookFeed extends HookWidget {
                 ),
                 const SizedBox(height: 10),
                 // const FetchedBooks(),
-                Visibility(
-                  visible: bookViewModel.showFilteredBooks,
-                  replacement: const FetchedBooks(
-                    origin: "all",
-                  ),
-                  child: const SortedBooks(origin: "all"),
-                ),
+                bookViewModel.showAllLoader
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          color: Constants.coolBlue,
+                        ),
+                      )
+                    : Visibility(
+                        visible: bookViewModel.showFilteredBooks,
+                        replacement: const FetchedBooks(
+                          origin: "all",
+                        ),
+                        child: const SortedBooks(origin: "all"),
+                      ),
                 const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,11 +127,17 @@ class BookFeed extends HookWidget {
                   ],
                 ),
                 const SizedBox(height: 10),
-                Visibility(
-                  visible: bookViewModel.showFilteredBooks,
-                  replacement: const FetchedBooks(origin: "recent"),
-                  child: const SortedBooks(origin: "recent"),
-                ),
+                bookViewModel.showRecentLoader == false
+                    ? Visibility(
+                        visible: bookViewModel.showFilteredBooks,
+                        replacement: const FetchedBooks(origin: "recent"),
+                        child: const SortedBooks(origin: "recent"),
+                      )
+                    : Center(
+                        child: CircularProgressIndicator(
+                          color: Constants.coolBlue,
+                        ),
+                      ),
                 const SizedBox(height: 20),
               ],
             ),

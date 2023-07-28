@@ -215,6 +215,15 @@ class ProfileScreen extends HookWidget {
               const SizedBox(height: 20),
               NavTile(
                 icon: Icons.info_outline,
+                title: "FAQs",
+                onPressed: () {},
+                padding: EdgeInsets.zero,
+                color: Colors.black,
+                trailing: const Icon(Icons.arrow_forward_ios_outlined),
+              ),
+              const SizedBox(height: 10),
+              NavTile(
+                icon: Icons.contact_support_outlined,
                 title: "Help and Support",
                 onPressed: () {},
                 padding: EdgeInsets.zero,
