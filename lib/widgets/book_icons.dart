@@ -5,14 +5,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/constants.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 
-class AppIcons extends HookWidget {
+class AppIcons extends HookConsumerWidget {
   const AppIcons(this.category, {Key? key}) : super(key: key);
 
   final String category;
 
   @override
-  Widget build(BuildContext context) {
-    final bookViewModel = useProvider(BookViewModel.provider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bookViewModel = ref.watch(BookViewModel.provider);
 
     return Icon(
       category == "Drama"

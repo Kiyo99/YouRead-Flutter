@@ -14,11 +14,11 @@ import 'package:k_books/widgets/app_drawer.dart';
 import 'package:k_books/widgets/app_modal.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
 
-class AppDrawer extends HookWidget {
+class AppDrawer extends HookConsumerWidget {
   const AppDrawer({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       height: MediaQuery.of(context).size.height,
       alignment: Alignment.center,
@@ -83,7 +83,7 @@ class AppDrawer extends HookWidget {
                           //
                           await auth.signOut();
 
-                          context
+                          ref
                               .read(AuthLocalDataSource.provider)
                               .clearUserData();
 

@@ -8,13 +8,13 @@ import 'package:k_books/core/constants.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 import 'package:k_books/widgets/book_icons.dart';
 
-class AppCategories extends HookWidget {
+class AppCategories extends HookConsumerWidget {
   const AppCategories({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     try {
-      final bookViewModel = useProvider(BookViewModel.provider);
+      final bookViewModel = ref.watch(BookViewModel.provider);
 
       List<dynamic> categories = bookViewModel.categories;
 

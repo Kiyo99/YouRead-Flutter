@@ -17,14 +17,14 @@ import 'package:k_books/widgets/searched_books.dart';
 import 'package:k_books/widgets/recent_books.dart';
 import 'package:k_books/widgets/sortedBooks.dart';
 
-class BookFeed extends HookWidget {
+class BookFeed extends HookConsumerWidget {
   static String id = "book_viewer";
 
   const BookFeed({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final bookViewModel = useProvider(BookViewModel.provider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bookViewModel = ref.watch(BookViewModel.provider);
 
     useEffect(() {
       WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {

@@ -14,14 +14,15 @@ import 'package:k_books/data/datasource/auth_local_datasource.dart';
 import 'package:k_books/widgets/app_dialogs.dart';
 import 'package:pdf_render/pdf_render_widgets.dart';
 
-class BookViewer extends HookWidget {
+class BookViewer extends HookConsumerWidget {
   static String id = "pdf_viewer";
 
   final _fireStore = FirebaseFirestore.instance;
 
   BookViewer({Key? key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final data = useState<Map<String, dynamic>>(Get.arguments);
     final zoomed = useState(false);
     PdfViewerController controller = PdfViewerController();
@@ -33,7 +34,7 @@ class BookViewer extends HookWidget {
     final _fireStore = FirebaseFirestore.instance;
     final auth = FirebaseAuth.instance;
 
-    final user = context.read(AuthLocalDataSource.provider).getCachedUser();
+    final user = ref.read(AuthLocalDataSource.provider).getCachedUser();
     final appUser = useState<AppUser?>(user);
 
     Future<bool> bookmarkeddd() async {
@@ -60,7 +61,7 @@ class BookViewer extends HookWidget {
 
       final user = AppUser.fromJson(studentsDoc.data()!);
 
-      context.read(AuthLocalDataSource.provider).cacheUser(user);
+      ref.read(AuthLocalDataSource.provider).cacheUser(user);
 
       appUser.value = user;
 
@@ -136,7 +137,7 @@ class BookViewer extends HookWidget {
                       currentBookmarks.add(data.value);
                     } else {
                       currentBookmarks.removeWhere(
-                              (book) => book['title'] == data.value['title']);
+                          (book) => book['title'] == data.value['title']);
                     }
 
                     await _fireStore

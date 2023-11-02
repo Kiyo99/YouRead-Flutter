@@ -8,29 +8,41 @@ import 'package:k_books/widgets/app_search_field.dart';
 import 'package:k_books/widgets/searched_books.dart';
 import 'package:lottie/lottie.dart';
 
-class SearchScreen extends HookWidget {
+class SearchScreen extends HookConsumerWidget {
   static String id = "search_screen";
 
   const SearchScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final bookViewModel = useProvider(BookViewModel.provider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bookViewModel = ref.watch(BookViewModel.provider);
     return SafeArea(
       child: ListView(
         children: [
           Row(
             children: [
               Expanded(
-                child: Padding(
+                child:
+                    //
+
+                //     Padding(
+                //   padding:
+                //       const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                //   child: SearchBar(
+                //     hintText: "Search by book title",
+                //     onChanged: (query) => bookViewModel.searchBooks(query),
+                //   ),
+                // ),
+
+                Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                   child: AppSearchField(
-                    title: "Search titles",
+                    title: "Search by book title",
                     searchDB: (query) => bookViewModel.searchBooks(query),
                   ),
                 ),
-              )
+              ),
             ],
           ),
           bookViewModel.showBooks

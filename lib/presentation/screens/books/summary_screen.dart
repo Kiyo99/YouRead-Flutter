@@ -17,16 +17,16 @@ import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 import 'package:k_books/widgets/app_dialogs.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
 
-class SummaryScreen extends HookWidget {
+class SummaryScreen extends HookConsumerWidget {
   static String id = "summary_screen";
 
   const SummaryScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final data = useState<Map<String, dynamic>>(Get.arguments);
 
-    final user = context.read(AuthLocalDataSource.provider).getCachedUser();
+    final user = ref.read(AuthLocalDataSource.provider).getCachedUser();
     final appUser = useState<AppUser?>(user);
 
     final _fireStore = FirebaseFirestore.instance;
@@ -40,7 +40,7 @@ class SummaryScreen extends HookWidget {
 
       final user = AppUser.fromJson(studentsDoc.data()!);
 
-      context.read(AuthLocalDataSource.provider).cacheUser(user);
+      ref.read(AuthLocalDataSource.provider).cacheUser(user);
 
       appUser.value = user;
 

@@ -8,17 +8,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 
-class BookmarkedBooks extends HookWidget {
+class BookmarkedBooks extends HookConsumerWidget {
   const BookmarkedBooks({Key? key, required this.books}) : super(key: key);
 
   final List<dynamic> books;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     if (books.isEmpty) {
       return const Center(child: Text("No books at the moment"));
     }
-    final bookViewModel = useProvider(BookViewModel.provider);
+    final bookViewModel = ref.watch(BookViewModel.provider);
 
     return RefreshIndicator(
       onRefresh: () async {
@@ -53,7 +53,7 @@ class BookmarkedBooks extends HookWidget {
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.network(
                                     books[index]['url'],
-                                    height: 200,
+                                    height: 170,
                                   ),
                                 ),
                               ),
@@ -63,7 +63,7 @@ class BookmarkedBooks extends HookWidget {
                           SizedBox(
                             width: 140,
                             child: Text(
-                              books[index]!['title'],
+                              books[index]['title'],
                               textAlign: TextAlign.center,
                               overflow: TextOverflow.ellipsis,
                               softWrap: true,

@@ -6,7 +6,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
+  sdk: '>=3.1.5 <4.0.0'
 
 dependencies:
   flutter:
@@ -14,13 +14,13 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.0.8
-  freezed: ^0.14.1+1
+  freezed: ^2.4.5
   get: ^4.6.5
   dartz: ^0.10.0
-  flutter_platform_widgets: ^1.20.0
+  flutter_platform_widgets: ^3.3.5
   url_launcher: ^6.1.2
-  lottie: ^1.2.1
-  intl: 0.17.0
+  lottie: ^2.7.0
+  intl: ^0.18.1
 
   # Icons
   flutter_remix: ^0.0.3
@@ -31,25 +31,27 @@ dependencies:
   pdf: ^3.8.4
 
   #google font
-  google_fonts: ^3.0.1
+  google_fonts: ^6.1.0
 
   #File picker and image manipulation
-  file_picker: ^4.6.1
-  image: ^3.1.3
+  file_picker: ^6.0.0
+  image: ^4.1.3
   path_provider: ^2.0.4
 
   #device preview
-  device_preview: ^0.7.4
+#  device_preview: ^0.7.4
 
   #firebase
-  firebase_auth: ^3.3.5
-  firebase_core: ^1.24.0
-  cloud_firestore: ^3.1.6
-  firebase_storage: ^10.2.8
+  firebase_auth: ^4.12.1
+  firebase_core: ^2.21.0
+  cloud_firestore: ^4.12.2
+  firebase_storage: ^11.4.1
+  flutter_local_notifications: ^16.1.0
+  firebase_messaging: ^14.7.3
 
   # State Management
-  hooks_riverpod: 0.14.0+5
-  flutter_hooks: 0.18.0
+  hooks_riverpod: ^2.4.5
+  flutter_hooks: ^0.20.3
 
 
 dev_dependencies:
@@ -57,13 +59,13 @@ dev_dependencies:
     sdk: flutter
 
   build_runner: ^2.1.10
-  flutter_lints: ^1.0.0
+  flutter_lints: ^3.0.0
   flutter_native_splash: ^2.1.1
   json_serializable: ^6.1.4
-  firebase_core_platform_interface: 4.5.1
+  firebase_core_platform_interface: ^5.0.0
 
   #generating icons
-  flutter_launcher_icons: "^0.10.0"
+  flutter_launcher_icons: ^0.13.1
 
 flutter_icons:
   android: "launcher_icon"

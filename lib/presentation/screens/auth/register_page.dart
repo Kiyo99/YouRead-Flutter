@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/constants.dart';
 import 'package:k_books/data/app_user/app_user.dart';
 import 'package:k_books/data/datasource/auth_local_datasource.dart';
@@ -15,7 +16,7 @@ import 'package:k_books/widgets/app_text_field.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class RegisterPage extends HookWidget {
+class RegisterPage extends HookConsumerWidget {
   RegisterPage({Key? key}) : super(key: key);
 
   static const id = "register";
@@ -30,7 +31,7 @@ class RegisterPage extends HookWidget {
   final _fireStore = FirebaseFirestore.instance;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final brightness = Theme.of(context).brightness;
     final isLoading = useState(false);
     final statusItems = useState(["Registering as ...", "Author", "Reader"]);
@@ -246,7 +247,7 @@ class RegisterPage extends HookWidget {
                               context, 'Successfully saved User');
 
                           final user = AppUser.fromJson(db);
-                          context
+                          ref
                               .read(AuthLocalDataSource.provider)
                               .cacheUser(user);
 

@@ -18,7 +18,7 @@ import 'package:k_books/widgets/app_text_field.dart';
 import 'package:k_books/widgets/muted_app_text_field.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
 
-class UploadScreen extends HookWidget {
+class UploadScreen extends HookConsumerWidget {
   static String id = "upload_screen";
 
   final _fireStore = FirebaseFirestore.instance;
@@ -100,8 +100,8 @@ class UploadScreen extends HookWidget {
   // }
 
   @override
-  Widget build(BuildContext context) {
-    final bookViewModel = useProvider(BookViewModel.provider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bookViewModel = ref.watch(BookViewModel.provider.notifier);
 
     final isImageLoading = useState(false);
     final isPdfLoading = useState(false);
