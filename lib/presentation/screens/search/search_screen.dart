@@ -25,16 +25,16 @@ class SearchScreen extends HookConsumerWidget {
                 child:
                     //
 
-                //     Padding(
-                //   padding:
-                //       const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                //   child: SearchBar(
-                //     hintText: "Search by book title",
-                //     onChanged: (query) => bookViewModel.searchBooks(query),
-                //   ),
-                // ),
+                    //     Padding(
+                    //   padding:
+                    //       const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                    //   child: SearchBar(
+                    //     hintText: "Search by book title",
+                    //     onChanged: (query) => bookViewModel.searchBooks(query),
+                    //   ),
+                    // ),
 
-                Padding(
+                    Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                   child: AppSearchField(
