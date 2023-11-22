@@ -3,14 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 class NavTile extends StatelessWidget {
   const NavTile(
-      {Key? key,
+      {super.key,
       required this.icon,
       required this.title,
       required this.onPressed,
       this.trailing,
       this.color,
-      this.padding})
-      : super(key: key);
+      this.padding});
 
   final IconData icon;
   final String title;

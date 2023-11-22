@@ -60,7 +60,7 @@ Future<void> main() async {
 }
 
 class MyApp extends HookWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class MyApp extends HookWidget {
           //   useMaterial3: true,
           // ),
           theme: ThemeData.light(),
-          title: 'KBooks',
+          title: 'YouRead',
           debugShowCheckedModeBanner: false,
           routes: {
             BookViewer.id: (context) => BookViewer(),

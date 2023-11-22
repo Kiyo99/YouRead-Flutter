@@ -27,7 +27,7 @@ class BookFeed extends HookConsumerWidget {
     final bookViewModel = ref.watch(BookViewModel.provider);
 
     useEffect(() {
-      WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
         await bookViewModel.getCategories();
         await bookViewModel.getAllBooks();
         await bookViewModel.getRecentBooks();
@@ -41,6 +41,10 @@ class BookFeed extends HookConsumerWidget {
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,
         shadowColor: Colors.transparent,
+        title: Text(
+          "YouRead",
+          style: AppTextStyles.boldedStyle,
+        ),
         leading: Builder(
           builder: (context) {
             return IconButton(

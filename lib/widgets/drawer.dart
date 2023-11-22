@@ -35,7 +35,8 @@ class AppDrawer extends HookConsumerWidget {
             Container(
               margin: const EdgeInsets.only(bottom: 20),
               child: Image.asset(
-                "assets/images/icon_1.png",
+                "assets/images/youread-icon.png",
+                height: 200,
               ),
             ),
             Expanded(
