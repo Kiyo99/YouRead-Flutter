@@ -36,28 +36,24 @@ class BookFeed extends HookConsumerWidget {
     }, const []);
 
     return Scaffold(
-      drawer: const AppDrawer(),
+      // drawer: const AppDrawer(),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,
         shadowColor: Colors.transparent,
         title: Text(
-          "YouRead",
+          "For You",
           style: AppTextStyles.boldedStyle,
         ),
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              onPressed: () => Scaffold.of(context).openDrawer(),
-              icon: const Icon(FlutterRemix.menu_2_line),
-            );
-          },
-        ),
+        // leading: Builder(
+        //   builder: (context) {
+        //     return IconButton(
+        //       onPressed: () => Scaffold.of(context).openDrawer(),
+        //       icon: const Icon(FlutterRemix.menu_2_line),
+        //     );
+        //   },
+        // ),
         elevation: 0,
-        actions: [
-          IconButton(
-              onPressed: () {}, icon: const Icon(FlutterRemix.more_2_fill))
-        ],
       ),
       body: RefreshIndicator(
         onRefresh: () async {

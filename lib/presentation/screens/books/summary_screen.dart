@@ -13,7 +13,6 @@ import 'package:k_books/core/constants.dart';
 import 'package:k_books/data/app_user/app_user.dart';
 import 'package:k_books/data/datasource/auth_local_datasource.dart';
 import 'package:k_books/presentation/screens/books/book_viewer.dart';
-import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 import 'package:k_books/widgets/app_dialogs.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
 
@@ -28,7 +27,7 @@ class SummaryScreen extends HookConsumerWidget {
 
     final user = ref.read(AuthLocalDataSource.provider).getCachedUser();
     final appUser = useState<AppUser?>(user);
-
+    print("Printing app user: ${appUser.value?.booksRead}");
     final _fireStore = FirebaseFirestore.instance;
     final auth = FirebaseAuth.instance;
 
@@ -66,7 +65,7 @@ class SummaryScreen extends HookConsumerWidget {
     final fillBookmark = useState(false);
 
     useEffect(() {
-      WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
         fillBookmark.value = await bookmarkeddd();
       });
       return;

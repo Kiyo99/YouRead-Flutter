@@ -44,10 +44,10 @@ class AppDrawer extends HookConsumerWidget {
                 shrinkWrap: true,
                 padding: EdgeInsets.zero,
                 children: [
-                  NavTile(
-                      icon: FlutterRemix.upload_2_line,
-                      title: "Upload",
-                      onPressed: () => Get.toNamed(UploadScreen.id)),
+                  // NavTile(
+                  //     icon: FlutterRemix.upload_2_line,
+                  //     title: "Upload",
+                  //     onPressed: () => Get.toNamed(UploadScreen.id)),
                   NavTile(
                       icon: FlutterRemix.parent_line,
                       title: "Parental Guide",

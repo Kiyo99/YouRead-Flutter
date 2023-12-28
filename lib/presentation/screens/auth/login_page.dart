@@ -13,7 +13,6 @@ import 'package:k_books/widgets/app_dialogs.dart';
 import 'package:k_books/widgets/app_modal.dart';
 import 'package:k_books/widgets/app_text_field.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:k_books/data/datasource/auth_local_datasource.dart';
 
 class LoginPage extends HookConsumerWidget {
@@ -123,6 +122,7 @@ class LoginPage extends HookConsumerWidget {
                       },
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
                           'Don\'t have account?',
@@ -139,7 +139,6 @@ class LoginPage extends HookConsumerWidget {
                           },
                         )
                       ],
-                      mainAxisAlignment: MainAxisAlignment.center,
                     ),
                   ],
                 ),

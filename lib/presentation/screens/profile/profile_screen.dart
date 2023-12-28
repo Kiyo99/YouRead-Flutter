@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/app_text_style.dart';
@@ -49,7 +50,7 @@ class ProfileScreen extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "My Profile",
+          "Settings",
           style: AppTextStyles.boldedStyle,
         ),
         elevation: 0,
@@ -232,6 +233,15 @@ class ProfileScreen extends HookConsumerWidget {
               ),
               const SizedBox(height: 10),
               NavTile(
+                icon: FlutterRemix.parent_line,
+                title: "Parental Guide",
+                onPressed: () {},
+                padding: EdgeInsets.zero,
+                color: Colors.black,
+                trailing: const Icon(Icons.arrow_forward_ios_outlined),
+              ),
+              const SizedBox(height: 10),
+              NavTile(
                 icon: Icons.star_outline,
                 title: "Make a Suggestion",
                 onPressed: () {},
@@ -272,7 +282,7 @@ class ProfileScreen extends HookConsumerWidget {
                       showSecondary: true);
                 },
                 padding: EdgeInsets.zero,
-                color: Colors.green,
+                color: Constants.coolRed,
               ),
               const SizedBox(height: 10),
               NavTile(

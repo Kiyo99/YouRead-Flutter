@@ -7,6 +7,7 @@ import 'package:k_books/presentation/screens/bookmark/bookmarks_screen.dart';
 import 'package:k_books/presentation/screens/books/book_feed.dart';
 import 'package:k_books/presentation/screens/profile/profile_screen.dart';
 import 'package:k_books/presentation/screens/search/search_screen.dart';
+import 'package:k_books/presentation/screens/upload/upload_screen.dart';
 
 class MainApp extends HookWidget {
   static const id = 'main_app';
@@ -26,9 +27,12 @@ class MainApp extends HookWidget {
         BottomNavigationBarItem(
             icon: Icon(FlutterRemix.bookmark_3_line), label: "Bookmarks"),
         BottomNavigationBarItem(
+            icon: Icon(FlutterRemix.add_circle_line, size: 30),
+            label: "Upload"),
+        BottomNavigationBarItem(
             icon: Icon(FlutterRemix.search_2_line), label: "Search"),
         BottomNavigationBarItem(
-            icon: Icon(FlutterRemix.account_circle_line), label: "Profile"),
+            icon: Icon(FlutterRemix.settings_2_line), label: "Settings"),
       ],
       currentIndex: _selectedIndex.value,
       showUnselectedLabels: true,
@@ -54,6 +58,7 @@ class MainApp extends HookWidget {
       children: [
         const BookFeed(),
         const BookmarksScreen(),
+        UploadScreen(),
         const SearchScreen(),
         ProfileScreen(),
       ],

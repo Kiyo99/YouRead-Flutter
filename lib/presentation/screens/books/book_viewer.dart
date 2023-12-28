@@ -69,7 +69,7 @@ class BookViewer extends HookConsumerWidget {
     }
 
     useEffect(() {
-      WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
         fillBookmark.value = await bookmarkeddd();
       });
       return;
