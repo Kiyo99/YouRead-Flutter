@@ -13,3 +13,4 @@
 //TODO: What should go into the settings?
 //TODO: Edit functionality in edit page
 //TODO: Make it truly a platform where new author can upload their books
+//TODO: Maybe I want a different database, a proper backend this time
