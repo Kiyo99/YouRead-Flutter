@@ -10,18 +10,17 @@ import 'package:k_books/presentation/screens/auth/login_page.dart';
 import 'package:k_books/presentation/screens/main_app.dart';
 import 'package:lottie/lottie.dart';
 
-class SplashScreen extends HookWidget {
+class SplashScreen extends HookConsumerWidget {
   static const id = "/sp";
 
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final auth = FirebaseAuth.instance;
 
     User? authUser = auth.currentUser;
-    final viewedIntro =
-        context.read(AuthLocalDataSource.provider).viewedIntro();
+    final viewedIntro = ref.read(AuthLocalDataSource.provider).viewedIntro();
 
     Future.delayed(const Duration(seconds: 5), () {
       if (authUser == null) {

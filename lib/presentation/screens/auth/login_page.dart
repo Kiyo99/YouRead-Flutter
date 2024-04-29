@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/constants.dart';
 import 'package:k_books/data/app_user/app_user.dart';
 import 'package:k_books/presentation/screens/auth/register_page.dart';
@@ -12,10 +13,9 @@ import 'package:k_books/widgets/app_dialogs.dart';
 import 'package:k_books/widgets/app_modal.dart';
 import 'package:k_books/widgets/app_text_field.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:k_books/data/datasource/auth_local_datasource.dart';
 
-class LoginPage extends HookWidget {
+class LoginPage extends HookConsumerWidget {
   LoginPage({Key? key}) : super(key: key);
 
   static const id = 'login';
@@ -26,9 +26,9 @@ class LoginPage extends HookWidget {
   final store = FirebaseFirestore.instance;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     useEffect(() {
-      WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         if (auth.currentUser != null) {
           Get.offNamed(MainApp.id);
         }
@@ -99,7 +99,7 @@ class LoginPage extends HookWidget {
 
                           final user = AppUser.fromJson(studentsDoc.data()!);
 
-                          context
+                          ref
                               .read(AuthLocalDataSource.provider)
                               .cacheUser(user);
 
@@ -122,6 +122,7 @@ class LoginPage extends HookWidget {
                       },
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
                           'Don\'t have account?',
@@ -138,7 +139,6 @@ class LoginPage extends HookWidget {
                           },
                         )
                       ],
-                      mainAxisAlignment: MainAxisAlignment.center,
                     ),
                   ],
                 ),

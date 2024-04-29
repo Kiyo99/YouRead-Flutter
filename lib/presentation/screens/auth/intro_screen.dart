@@ -9,13 +9,13 @@ import 'package:k_books/widgets/primary_app_button.dart';
 import 'package:k_books/widgets/secondary_app_button.dart';
 import 'package:k_books/widgets/slider_indicator.dart';
 
-class IntroScreen extends HookWidget {
+class IntroScreen extends HookConsumerWidget {
   static const id = "/intro";
 
   const IntroScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final currentSlide = useState(0);
     final pageController = usePageController();
 
@@ -56,7 +56,7 @@ class IntroScreen extends HookWidget {
                         curve: Curves.linear,
                       );
                     } else {
-                      context
+                      ref
                           .read(AuthLocalDataSource.provider)
                           .setViewedIntro();
 
@@ -77,7 +77,7 @@ class IntroScreen extends HookWidget {
                     child: SecondaryAppButton(
                       title: "Skip",
                       onPressed: () {
-                        context
+                        ref
                             .read(AuthLocalDataSource.provider)
                             .setViewedIntro();
                         Get.offAllNamed(LoginPage.id);

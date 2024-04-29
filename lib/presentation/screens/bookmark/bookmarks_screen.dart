@@ -8,19 +8,19 @@ import 'package:k_books/core/constants.dart';
 import 'package:k_books/presentation/screens/bookmark/bookmarked_books.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 
-class BookmarksScreen extends HookWidget {
+class BookmarksScreen extends HookConsumerWidget {
   static String id = "bookmarks_screen";
 
   const BookmarksScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final _fireStore = FirebaseFirestore.instance;
-    final auth = FirebaseAuth.instance;
-    final bookViewModel = useProvider(BookViewModel.provider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    // final _fireStore = FirebaseFirestore.instance;
+    // final auth = FirebaseAuth.instance;
+    final bookViewModel = ref.watch(BookViewModel.provider);
 
     useEffect(() {
-      WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
         bookViewModel.getBookmarks();
       });
       return;

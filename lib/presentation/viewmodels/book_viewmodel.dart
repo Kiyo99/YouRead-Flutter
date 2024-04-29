@@ -3,10 +3,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/firebase/firebase_service.dart';
 
 class BookViewModel extends ChangeNotifier {
-  final AutoDisposeProviderReference _ref;
-
-  BookViewModel(this._ref);
-
   List<Map<String, dynamic>?>? _allBooks = [];
 
   List<Map<String, dynamic>?>? get allBooks => _allBooks;
@@ -193,7 +189,6 @@ class BookViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  static final provider = ChangeNotifierProvider.autoDispose(
-    (ref) => BookViewModel(ref),
-  );
+  static final provider =
+      ChangeNotifierProvider.autoDispose((ref) => BookViewModel());
 }

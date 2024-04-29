@@ -13,22 +13,21 @@ import 'package:k_books/core/constants.dart';
 import 'package:k_books/data/app_user/app_user.dart';
 import 'package:k_books/data/datasource/auth_local_datasource.dart';
 import 'package:k_books/presentation/screens/books/book_viewer.dart';
-import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 import 'package:k_books/widgets/app_dialogs.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
 
-class SummaryScreen extends HookWidget {
+class SummaryScreen extends HookConsumerWidget {
   static String id = "summary_screen";
 
   const SummaryScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final data = useState<Map<String, dynamic>>(Get.arguments);
 
-    final user = context.read(AuthLocalDataSource.provider).getCachedUser();
+    final user = ref.read(AuthLocalDataSource.provider).getCachedUser();
     final appUser = useState<AppUser?>(user);
-
+    print("Printing app user: ${appUser.value?.booksRead}");
     final _fireStore = FirebaseFirestore.instance;
     final auth = FirebaseAuth.instance;
 
@@ -40,7 +39,7 @@ class SummaryScreen extends HookWidget {
 
       final user = AppUser.fromJson(studentsDoc.data()!);
 
-      context.read(AuthLocalDataSource.provider).cacheUser(user);
+      ref.read(AuthLocalDataSource.provider).cacheUser(user);
 
       appUser.value = user;
 
@@ -66,7 +65,7 @@ class SummaryScreen extends HookWidget {
     final fillBookmark = useState(false);
 
     useEffect(() {
-      WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
         fillBookmark.value = await bookmarkeddd();
       });
       return;

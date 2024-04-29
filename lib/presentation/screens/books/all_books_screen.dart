@@ -8,14 +8,14 @@ import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 import 'package:k_books/widgets/all_books.dart';
 import 'package:k_books/widgets/book_icons.dart';
 
-class AllBooksScreen extends HookWidget {
+class AllBooksScreen extends HookConsumerWidget {
   static String id = "all_books_screen";
 
   const AllBooksScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final bookViewModel = useProvider(BookViewModel.provider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bookViewModel = ref.watch(BookViewModel.provider);
     final String origin = Get.arguments;
 
     return Scaffold(

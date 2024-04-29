@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:k_books/core/app_text_style.dart';
@@ -17,7 +18,7 @@ import 'package:k_books/widgets/app_drawer.dart';
 import 'package:k_books/widgets/app_modal.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
 
-class ProfileScreen extends HookWidget {
+class ProfileScreen extends HookConsumerWidget {
   static String id = "profile_screen";
 
   ProfileScreen({Key? key}) : super(key: key);
@@ -26,8 +27,8 @@ class ProfileScreen extends HookWidget {
   final auth = FirebaseAuth.instance;
 
   @override
-  Widget build(BuildContext context) {
-    final user = context.read(AuthLocalDataSource.provider).getCachedUser();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.read(AuthLocalDataSource.provider).getCachedUser();
     final appUser = useState<AppUser?>(user);
 
     final isImageLoading = useState(false);
@@ -49,7 +50,7 @@ class ProfileScreen extends HookWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "My Profile",
+          "Settings",
           style: AppTextStyles.boldedStyle,
         ),
         elevation: 0,
@@ -100,7 +101,7 @@ class ProfileScreen extends HookWidget {
 
                             final user = AppUser.fromJson(studentsDoc.data()!);
 
-                            context
+                            ref
                                 .read(AuthLocalDataSource.provider)
                                 .cacheUser(user);
 
@@ -232,6 +233,15 @@ class ProfileScreen extends HookWidget {
               ),
               const SizedBox(height: 10),
               NavTile(
+                icon: FlutterRemix.parent_line,
+                title: "Parental Guide",
+                onPressed: () {},
+                padding: EdgeInsets.zero,
+                color: Colors.black,
+                trailing: const Icon(Icons.arrow_forward_ios_outlined),
+              ),
+              const SizedBox(height: 10),
+              NavTile(
                 icon: Icons.star_outline,
                 title: "Make a Suggestion",
                 onPressed: () {},
@@ -263,9 +273,7 @@ class ProfileScreen extends HookWidget {
                         //
                         await auth.signOut();
 
-                        context
-                            .read(AuthLocalDataSource.provider)
-                            .clearUserData();
+                        ref.read(AuthLocalDataSource.provider).clearUserData();
 
                         // print(auth.currentUser);
                         Get.offAndToNamed(LoginPage.id);
@@ -274,7 +282,7 @@ class ProfileScreen extends HookWidget {
                       showSecondary: true);
                 },
                 padding: EdgeInsets.zero,
-                color: Colors.green,
+                color: Constants.coolRed,
               ),
               const SizedBox(height: 10),
               NavTile(

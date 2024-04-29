@@ -14,11 +14,11 @@ import 'package:k_books/widgets/app_drawer.dart';
 import 'package:k_books/widgets/app_modal.dart';
 import 'package:k_books/widgets/primary_app_button.dart';
 
-class AppDrawer extends HookWidget {
+class AppDrawer extends HookConsumerWidget {
   const AppDrawer({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       height: MediaQuery.of(context).size.height,
       alignment: Alignment.center,
@@ -35,7 +35,8 @@ class AppDrawer extends HookWidget {
             Container(
               margin: const EdgeInsets.only(bottom: 20),
               child: Image.asset(
-                "assets/images/icon_1.png",
+                "assets/images/youread-icon.png",
+                height: 200,
               ),
             ),
             Expanded(
@@ -43,10 +44,10 @@ class AppDrawer extends HookWidget {
                 shrinkWrap: true,
                 padding: EdgeInsets.zero,
                 children: [
-                  NavTile(
-                      icon: FlutterRemix.upload_2_line,
-                      title: "Upload",
-                      onPressed: () => Get.toNamed(UploadScreen.id)),
+                  // NavTile(
+                  //     icon: FlutterRemix.upload_2_line,
+                  //     title: "Upload",
+                  //     onPressed: () => Get.toNamed(UploadScreen.id)),
                   NavTile(
                       icon: FlutterRemix.parent_line,
                       title: "Parental Guide",
@@ -83,7 +84,7 @@ class AppDrawer extends HookWidget {
                           //
                           await auth.signOut();
 
-                          context
+                          ref
                               .read(AuthLocalDataSource.provider)
                               .clearUserData();
 

@@ -8,13 +8,13 @@ import 'package:k_books/core/constants.dart';
 import 'package:k_books/presentation/screens/books/summary_screen.dart';
 import 'package:k_books/presentation/viewmodels/book_viewmodel.dart';
 
-class SortedBooks extends HookWidget {
+class SortedBooks extends HookConsumerWidget {
   const SortedBooks({Key? key, required this.origin}) : super(key: key);
   final String origin;
 
   @override
-  Widget build(BuildContext context) {
-    final bookViewModel = useProvider(BookViewModel.provider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bookViewModel = ref.watch(BookViewModel.provider);
 
     List<Map<String, dynamic>?>? data = origin == "all"
         ? bookViewModel.filteredAllBooks

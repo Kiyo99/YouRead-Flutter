@@ -17,17 +17,17 @@ import 'package:k_books/widgets/searched_books.dart';
 import 'package:k_books/widgets/recent_books.dart';
 import 'package:k_books/widgets/sortedBooks.dart';
 
-class BookFeed extends HookWidget {
+class BookFeed extends HookConsumerWidget {
   static String id = "book_viewer";
 
   const BookFeed({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final bookViewModel = useProvider(BookViewModel.provider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bookViewModel = ref.watch(BookViewModel.provider);
 
     useEffect(() {
-      WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
         await bookViewModel.getCategories();
         await bookViewModel.getAllBooks();
         await bookViewModel.getRecentBooks();
@@ -36,24 +36,24 @@ class BookFeed extends HookWidget {
     }, const []);
 
     return Scaffold(
-      drawer: const AppDrawer(),
+      // drawer: const AppDrawer(),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,
         shadowColor: Colors.transparent,
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              onPressed: () => Scaffold.of(context).openDrawer(),
-              icon: const Icon(FlutterRemix.menu_2_line),
-            );
-          },
+        title: Text(
+          "For You",
+          style: AppTextStyles.boldedStyle,
         ),
+        // leading: Builder(
+        //   builder: (context) {
+        //     return IconButton(
+        //       onPressed: () => Scaffold.of(context).openDrawer(),
+        //       icon: const Icon(FlutterRemix.menu_2_line),
+        //     );
+        //   },
+        // ),
         elevation: 0,
-        actions: [
-          IconButton(
-              onPressed: () {}, icon: const Icon(FlutterRemix.more_2_fill))
-        ],
       ),
       body: RefreshIndicator(
         onRefresh: () async {
